@@ -3,7 +3,7 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5;
     font-size: 16px;
-margin: 0 auto;
+
 }
 
 h1, h2 {
@@ -18,26 +18,35 @@ h2 {
     font-weight: 300;
 }
 
-section {
+main {
     display: flex;    
 padding: 20px;
 justify-content: center;
 align-items: center;
+width: 80%;
+margin: 0 auto;
 }
 
-section div {
+@media (max-width: 425px) {
+    main {
+        flex-wrap: wrap;
+    }
+}
+
+main div {
     padding: 50px;
     min-height: 500px;  
+    
 }
 .title {
 background-color: #CEB0B2;
 display: flex;
 flex-flow: column nowrap;
 justify-content: center;
-min-width: 300px;
+min-width: 30%;
 
 }
 .list {
     background-color: #DADADA;
-    min-width: 500px;
+    min-width: 50%;
 }
