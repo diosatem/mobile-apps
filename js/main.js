@@ -1,34 +1,43 @@
-const links = [
-    {
-      label: "Week 1 notes",
-      url: "week1/index.html"
-    }
+
+// let text = "";
+// const links = [
+//     {
+//       label: "Week 1 notes",
+//       url: "week1/index.html"
+//     },
+//     {
+//       label: "Week 2 notes",
+//       url: "to be posted"
+//     }
+//   ]
+//   const theList = document.querySelector('#wdd330Assign');
+
+//   links.forEach(myFunction);
+
+//   document.getElementById("wdd330Assign").innerHTML = text;
+ 
+//   function myFunction(item, index) {
+//     text += index + ": " + item + "<br>"; 
+//   }
+
+function showWeekList() {
+  const allWeeks = [
+      {
+        label: "1",
+url: "week1/index.html"
+      },
+      {
+        label: "2",
+        url: "week2/index.html"
+      },
+     
   ]
-  const theList = document.querySelector('#wdd330Assign');
+  var namelist = allWeeks.map(function (t, i) {
+    return `<b>Week # : </b> ${t.label}<br/><b>URL : </b> <a href=${t.url}>${t.url}</a><br/><br/>`;
+  })
 
-  // loops through the links array and grabs the label and sets it in the li
-for (i = 0; i <= links.length - 1; i++) {
-    const li = document.createElement('li');
-    //adding the id addLink so I can loop through and add the a tags inside the li
-    li.setAttribute('id', 'addLink');
-    li.innerText = links[i].label + ': '
-
-    // const a = document.createElement('a')
-    // a.setAttribute('href', links[i].url);
-
-    theList.appendChild(li);
+  document.getElementById('wdd330Assign').innerHTML =
+    '<li>' + namelist.join('</li><li>') + '</li>'
 }
 
-//grabs the li nested in the ul 
-const theLi = document.querySelector('#addLink');
-
-// loops again to add the links to the li element
-
-
-for (i = 0; i <= links.length - 1; i++){
-    const a = document.createElement('a');
-    a.setAttribute('href', links[i].url);
-    a.innerText = "Click Here";
-
-    theLi.appendChild(a);
-}
+showWeekList()
