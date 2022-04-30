@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W02 Team Activity</title>
+</head>
+
+<body>
+    <!-- <input id="someTextInput" type="text">
+    <button onclick="buttonClick()">Click Me</button>
+    <div id="placeholder"></div> -->
+
+    <input id="numberInput" type="text">
+    <button onclick="convertAndSumNumbers()">Sum Until This Number</button>
+    <div id="placeholderSum"></div>
+
+    <!-- <input id="firstNumber" type="text">
+    <button onclick="convertAndAddNumbers()">+</button>
+    <input id="secondNumber" type="text">
+    <div id="placeholderAdd"></div>
+
+    <input id="firstNumberSubtract" type="text">
+    <button id="subject">-</button>
+    <input id="secondNumberSubtract" type="text">
+    <div id="placeholderSubtract"></div>
+
+    <input id="firstNumberM" type="text">
+    <button onclick="convertAndMultiplyNumbers()">X</button>
+    <input id="secondNumberM" type="text">
+    <div id="placeholderMultiply"></div> -->
+    <script>
+        //document.getElementById("subtract").addEventListener('click', convertAndSubtractNumbers);
+        //document.getElementById("multiplyButton").addEventListener('click', convertAndMultiplyNumbers);
+        // function buttonClick() {
+        //     let textInput = document.getElementById("someTextInput");
+        //     let content = document.getElementById("placeholder");
+        //     content.innerText = textInput.value;
+        // }
+
+        //core 2
+        function convertAndSumNumbers() {
+            let numInput = document.getElementById("numberInput");
+            const sum = sumNumbers(parseInt(numInput.value));
+            let content = document.getElementById('placeholderSum');
+            content.innerText = `Your sum is: ${sum} thank you for your business.`;
+        }
+
+        function sumNumbers(ending) {
+            let value = 0;
+            for (let i = 1; i <= ending; ++i) {
+                value += i;
+            }
+            return value;
+        }
+
+        // function convertAndAddNumbers() {
+        //     let first = document.getElementById("firstNumber");
+        //     let second = document.getElementById("secondNumber");
+        //     const sum = parseInt(first.value) + parseInt(second.value);
+        //     let content = document.getElementById('placeholderAdd');
+        //     content.innerText = `Your sum is: ${sum} thank you for your business.`;
+        // }
+
+        // function convertAndSubtractNumbers() {
+        //     let first = document.getElementById("firstNumberSubtract");
+        //     let second = document.getElementById("secondNumberSubtract");
+        //     const sum = subtract(parseInt(first.value), parseInt(second.value));
+        //     let content = document.getElementById('placeholderSubtract');
+        //     content.innerText = `Your difference is: ${sum} thank you for your business.`;
+        // }
+
+        // function convertAndMultiplyNumbers() {
+        //     let first = getIntegerValueById("firstNumberM");
+        //     let second = getIntegerValueById("secondNumberM");
+        //     const sum = multiply(first, second);
+        //     let content = document.getElementById('placeholderMultiply');
+        //     content.innerText = `Your product is: ${sum} thank you for your business.`;
+        // }
+        // // doesn't reduce lines, but makes it a little easier to type
+        // function getIntegerValueById(id) {
+        //     const num = parseInt(document.getElementById(id).value);
+        //     if (num == NaN) {
+        //         alert(`Invalid input: ${num} is not a number`);
+        //     }
+        // }
+        // const subtract = (x1, x2) => x1 - x2;
+        // const multiply = function (x1, x2) {
+        //     return x1 * x2;
+        // }
+
+
+    </script>
+</body>
+
+</html>
