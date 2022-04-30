@@ -8,7 +8,7 @@
     <title>WDD 330 Portfolio - Week 2</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/main.css">
-    
+
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                 <ol>
                     <li>Questions:</li>
                     <ol class="letter-list">
-                       
+
                         <li>What's the difference between ' and ` in terms of usage?</li>
                         <li>What's the use of Symbol()?</li>
                         <li>Where do we use Octal and Hexadecimal Numbers?</li>
@@ -73,21 +73,86 @@
                                 <p>• Numbers also have some built-in methods, although you need to be careful when using
                                     the dot notation with number literals that are integers because JavaScript will
                                     confuse the dot with a decimal point. </p>
-                                    <li>Type coercion</li>
-                                    <p>• '2' * 8;<br>
-                                        << 16</p>
-                                    <p>• Better change the type manually rather than relying on type coercion</p>
-                                    <li>converting strings to numbers</li>
-                                    <p>• Number('23')</p>
-                    </ol>
+                                <li>Type coercion</li>
+                                <p>• '2' * 8;<br>
+                                    << 16</p> <p>• Better change the type manually rather than relying on type coercion
+                                </p>
+                                <li>converting strings to numbers</li>
+                                <p>• Number('23')</p>
+                                <li>Functions</li>
+                                <p>• All functions return a value, which can be specified using the return statement,
+                                    which comes after the return keyword. A function that doesn’t explicitly return
+                                    anything (such as all the examples we have seen so far) will return undefined by
+                                    default.</p>
+                                function howdy(){<br>
+                                return 'Howdy World!';<br>
+                                This means we can now assign a function invocation to a variable, and the value of that
+                                variable will be the return value of that function:<br>
+                                const message = howdy();<br>
+                                << 'Howdy World!' <br>
+                                    }
+                                    <p>• Parameters and arguments are terms that are often used interchangeably to
+                                        represent values provided for the function as an input. There is a subtle
+                                        difference though: any parameters a function needs are set when the function is
+                                        defined. When a function is invoked, it is provided with arguments. In the body
+                                        of the function, the name of the parameter acts like a variable equal to the
+                                        value that is provided when the function is invoked. When we invoke this
+                                        function, we need to provide an argument</p>
+                                    function square(x){<br>
+                                    return x*x;<br>
+                                    }
+                                    square(4.5);<br>
+                                    << 20.25<br>
+                                        <p>• You can use as many parameters as you like when defining functions. If a
+                                            parameter is not provided as an argument when the function is invoked, the
+                                            function will still be invoked, but the parameter will be given a value of
+                                            undefined. If too many arguments are provided when a function is invoked,
+                                            the
+                                            function will work as normal and the extra arguments will be ignored
+                                            (although they can be accessed using the arguments </p>
+                        </p>
+                        <p>• Every function has a special variable called arguments. This is an array-like object that
+                            contains every argument passed to the function when it is invoked. We can create a simple
+                            function called arguments() that will return the arguments object so we can see what it
+                            contains:</p>
+                        <p>• rest operator is a much better option to borrow methods from arrays because arguments is
+                            not an array. The args parameter is an actual array, and has access to the same methods.
+                            <br>
+                            function rest(...args){<br>
+                            return args;<br>
+                            }
+                        </p>
+                        <p>• We can use a rest parameter to improve our mean() function so it accepts any number of
+                            values:<br>
+                            function mean(...values) {<br>
+                            let total = 0;<br>
+                            for(const value of values) {<br>
+                            total += value;<br>
+                            }<br>
+                            return total/values.length;<br>
+                            }
+                        </p>
+                        <p>• Remember at the start of this chapter when we said that functions in JavaScript are
+                            first-class objects, so they behave in just the same way as every other object? This means
+                            that functions can also be given as a parameter to another function. A function that is
+                            passed as an argument to another is known as a callback.</p>
+                            <p>• We can make the sing() function more flexible by adding a callback parameter. The callback is provided as a parameter, then invoked inside the body of the function.<br>
+                                function sing(song,callback) {<br>
+                                    console.log(`I'm singing along to ${song}.`);<br>
+                                    callback();<br>
+                                }
+                            </p>
+                            <p>• It’s often a better idea to keep functions separate and named, so they can be reused. </p>
+                   <p>• Arrow functions make perfect candidates for short, anonymous functions</p>
+                        </ol>
                     <li>Exercises</li>
                     <p>• <a href="prompt.html" target="_blank">prompt()</a></p>
                     <p>• <a href="array.html" target="_blank">array</a></p>
                     <li>Team Activity</li>
                     <p><a href="calculator.html" target="_blank">Calculator</a></p>
                 </ol>
-               
-               
+
+
                 <p><a href="../index.html"><i class="fa fa-home"></i></p>
         </div>
 
@@ -97,7 +162,7 @@
         <p>Brigham Young University-Idaho</p>
     </footer>
     <script src="/js/main.js"> </script>
-  
+
 </body>
 
 </html>
