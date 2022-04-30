@@ -95,3 +95,6 @@ ul>li {
 li {
     line-height: 2;
 }
+.letter-list {
+list-style-type: lower-alpha;
+}
