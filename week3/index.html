@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDD 330 Portfolio - Week 3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+
+<body>
+    <main class="main-week">
+        <div class="title-week">
+            <h1>Week 3</h1>
+            <p>WDD 330 Portfolio</p>
+
+
+        </div>
+        <div class="list-week">
+            <ul>
+                <li>Team Assignment</li>
+                <p></p>
+                <li>Reading/Exercises</li>
+
+                <ol>
+                    <li>Questions:</li>
+                    <ol class="letter-list">
+
+                        <li>Do we need to assign to a variable when going through stuff in an array?</li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ol>
+                    <li>Insights:</li>
+                    <ol class="letter-list">
+                        <li>From the Discussions
+                            <ol class="letter-list">
+                                <li>DOM
+                                    <p>• The DOM starts with a root object called Window. So any global objects are all
+                                        children or
+                                        properties of the Window object. You can think of window as the container for
+                                        all of your
+                                        JavaScript objects.
+                                    </p>
+                                </li>
+                                <li>Var vs let vs const
+                                    <p>• <a
+                                            href="https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/">https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/</a>
+                                    </p>
+                                    <p>• Best practices since ES6: Use let for all variables and const for all object
+                                        variables. Keep variables closely scoped to only what visibility it needs. Use
+                                        var sparingly.</p>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>From "Doing Stuff with Web Things"
+                            <ol class="letter-list">
+                                <li>The type of loop specifically designed to work with arrays is called
+                                    a ‘for loop.</li>
+                                <li>How then can you get a value out of an array?
+                                    <p>• var aNumber = someNumbers[1];</p>
+                                </li>
+                                <li>i is a variable to keep track of the location you are at in the array. By tradition,
+                                    the location tracker is named ‘i’. It stands for ‘index.’ It does
+                                    defy the ‘name things what they are’ and ‘don’t use single character variable names’
+                                    rules.</li>
+                                <li>The += operator takes the thing on its right-hand side and adds it to whatever is in
+                                    the variable on the left-hand side.</li>
+                                <li>html tags are allowed in .innerHTML</li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ol>
+                        </li>
+                        <li>From Object methods, "this"</li>
+                        <ol class="letter-list">
+                            <li>Actions are represented in JavaScript by functions in properties.</li>
+                            <li>A function that is a property of an object is called its method. So, here we’ve got a
+                                method sayHi of the object user.</li>
+                            <li>When we write our code using objects to represent entities, that’s called
+                                object-oriented programming, in short: “OOP”.</li>
+                            <li>As demonstrated, we can omit "function" and just write sayHi().<br>sayHi() {} //same as
+                                "sayHi: function(){...}"
+
+                            </li>
+                            <li>In almost all cases the shorter syntax is preferred.</li>
+                            <li>To access the object, a method can use the "this" keyword. this.name instead of
+                                user.name</li>
+                            <li>Functions that are stored in object properties are called “methods”.</li>
+                            <li>Methods allow objects to “act” like object.doSomething().</li>
+                            <li>Methods can reference the object as this.</li>
+                            <li></li>
+                        </ol>
+                        <li>Exercises</li>
+                        <p>• <a href="prompt.html" target="_blank">prompt()</a></p>
+                        <p>• <a href="array.html" target="_blank">array</a></p>
+                    </ol>
+                    <li>From JavaScript: Novice to Ninja, 2nd Edition
+                        <ol class="letter-list">
+                            <li>Objects: arrays, functions</li>
+                            <li>An object literal is an object that is created directly in the language by wrapping all
+                                its properties and methods in curly braces {}. Object literals are a distinguishing
+                                feature of the JavaScript language, as they allow objects to be created quickly without
+                                the need for defining a class. They also provide a useful way of organizing your code
+                                without polluting the global namespace.</li>
+                            <li>To create an object literal, simply enter a pair of curly braces: const spiderman = {};
+                                OR const spiderman = new Object(); //former is object literal notation, latter is object
+                                constructor (not recommended)</li>
+                            <li>Accessing properties: dot notation or bracket notation: superman.name OR
+                                superman['name']
+                                <p>• Dot notation is much more common, but bracket notation has a few advantages: it's
+                                    the only way to access nonstandard property and method names that don’t follow the
+                                    variable naming rules.</p>
+                            </li>
+                            <li></li>
+                        </ol>
+
+                    </li>
+                    <li>From other sources
+                        <ol class="letter-list">
+                            <li>The way to create an object is to create a variable</li>
+                            <li>Assign values to an object: person.name = "Daniel";</li>
+                            <li>When we create variables or functions in a global scope, they're called variables and
+                                functions. But when we create variables and functions inside an object, they're called
+                                properties and methods.</li>
+                            <li>Object blueprint - placeholder to be filled in later on</li>
+                            <li>Objects always start with capitalized letter: function Person()</li>
+                            <li>Use "this" when referring to object property: this.name = name; </li>
+                            <li>With functions, when we want to pass in outside data, we use parameters that get
+                                referred to inside the function.</li>
+                            <li>The value of a property has always been allowed to be a JavaScript expression: const
+                                captainBritain = { name: 'Captain Britain', hero: bewitched ? false : true };</li>
+                            <li>The conditional (ternary) operator is the only JavaScript operator that takes three
+                                operands: a condition followed by a question mark (?), then an expression to execute if
+                                the condition is truthy followed by a colon (:), and finally the expression to execute
+                                if the condition is falsy. This operator is frequently used as an alternative to an
+                                if...else statement.
+                            <p>• condition ? expr1 : expr2</p>
+                        <p>• console.log((age >= 18)) ? "You are an adult!" : "You are a kid."</p></li>
+                        </ol>
+                    </li>
+
+                    <p><a href="../index.html"><i class="fa fa-home"></i></p>
+        </div>
+
+    </main>
+    <footer>
+        <p>Diosaflor Temblor (Jamorol)</p>
+        <p>Brigham Young University-Idaho</p>
+    </footer>
+    <script src="/js/main.js"> </script>
+
+</body>
+
+</html>

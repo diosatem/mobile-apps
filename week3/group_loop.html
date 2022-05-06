@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Loop with Array</title>
+    <script>
+        /*If what’s in numberAsText isn’t zero and remainder has a zero in 
+it, then what’s in numberAsText must be even. (Statement A)
+If what’s in numberAsText isn’t zero and remainder has a 1 in it, 
+then what’s in numberAsText must be odd. (Statement B)
+If neither of those statements are true, then what’s in numberAsText must be zero. (Statement C)*/
+        function checkNumbers() {
+            let someNumbers = [25, 11, -2, 14, "What?? This isn't a number!", -1, -10]; //the array
+
+            for (let i = 0; i < 7; i++) {
+                let numberAsText = someNumbers[i];//get values out of the array
+                let aNumber = parseInt(numberAsText);
+
+                if (numberAsText != "" && !isNaN(aNumber)) { //dealing with empty input boxes and NaN inputs
+                    let remainder = Math.abs(aNumber % 2); //to get rid of negative number inputs
+
+                    if (aNumber != 0 && remainder == 0) { //dealing with zero's. even numbers always have remainder of 0
+                        document.getElementById('result_display').innerHTML += "<p>" + aNumber + " is even.</p>"; //The += operator takes the thing on its right-hand side and adds it to whatever is in the variable on the left-hand side.
+                    } else if (aNumber != 0 && remainder == 1) { //odd numbers always have remainder of 1
+                        document.getElementById('result_display').innerHTML += "<p>" + aNumber + " is odd.</p>";
+                    } else {
+                        document.getElementById('result_display').innerHTML += "<p>" + aNumber + " is neither even nor odd.</p>";
+                    }
+
+                } else {
+                    document.getElementById('result_display').innerHTML = "<p>Please enter a number.</p>";
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: LightGrey;
+        }
+
+        input {
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px #666666 inset;
+            height: 25px;
+            width: 200px;
+            text-indent: 5px;
+        }
+    </style>
+</head>
+</head>
+
+<body>
+    <h1>Even or Odd???</h1>
+    <button onclick="checkNumbers()">Check It!</button>
+    <section id="result_display"></section>
+</body>
+
+</html>
