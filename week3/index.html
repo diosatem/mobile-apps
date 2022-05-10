@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WBVZTMP');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +19,10 @@
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBVZTMP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <main class="main-week">
         <div class="title-week">
             <h1>Week 3</h1>
@@ -30,7 +41,7 @@
                     <ol class="letter-list">
 
                         <li>Do we need to assign to a variable when going through stuff in an array?</li>
-                      
+<li>What is the difference between console.log vs console.table? (Per instructor's solution for the team activity)</li>
                     </ol>
                     <li>Insights:</li>
                     <ol class="letter-list">
@@ -68,7 +79,7 @@
                                 <li>The += operator takes the thing on its right-hand side and adds it to whatever is in
                                     the variable on the left-hand side.</li>
                                 <li>html tags are allowed in .innerHTML</li>
-                              
+
                             </ol>
                         </li>
                         <li>From Object methods, "this"</li>
@@ -88,7 +99,7 @@
                             <li>Functions that are stored in object properties are called “methods”.</li>
                             <li>Methods allow objects to “act” like object.doSomething().</li>
                             <li>Methods can reference the object as this.</li>
-                           
+
                         </ol>
                         <li>Exercises</li>
                         <p>• <a href="prompt.html" target="_blank">prompt()</a></p>
@@ -111,35 +122,97 @@
                                     the only way to access nonstandard property and method names that don’t follow the
                                     variable naming rules.</p>
                             </li>
-                            
-                        </ol>
+                            <li>A document node lists are not actual arrays. They have length property which can be used
+                                to iterate through every element using a for loop.
+                                <p>for (let i=0 ; i < document.images.length ; i++) {<br>
 
+                                        // do something with each image using document.images[i]<br>
+
+                                        }</p>
+
+                            </li>
+                            <li>Turn node lists into arrays so you can use all the array methods on it:
+                                <p>const imageArray = Array.from(document.images); OR const imageArray =
+                                    [...document.images];</p>
+                            </li>
+                            <li>getElementsByTagName() will return a live node list in document: const listItems =
+                                document.getElementsByTagName('li'); </li>
+                            <li>getElementsByClassName() will return a live node list of all elements that have the
+                                class name that is supplied as an argument</li>
+                            <li>The document.querySelector() method allows you to use CSS notation to find the first
+                                element in the document:
+                                <p>document.querySelector('#bats');<br>
+                                    << <li class="vigilante hero" id="bats">Batman</li>
+                            </p>
                     </li>
-                    <li>From other sources
-                        <ol class="letter-list">
-                            <li>The way to create an object is to create a variable</li>
-                            <li>Assign values to an object: person.name = "Daniel";</li>
-                            <li>When we create variables or functions in a global scope, they're called variables and
-                                functions. But when we create variables and functions inside an object, they're called
-                                properties and methods.</li>
-                            <li>Object blueprint - placeholder to be filled in later on</li>
-                            <li>Objects always start with capitalized letter: function Person()</li>
-                            <li>Use "this" when referring to object property: this.name = name; </li>
-                            <li>With functions, when we want to pass in outside data, we use parameters that get
-                                referred to inside the function.</li>
-                            <li>The value of a property has always been allowed to be a JavaScript expression: const
-                                captainBritain = { name: 'Captain Britain', hero: bewitched ? false : true };</li>
-                            <li>The conditional (ternary) operator is the only JavaScript operator that takes three
-                                operands: a condition followed by a question mark (?), then an expression to execute if
-                                the condition is truthy followed by a colon (:), and finally the expression to execute
-                                if the condition is falsy. This operator is frequently used as an alternative to an
-                                if...else statement.
+                    <li>The document.querySelectorAll() method also uses CSS notation but returns a node list of all the
+                        elements in the document
+                        <p>document.querySelectorAll('.hero');<br>
+                            << NodeList [<li class="hero">,
+                    <li id="bats">,
+                    <li class="hero">]</p>
+                    </li>
+                    <li>CSS query selectors are a powerful way of specifying very precise items on a page: const
+                        wonderWoman = document.querySelector('li:last-child');</li>
+                    <li>The childNodes property is a list of all the nodes that are children of the node concerned:
+                        <p>const heroes = document.getElementById('roster');<br>
+
+                            heroes.childNodes</p>
+                    </li>
+                    <li>Whitespace is treated as a text node.</li>
+                    <li>The children property only returns any element nodes that are children of that node, so will
+                        ignore any text nodes. </li>
+                    <li>nodeValue is the same as textContent OR innerText whwn finding value of an element</li>
+                    <li>When you setAttribute(), you call its value through getAttribute()
+                        <p>wonderWoman.setAttribute('id','amazon');<br>
+
+                            wonderWoman.getAttribute('id'): wonderWoman.id;</p> OR
+                    </li>
+                    <li>The legacy DOM allows access to attributes using dot notation: </li>
+                    <li>Another way of modifying class in element: wonderWoman.className = 'hero'
+                        <p>wonderWoman.className;<br>
+                            << "villain" </p> <p>Overwrites classes on element. can be avoided by using classList:
+                                wonderWoman.classList.add('warrior');
+                        </p>
+                        <p>removes a specific class from an element: wonderWoman.classList.remove('warrior');</p>
+                    </li>
+                    <li>The toggle method is a particularly useful method that will add a class if an element doesn’t
+                        have it already, and remove the class if it does have it. It returns true if the class was added
+                        and false if it was removed.
+                    <p>wonderWoman.classList.toggle('hero'); // will remove the 'hero' class
+                        << false
+                        
+                        wonderWoman.classList.toggle('sport'); // will add the 'hero' class back
+                        << true</p></li>
+                </ol>
+
+                </li>
+                <li>From other sources
+                    <ol class="letter-list">
+                        <li>The way to create an object is to create a variable</li>
+                        <li>Assign values to an object: person.name = "Daniel";</li>
+                        <li>When we create variables or functions in a global scope, they're called variables and
+                            functions. But when we create variables and functions inside an object, they're called
+                            properties and methods.</li>
+                        <li>Object blueprint - placeholder to be filled in later on</li>
+                        <li>Objects always start with capitalized letter: function Person()</li>
+                        <li>Use "this" when referring to object property: this.name = name; </li>
+                        <li>With functions, when we want to pass in outside data, we use parameters that get
+                            referred to inside the function.</li>
+                        <li>The value of a property has always been allowed to be a JavaScript expression: const
+                            captainBritain = { name: 'Captain Britain', hero: bewitched ? false : true };</li>
+                        <li>The conditional (ternary) operator is the only JavaScript operator that takes three
+                            operands: a condition followed by a question mark (?), then an expression to execute if
+                            the condition is truthy followed by a colon (:), and finally the expression to execute
+                            if the condition is falsy. This operator is frequently used as an alternative to an
+                            if...else statement.
                             <p>• condition ? expr1 : expr2</p>
-                        <p>• console.log((age >= 18)) ? "You are an adult!" : "You are a kid."</p></li>
-                        </ol>
-                    </li>
+                            <p>• console.log((age >= 18)) ? "You are an adult!" : "You are a kid."</p>
+                        </li>
+                    </ol>
+                </li>
 
-                    <p><a href="../index.html"><i class="fa fa-home"></i></p>
+                <p><a href="../index.html"><i class="fa fa-home"></i></p>
         </div>
 
     </main>
