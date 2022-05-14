@@ -2,7 +2,17 @@
 <html lang="en">
 
 <head>
+<<<<<<< HEAD
   
+=======
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WBVZTMP');</script>
+    <!-- End Google Tag Manager -->
+>>>>>>> 5568aff6ebf7b76f78635016354702d84945c80c
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +26,11 @@
             let aCompleteNote = currentDateAndTime.toLocaleString() + "--" + aNoteDescription;
             aCompleteNote += "<p>" + aNoteText +
                 "</p>" /*"Hey browser, make some text that is a starting paragraph tag, append to that little bit of text whatever you find in the aNoteText variable, then also append an ending paragraph tag. Then take that whole piece of text, append it to what is in the aCompleteNote variable and put everything back in the aComplete Note variable."*/
+<<<<<<< HEAD
             }
+=======
+
+>>>>>>> 5568aff6ebf7b76f78635016354702d84945c80c
             let storedNotesString = localStorage.getItem(
             'all_notes'); /*"Hey, local storage, get the stuff that was stored with the key ‘all_notes’ and put it in the storedNotesString variable."*/
             let allNotes = JSON.parse(storedNotesString); //converts the string containing representing the array of stored notes in the storedNotesString variable back into an actual JavaScript array. “Hey JSON parse the string you find in the storedNotesString variable and put the result into the allNotes variable.”
@@ -30,7 +44,14 @@
 </head>
 
 <body>
+<<<<<<< HEAD
  
+=======
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBVZTMP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+>>>>>>> 5568aff6ebf7b76f78635016354702d84945c80c
     <section id="note_entry_area">
         <h1>Note It!</h1>
         Description: <input id="description_input"></input>
