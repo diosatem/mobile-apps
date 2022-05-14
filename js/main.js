@@ -1,25 +1,4 @@
 
-// let text = "";
-// const links = [
-//     {
-//       label: "Week 1 notes",
-//       url: "week1/index.html"
-//     },
-//     {
-//       label: "Week 2 notes",
-//       url: "to be posted"
-//     }
-//   ]
-//   const theList = document.querySelector('#wdd330Assign');
-
-//   links.forEach(myFunction);
-
-//   document.getElementById("wdd330Assign").innerHTML = text;
- 
-//   function myFunction(item, index) {
-//     text += index + ": " + item + "<br>"; 
-//   }
-
 function showWeekList() {
   const allWeeks = [
       {
@@ -29,6 +8,14 @@ url: "week1/index.html"
       {
         label: "2",
         url: "week2/index.html"
+      },
+      {
+        label: "3",
+        url: "week3/index.html"
+      },
+      {
+        label: "4",
+        url: "week4/index.html"
       },
      
   ]

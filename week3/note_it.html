@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note It</title>
+
+    <script>
+        function saveNote() {
+            let currentDateAndTime = new Date();
+            let aNoteDescription = document.getElementById('description_input').value;
+            let aNoteText = document.getElementById('note_editor').value;
+            let aCompleteNote = currentDateAndTime.toLocaleString() + "--" + aNoteDescription;
+            aCompleteNote += "<p>" + aNoteText +
+                "</p>" /*"Hey browser, make some text that is a starting paragraph tag, append to that little bit of text whatever you find in the aNoteText variable, then also append an ending paragraph tag. Then take that whole piece of text, append it to what is in the aCompleteNote variable and put everything back in the aComplete Note variable."*/
+            }
+            let storedNotesString = localStorage.getItem(
+            'all_notes'); /*"Hey, local storage, get the stuff that was stored with the key ‘all_notes’ and put it in the storedNotesString variable."*/
+            let allNotes = JSON.parse(storedNotesString); //converts the string containing representing the array of stored notes in the storedNotesString variable back into an actual JavaScript array. “Hey JSON parse the string you find in the storedNotesString variable and put the result into the allNotes variable.”
+            if (allNotes != null) { //,”If what’s in the allNotes variable is equal to null, put an empty array into the allNotes variable.”
+                allNotes = []; //Line 14 and 15 end up creating an array if notes were stored. If they weren’t, then lines 16 - 18 create an empty array that you’ll store later on. 
+            }
+            allNotes.push(aCompleteNote);//Push aCompleteNote onto the end of the allNotes array.”
+            var allNotesString = JSON.stringify(allNotes)//“Hey JSON, convert everything in the array in the allNotes variable into one string and put the string you create into the allNotesString variable"
+            localStorage.setItem(“all_notes”, allNotesString) //“Hey localStorage, store the allNotesString using the key ‘all_notes’ so I can get it back later.”
+            </script>
+</head>
+
+<body>
+ 
+    <section id="note_entry_area">
+        <h1>Note It!</h1>
+        Description: <input id="description_input"></input>
+        <textarea id="note_editor" placeholder="Note it down. Don't forget."></textarea>
+        <button onclick="saveNote()">Save</button>
+    </section>
+    <section id="all_notes_display"></section>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 1em;
+        }
+
+        body {
+            height: 100vh;
+            margin: 0 auto;
+            padding-top: 10vh;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2rem;
+        }
+
+        .player {
+            font-size: 1.3rem;
+        }
+
+
+        .board {
+            background-color: burlywood;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        .controls {
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background-color: thistle;
+            border-radius: 50px;
+        }
+
+        .item {
+            border: 1px solid black;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="title center">
+            <h1>Tic Tac Toe</h1>
+        </section>
+        <section class="player center">
+            <p>Player <span class="display-player playerX"> X's turn</p>
+        </section>
+        <section class="board">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </section>
+        <section class="display announcer hide center"></section>
+        <section class="controls center">
+            <button id="reset">Reset</button>
+        </section>
+    </main>
+</body>
+
+</html>

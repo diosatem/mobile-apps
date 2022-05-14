@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even or Odd Input???</title>
+    <script>
+        /*If what’s in numberAsText isn’t zero and remainder has a zero in 
+it, then what’s in numberAsText must be even. (Statement A)
+If what’s in numberAsText isn’t zero and remainder has a 1 in it, 
+then what’s in numberAsText must be odd. (Statement B)
+If neither of those statements are true, then what’s in numberAsText must be zero. (Statement C)*/
+        function checkNumber() {
+            let numberAsText = document.getElementById('name_input').value;
+            let aNumber = parseInt(numberAsText)
+
+            if (numberAsText != "" && !isNaN(numberAsText)) { //dealing with empty input boxes and NaN inputs
+                let remainder = Math.abs(numberAsText % 2); //to get rid of negative number inputs
+
+                if (numberAsText != 0 && remainder ==
+                    0) { //dealing with zero's. even numbers always have remainder of 0
+                    document.getElementById('result_display').innerHTML = aNumber + ' is even.';
+                } else if (numberAsText != 0 && remainder ==
+                    1) { //odd numbers always have remainder of 1
+                    document.getElementById('result_display').innerHTML = aNumber + ' is odd.';
+                } else {
+                    document.getElementById('result_display').innerHTML = aNumber + ' is neither even nor odd.';
+                }
+                
+            } else {
+                document.getElementById('result_display').innerHTML = 'Please enter a number.';
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: LightGrey;
+        }
+
+        input {
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px #666666 inset;
+            height: 25px;
+            width: 200px;
+            text-indent: 5px;
+        }
+    </style>
+    
+</head>
+
+<body>
+   
+    <h1>Even or Odd???</h1>
+    Enter a Number: <input id=name_input></input>
+    <button onclick="checkNumber()">Check It!</button>
+    <section id="result_display"></section>
+</body>
+
+</html

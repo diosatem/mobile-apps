@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <style>
+    #grid {
+      width: 400px;
+      height: 400px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto;
+    }
+
+    .cell {
+      background-color: lightskyblue;
+    }
+
+    .occupied {
+      background-color: white;
+    }
+
+    .x {
+      background-image: url('x.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .o {
+      background-image: url('o.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .cell:nth-child(1) {
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    .cell:nth-child(2) {
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    .cell:nth-child(3) {
+      border-left: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    .cell:nth-child(4) {
+      border-top: 1px solid black;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    .cell:nth-child(5) {
+      border: 1px solid black;
+    }
+
+    .cell:nth-child(6) {
+      border-top: 1px solid black;
+      border-left: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    .cell:nth-child(7) {
+      border-right: 1px solid black;
+      border-top: 1px solid black;
+    }
+
+    .cell:nth-child(8) {
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      border-top: 1px solid black;
+    }
+
+    .cell:nth-child(9) {
+      border-left: 1px solid black;
+      border-top: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="grid">
+    <div id="tl" class="cell"></div>
+    <div id="tc" class="cell"></div>
+    <div id="tr" class="cell"></div>
+
+    <div id="ml" class="cell"></div>
+    <div id="mc" class="cell"></div>
+    <div id="mr" class="cell"></div>
+
+    <div id="bl" class="cell"></div>
+    <div id="bc" class="cell"></div>
+    <div id="br" class="cell"></div>
+  </div>
+  <button id="reset">Reset</button>
+  <script src="main.js"></script>
+
+
+</body>
+<script>
+  let xturn = true;
+
+  function cellClicked(event) {
+    const target = event.target;
+
+    if (occupied(target)) {
+      return;
+    }
+
+    target.classList.add('occupied');
+    if (xturn) {
+      target.classList.add('x');
+    } else {
+      target.classList.add('o');
+    }
+
+    // stretch
+    checkBoard();
+    xturn = !xturn;
+  }
+
+  function occupied(element) {
+    return element.className.includes('occupied');
+  }
+
+  /************stretch ************************* */
+  function reset() {
+    xturn = true;
+    const cells = document.getElementById('grid').children;
+    for (let i = 0; i < cells.length; ++i) {
+      cells[i].classList.remove('x');
+      cells[i].classList.remove('o');
+      cells[i].classList.remove('occupied');
+    }
+  }
+
+  function same(x1, x2, x3) {
+    return x1 == x2 && x2 == x3;
+  }
+
+  function checkBoard() {
+    const cells = document.getElementById('grid').children;
+    for (let i = 0; i < 3; ++i) {
+      const startCell = i * 3;
+      // rows
+      if (occupied(cells[startCell]) &&
+        same(cells[startCell].className, cells[startCell + 1].className, cells[startCell + 2].className)) {
+        if (cells[startCell].className.includes('x')) {
+          console.log("x won!");
+        } else {
+          console.log("o won!");
+        }
+        break;
+      }
+
+      // columns
+      if (occupied(cells[i]) &&
+        same(cells[i].className, cells[i + 3].className, cells[i + 6].className)) {
+        if (cells[startCell].className.includes('x')) {
+          console.log('x won!');
+        } else {
+          console.log('o won!');
+        }
+        break;
+      }
+    }
+
+    // diagonal
+    if (occupied(cells[0]) &&
+      same(cells[0].className, cells[4].className, cells[8].className)) {
+      if (cells[0].className.includes('x')) {
+        console.log('x won!');
+      } else {
+        console.log('o won!');
+      }
+    }
+
+    // diagonal
+    if (occupied(cells[2]) &&
+      same(cells[2].className, cells[4].className, cells[6].className)) {
+      if (cells[2].className.includes('x')) {
+        console.log('x won!');
+      } else {
+        console.log('o won!');
+      }
+    }
+  }
+
+  /************ end stretch ************************* */
+
+  window.onload = function () {
+    const gameBoard = document.getElementById('grid');
+    gameBoard.addEventListener('click', cellClicked);
+    const resetButton = document.getElementById('reset');
+    resetButton.addEventListener('click', reset);
+  };
+</script>
+
+</html>
