@@ -13,13 +13,10 @@ url: "week1/index.html"
         label: "3",
         url: "week3/index.html"
       },
-<<<<<<< HEAD
       {
         label: "4",
         url: "week4/index.html"
       },
-=======
->>>>>>> 5568aff6ebf7b76f78635016354702d84945c80c
      
   ]
   var namelist = allWeeks.map(function (t, i) {
