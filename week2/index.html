@@ -2,17 +2,7 @@
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
-   
-=======
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WBVZTMP');</script>
-    <!-- End Google Tag Manager -->
->>>>>>> 5568aff6ebf7b76f78635016354702d84945c80c
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +13,7 @@
 </head>
 
 <body>
-  
+
     <main class="main-week">
         <div class="title-week">
             <h1>Week 2</h1>
@@ -148,19 +138,51 @@
                             first-class objects, so they behave in just the same way as every other object? This means
                             that functions can also be given as a parameter to another function. A function that is
                             passed as an argument to another is known as a callback.</p>
-                            <p>• We can make the sing() function more flexible by adding a callback parameter. The callback is provided as a parameter, then invoked inside the body of the function.<br>
-                                function sing(song,callback) {<br>
-                                    console.log(`I'm singing along to ${song}.`);<br>
-                                    callback();<br>
-                                }
-                            </p>
-                            <p>• It’s often a better idea to keep functions separate and named, so they can be reused. </p>
-                   <p>• Arrow functions make perfect candidates for short, anonymous functions</p>
-                        </ol>
+                        <p>• We can make the sing() function more flexible by adding a callback parameter. The callback
+                            is provided as a parameter, then invoked inside the body of the function.<br>
+                            function sing(song,callback) {<br>
+                            console.log(`I'm singing along to ${song}.`);<br>
+                            callback();<br>
+                            }
+                        </p>
+                        <p>• It’s often a better idea to keep functions separate and named, so they can be reused. </p>
+                        <p>• Arrow functions make perfect candidates for short, anonymous functions</p>
+                    </ol>
                     <li>Exercises</li>
                     <p>• <a href="prompt.html" target="_blank">prompt()</a></p>
                     <p>• <a href="array.html" target="_blank">array</a></p>
-                                        
+
+                    <li>From Office Hours
+                        <ol>
+                            <li>3 ways to create objects in JS<ol>
+                                    <li>Function prototype: function Calculatot() {} then at the end: const calculator =
+                                        new Calculator(); //you can create objects with the new keyword if you create a
+                                        function definition of it</li>
+                                    <li>Create with JSON instead of new keyword: const calculator = {JSON} //more used
+                                        for generating objects with properties and methods</li>
+                                    <li>Arrow function notation</li>
+                                </ol>
+                            </li>
+                            <li>script tag is at the top: it needs to exist before you can assign (hard if the script is
+                                stuck at the bottom)</li>
+                            <li>Functions work as object prototypes. Named piece of work: clear: function() {} //they
+                                don't live instantly unless you create one. you can assign it to a property, it creates
+                                a definition to the property but it doesn't live until you create it. If I have a
+                                function that creates a bunch of things inside of it, they will not live until you call
+                                it: const calculator = function() {}</li>
+                            <li>2 ways to wire event handlers and event callbacks
+                                <ol>
+                                    <li>html inline attributes:
+                                        <!-- <button onclick="calculator.buttonClicked(this)"></button>-->
+                                    </li>
+                                    <li>in code: addEventLister</li>
+                                </ol>
+                            </li>
+                            <li>JS can only do one thing at a time. The way it handles this concept of making it look
+                                like it can do a lot of things at one time is it has an even loop.</li>
+                        </ol>
+                    </li>
+
                 </ol>
 
 
