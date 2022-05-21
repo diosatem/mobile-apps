@@ -17,6 +17,10 @@ url: "week1/index.html"
         label: "4",
         url: "week4/index.html"
       },
+      {
+        label: "5",
+        url: "week5/index.html"
+      },
      
   ]
   var namelist = allWeeks.map(function (t, i) {
