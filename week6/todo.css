@@ -1,0 +1,117 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 20px;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+/*task main*/
+div#task {
+    margin: 0 auto;
+    border: 3px solid green;
+    list-style-type: none;
+    max-width: 500px;
+    min-width: 300px;
+    margin-bottom: 50px;
+}
+
+ul#ul-list {
+    padding: 0;
+    margin: 0;
+
+}
+
+li.li-task {
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+}
+
+input[type=checkbox] {
+    vertical-align: middle;
+    position: relative;
+       width: 20px;
+    height: 20px;
+}
+
+input[type=checkbox]:checked + label{
+    text-decoration: line-through;
+    color:red;
+  }
+
+label {
+    justify-self: flex-start;
+}
+
+div#task-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: .8rem;
+    padding: 10px 5px;
+
+}
+
+div#task-footer span {
+    padding: 10px;
+}
+
+
+
+/*task footer*/
+.dropbtn {
+    background-color: yellowgreen;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content span {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content span:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: green;
+    color: white;
+}
+
+/*input*/
+input[type=text],
+button {
+    padding: 10px;
+}
+
+div#task-input input {
+    width: 20%;
+}
+
+#alert-msg {
+/* color: red; */
+font-size: 1rem;
+}

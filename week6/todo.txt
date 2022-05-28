@@ -1,0 +1,11 @@
+Model View Controller - separation of concerns.
+
+index.js - frontend
+todo.js - controller. encapsulated all logic and business rules. can manipulate the frontend and talk to the model/backend (utils.js)
+utils.js - backend
+
+module - a js file with js in it. once you stick a js in another file, the runtime engine automatically calls it a module
+
+don't embed js and css in html page as much as possible. always exclude it.
+
+localstorage - stores key-name value pairs of strings only. does not have a concept of an object

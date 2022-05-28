@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+
+    <h1>To Dos</h1>
+    <div id="task">
+        <ul id="ul-list">
+
+        </ul>
+        <div id="task-footer">
+            <span id="task-number"></span>
+            <div class="dropdown">
+                <button class="dropbtn">View</button>
+                <div class="dropdown-content">
+                    <span id="all">All</span>
+                    <span id="complete">Complete</span>
+                    <span id="incomplete">Incomplete</span>
+
+                </div>
+            </div>
+
+            <span></span>
+        </div>
+
+    </div>
+    <div id="task-form">
+        <input type="text" id="user-input" placeholder="Add a task">
+        <button id="add-task" type="button">+</button>
+        <div id="alert-msg"></div>
+    </div>
+
+
+</body>
+<script src="todos.js"></script>
+
+</html>

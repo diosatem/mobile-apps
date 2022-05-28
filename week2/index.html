@@ -42,21 +42,23 @@
                     <ol class="letter-list">
                         <li>escaping special characters in strings with backslashes</li>
                         <li>string properties and methods
-                            <p>• Technically, only objects have properties and methods. JavaScript overcomes this by
+                            <ol>
+                                <li>Technically, only objects have properties and methods. JavaScript overcomes this by
                                 creating wrapper objects for primitive data types. This all happens in the background,
                                 so for all intents and purposes it appears that primitive data types also have
-                                properties and methods.</p>
-                            <p>• We can access the properties of a string using dot notation. This involves writing a
-                                dot followed by the property we are interested in. </p>
-                            <p>• An alternative notation you can use to access a primitive data type's properties are
-                                square brackets, e.g. name['length'];</p>
-                            <p>• All properties of primitive data types are immutable, meaning they’re unable to be
-                                changed.</p>
-                            <p>• A method is an action that a primitive data type or object can perform. To call a
+                                properties and methods.</li>
+                                <li>We can access the properties of a string using dot notation. This involves writing a
+                                dot followed by the property we are interested in. </li>
+                                <li>An alternative notation you can use to access a primitive data type's properties are
+                                square brackets, e.g. name['length'];</li>
+                                <li>All properties of primitive data types are immutable, meaning they’re unable to be
+                                changed.</li>
+                                <li>A method is an action that a primitive data type or object can perform. To call a
                                 method, we use the dot operator (.) followed by the name of the method, followed by
                                 parentheses (this is a useful way to distinguish between a property and a method ―
                                 methods end with parentheses). For example, we can write a string in all capital letters
-                                using the toUpperCase() method</p>
+                                using the toUpperCase() method</li>
+                            </ol>
                         </li>
                         <li>concat() or the + operator for shortcut
                             <p>• 'Hello'.concat(' ','World','!');<br>
@@ -81,11 +83,12 @@
                                 </p>
                                 <li>converting strings to numbers</li>
                                 <p>• Number('23')</p>
-                                <li>Functions</li>
-                                <p>• All functions return a value, which can be specified using the return statement,
+                                <li>Functions
+                                    <ol>
+                                        <li>All functions return a value, which can be specified using the return statement,
                                     which comes after the return keyword. A function that doesn’t explicitly return
                                     anything (such as all the examples we have seen so far) will return undefined by
-                                    default.</p>
+                                    default.</li>
                                 function howdy(){<br>
                                 return 'Howdy World!';<br>
                                 This means we can now assign a function invocation to a variable, and the value of that
@@ -93,7 +96,7 @@
                                 const message = howdy();<br>
                                 << 'Howdy World!' <br>
                                     }
-                                    <p>• Parameters and arguments are terms that are often used interchangeably to
+                                    <li>Parameters and arguments are terms that are often used interchangeably to
                                         represent values provided for the function as an input. There is a subtle
                                         difference though: any parameters a function needs are set when the function is
                                         defined. When a function is invoked, it is provided with arguments. In the body
@@ -112,19 +115,19 @@
                                             the
                                             function will work as normal and the extra arguments will be ignored
                                             (although they can be accessed using the arguments </p>
-                        </p>
-                        <p>• Every function has a special variable called arguments. This is an array-like object that
+                                        </li>
+                                        <li>Every function has a special variable called arguments. This is an array-like object that
                             contains every argument passed to the function when it is invoked. We can create a simple
                             function called arguments() that will return the arguments object so we can see what it
-                            contains:</p>
-                        <p>• rest operator is a much better option to borrow methods from arrays because arguments is
+                            contains:</li>
+                            <li>rest operator is a much better option to borrow methods from arrays because arguments is
                             not an array. The args parameter is an actual array, and has access to the same methods.
                             <br>
                             function rest(...args){<br>
                             return args;<br>
                             }
-                        </p>
-                        <p>• We can use a rest parameter to improve our mean() function so it accepts any number of
+                        </li>
+                        <li>We can use a rest parameter to improve our mean() function so it accepts any number of
                             values:<br>
                             function mean(...values) {<br>
                             let total = 0;<br>
@@ -133,20 +136,25 @@
                             }<br>
                             return total/values.length;<br>
                             }
-                        </p>
-                        <p>• Remember at the start of this chapter when we said that functions in JavaScript are
+                        </li>
+                        <li>Remember at the start of this chapter when we said that functions in JavaScript are
                             first-class objects, so they behave in just the same way as every other object? This means
                             that functions can also be given as a parameter to another function. A function that is
-                            passed as an argument to another is known as a callback.</p>
-                        <p>• We can make the sing() function more flexible by adding a callback parameter. The callback
+                            passed as an argument to another is known as a callback.</li>
+                            <li>We can make the sing() function more flexible by adding a callback parameter. The callback
                             is provided as a parameter, then invoked inside the body of the function.<br>
                             function sing(song,callback) {<br>
                             console.log(`I'm singing along to ${song}.`);<br>
                             callback();<br>
                             }
-                        </p>
-                        <p>• It’s often a better idea to keep functions separate and named, so they can be reused. </p>
-                        <p>• Arrow functions make perfect candidates for short, anonymous functions</p>
+                        </li>
+                        <li>It’s often a better idea to keep functions separate and named, so they can be reused. </li>
+                        <li>Arrow functions make perfect candidates for short, anonymous functions</li>
+                    </ol>
+                    </li>
+                    <li>Other sources:
+                        <ol><li><a href="https://www.oreilly.com/library/view/learning-scala/9781449368814/ch02.html">A literal (or literal data) is data that appears directly in the source code, like the number 5, the character A, and the text “Hello, World.”</a></li></ol>
+                    </li>
                     </ol>
                     <li>Exercises</li>
                     <p>• <a href="prompt.html" target="_blank">prompt()</a></p>
