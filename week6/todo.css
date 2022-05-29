@@ -1,45 +1,48 @@
 body {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 20px;
     text-align: center;
     line-height: 1.5;
     font-size: 20px;
+    color: #333;
 }
 
 /*task main*/
 div#task {
     margin: 0 auto;
-    border: 3px solid green;
     list-style-type: none;
     max-width: 500px;
-    min-width: 300px;
-    margin-bottom: 50px;
+    min-width: 50vw;
+    min-height: 50vh;
+    border: 10px solid rgb(0, 128, 128, .3);
+    border-radius: 20px;
+
+    margin-bottom: 10px;
 }
 
 ul#ul-list {
     padding: 0;
     margin: 0;
-
 }
 
 li.li-task {
     border-bottom: 1px solid lightgray;
     display: flex;
     justify-content: space-between;
-    padding: 10px 5px;
+    padding: 20px;
 }
 
 input[type=checkbox] {
     vertical-align: middle;
     position: relative;
-       width: 20px;
+    width: 20px;
     height: 20px;
 }
 
-input[type=checkbox]:checked + label{
+input[type=checkbox]:checked+label {
     text-decoration: line-through;
-    color:red;
-  }
+    color: red;
+}
 
 label {
     justify-self: flex-start;
@@ -50,18 +53,15 @@ div#task-footer {
     justify-content: space-between;
     font-size: .8rem;
     padding: 10px 5px;
-
 }
 
 div#task-footer span {
     padding: 10px;
 }
 
-
-
 /*task footer*/
 .dropbtn {
-    background-color: yellowgreen;
+    background-color: rgb(0, 128, 128, .3);
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -74,7 +74,7 @@ div#task-footer span {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: white;
     min-width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -89,7 +89,7 @@ div#task-footer span {
 }
 
 .dropdown-content span:hover {
-    background-color: #f1f1f1
+    background-color: rgb(0, 128, 128, .3);
 }
 
 .dropdown:hover .dropdown-content {
@@ -97,21 +97,36 @@ div#task-footer span {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: green;
+    background-color: rgb(0, 128, 128);
     color: white;
 }
 
 /*input*/
-input[type=text],
-button {
-    padding: 10px;
+div#task-form input[type=text],
+div#task-form button {
+    padding: 15px;
+    font-size: 1.3rem;
+    outline: none;
 }
 
-div#task-input input {
-    width: 20%;
+div#task-form {
+    width: 50vw;
+    margin: 0 auto;
+
+    padding: 30px 10px 20px;
+    border-radius: 20px;
+}
+
+input#user-input {
+    width: 75%;
+
+}
+
+button#add-task {
+    width: 10%;
 }
 
 #alert-msg {
-/* color: red; */
-font-size: 1rem;
+    font-size: 1rem;
+    padding-top: 10px;
 }
