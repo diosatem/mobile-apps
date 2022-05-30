@@ -21,14 +21,15 @@
         </div>
         <div class="list-week">
             <ul>
-                <li>Team Assignment</li>
-                <p><a href="array-cardio.html">Array Cardio</a></p>
-                <li>Reading/Exercises</li>
+                <li>Team Assignment </li>
+                <ol>
+                    <li><a href="array-cardio.html">Array Cardio</a></li>
+                </ol>
 
+                <li>Reading/Exercises</li>
                 <ol>
                     <li>Questions:</li>
                     <ol class="letter-list">
-
                         <li>Do we need to assign to a variable when going through stuff in an array?</li>
                         <li>What is the difference between console.log vs console.table? (Per instructor's solution for
                             the team activity)</li>
@@ -38,20 +39,26 @@
                         <li>From the Discussions
                             <ol class="letter-list">
                                 <li>DOM
-                                    <p>• The DOM starts with a root object called Window. So any global objects are all
-                                        children or
-                                        properties of the Window object. You can think of window as the container for
-                                        all of your
-                                        JavaScript objects.
-                                    </p>
+                                    <ol>
+                                        <li>The DOM starts with a root object called Window. So any global objects are
+                                            all
+                                            children or
+                                            properties of the Window object. You can think of window as the container
+                                            for
+                                            all of your
+                                            JavaScript objects.</li>
+                                    </ol>
                                 </li>
                                 <li>Var vs let vs const
-                                    <p>• <a
-                                            href="https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/">https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/</a>
-                                    </p>
-                                    <p>• Best practices since ES6: Use let for all variables and const for all object
-                                        variables. Keep variables closely scoped to only what visibility it needs. Use
-                                        var sparingly.</p>
+                                    <ol>
+                                        <li><a
+                                                href="https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/">https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/</a>
+                                        </li>
+                                        <li>Best practices since ES6: Use let for all variables and const for all object
+                                            variables. Keep variables closely scoped to only what visibility it needs.
+                                            Use
+                                            var sparingly.</li>
+                                    </ol>
                                 </li>
                             </ol>
                         </li>
@@ -72,128 +79,158 @@
 
                             </ol>
                         </li>
-                        <li>From Object methods, "this"</li>
-                        <ol class="letter-list">
-                            <li>Actions are represented in JavaScript by functions in properties.</li>
-                            <li>A function that is a property of an object is called its method. So, here we’ve got a
-                                method sayHi of the object user.</li>
-                            <li>When we write our code using objects to represent entities, that’s called
-                                object-oriented programming, in short: “OOP”.</li>
-                            <li>As demonstrated, we can omit "function" and just write sayHi().<br>sayHi() {} //same as
-                                "sayHi: function(){...}"
-
-                            </li>
-                            <li>In almost all cases the shorter syntax is preferred.</li>
-                            <li>To access the object, a method can use the "this" keyword. this.name instead of
-                                user.name</li>
-                            <li>Functions that are stored in object properties are called “methods”.</li>
-                            <li>Methods allow objects to “act” like object.doSomething().</li>
-                            <li>Methods can reference the object as this.</li>
-
-                        </ol>
-                        <li>From JavaScript: Novice to Ninja, 2nd Edition
+                        <li>From Object methods, "this"
                             <ol class="letter-list">
-                                <li>Objects: arrays, functions
-                                    <p>An object literal is an object that is created directly in the language by wrapping
+                                <li>Actions are represented in JavaScript by functions in properties.</li>
+                                <li>A function that is a property of an object is called its method. So, here we’ve got
+                                    a
+                                    method sayHi of the object user.</li>
+                                <li>When we write our code using objects to represent entities, that’s called
+                                    object-oriented programming, in short: “OOP”.</li>
+                                <li>As demonstrated, we can omit "function" and just write sayHi().<br>sayHi() {} //same
+                                    as
+                                    "sayHi: function(){...}"
+
+                                </li>
+                                <li>In almost all cases the shorter syntax is preferred.</li>
+                                <li>To access the object, a method can use the "this" keyword. this.name instead of
+                                    user.name</li>
+                                <li>Functions that are stored in object properties are called “methods”.</li>
+                                <li>Methods allow objects to “act” like object.doSomething().</li>
+                                <li>Methods can reference the object as this.</li>
+                        </li>
+                    </ol>
+                    <li>From JavaScript: Novice to Ninja, 2nd Edition
+                        <ol class="letter-list">
+                            <li>Objects: arrays, functions
+                                <ol>
+                                    <li>An object literal is an object that is created directly in the language by
+                                        wrapping
                                         all
-                                        its properties and methods in curly braces {}. Object literals are a distinguishing
+                                        its properties and methods in curly braces {}. Object literals are a
+                                        distinguishing
                                         feature of the JavaScript language, as they allow objects to be created quickly
                                         without
                                         the need for defining a class. They also provide a useful way of organizing your
                                         code
-                                        without polluting the global namespace.</p>
-                                    <p>To create an object literal, simply enter a pair of curly braces: const spiderman =
+                                        without polluting the global namespace.</li>
+                                    <li>To create an object literal, simply enter a pair of curly braces: const
+                                        spiderman
+                                        =
                                         {};
-                                        OR const spiderman = new Object(); //former is object literal notation, latter is
+                                        OR const spiderman = new Object(); //former is object literal notation, latter
+                                        is
                                         object
-                                        constructor (not recommended)</p>
-                                    <p>Accessing properties: dot notation or bracket notation: superman.name OR
+                                        constructor (not recommended)</li>
+                                    <li>Accessing properties: dot notation or bracket notation: superman.name OR
                                         superman['name']
-                                        <p>• Dot notation is much more common, but bracket notation has a few advantages:
-                                            it's
-                                            the only way to access nonstandard property and method names that don’t follow
-                                            the
-                                            variable naming rules.</p>
-                                </li>
-                        </li>
-    
-                        <li>DOM
-                            <ol class="letter-list">
-                                <li>These methods will return a node object or a node list, which is an array-like
-                                    object. These objects can then be assigned to a variable and be inspected or
-                                    modified.</li>
-                                <li>Properties:
-                                    <p>• typeof: ex return, object</p>
-                                    <p>• nodeType property: returns numerical code to signify what type they are</p>
-                                    <p>• nodeName property: returns name of element, ex BODY (uppercase letters)</p>
-                                    <p>• childNodes property returns all the nodes that are children of an element.
+                                        <ol>
+                                            <li>Dot notation is much more common, but bracket notation has a few
+                                                advantages:
+                                                it's
+                                                the only way to access nonstandard property and method names that don’t
+                                                follow
+                                                the
+                                                variable naming rules.</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+
+                            </li>
+                    </li>
+
+                    <li>DOM
+                        <ol class="letter-list">
+                            <li>These methods will return a node object or a node list, which is an array-like
+                                object. These objects can then be assigned to a variable and be inspected or
+                                modified.</li>
+                            <li>Properties:
+                                <ol>
+                                    <li>typeof: ex return, object</li>
+                                    <li>nodeType property: returns numerical code to signify what type they are</li>
+                                    <li>nodeName property: returns name of element, ex BODY (uppercase letters)</li>
+                                    <li>childNodes property returns all the nodes that are children of an element.
                                         This
                                         will include any text nodes, and since whitespace is treated as a text node,
-                                        there will often be empty text nodes in this collection.</p>
-                                    <p>• children property only returns any element nodes that are children of that
-                                        node, so will ignore any text nodes.</p>
-                                    <p>• firstChild property returns the first child of a node</p>
-                                    <p>• lastChild property returns the last child of a node. Be careful when using
+                                        there will often be empty text nodes in this collection.</li>
+                                    <li>children property only returns any element nodes that are children of that
+                                        node, so will ignore any text nodes.</li>
+                                    <li>firstChild property returns the first child of a node</li>
+                                    <li>lastChild property returns the last child of a node. Be careful when using
                                         these properties ― the first or last child node can often be a text node,
                                         even
-                                        if it’s just an empty string generated by some whitespace</p>
-                                    <p>• parentNode property returns the parent node of an element</p>
-                                    <p>• nextSibling property returns the next adjacent node of the same parent</p>
-                                    <p>• previousSibling property returns the previous adjacent node. Once again,
+                                        if it’s just an empty string generated by some whitespace</li>
+                                    <li>parentNode property returns the parent node of an element</li>
+                                    <li>nextSibling property returns the next adjacent node of the same parent</li>
+                                    <li>previousSibling property returns the previous adjacent node. Once again,
                                         these
                                         methods find the next and previous node, not element, so they will often
                                         return
-                                        a blank text node</p>
-                                    <p>• innerHTML element property returns all the child elements of an element as
+                                        a blank text node</li>
+                                    <li>innerHTML element property returns all the child elements of an element as
                                         a
                                         string of HTML. This is also used to create new text node, replacing
-                                        existing child elements.</p>
-                                    <p>• Updating CSS
-                                       <p>• style property: superman.style.border = "red 2px solid";</p>
-                                       <p>• camelCase notation: background-color is backgroundColor</p>
-                                       <p>• can also use bracket notation (no need of camelCase notation): superman.style['background color'] = 'blue';</p>
-                                       <p>• display property: superman.style.display = 'none'; superman.style.display = 'block';</p>
-                                       <p>• getComputedStyle() that will retrieve all the style information of an element that is given as a parameter (only applies to inline styles and styles set using JS): getComputedStyle(superman);</p>
-                                    <p>• CSSStyleDeclaration objects have some built-in methods to help extract the information
-                                       <p>• to find out the element's color property: getComputedStyle(superman).getPropertyCSSValue('color').cssText;</p>
-                                       <p>• getPropertyCSSValue() is a method of CSSStyleDeclaration </p>
-                                    </p>
-                                    </p>
-                                    
-                                </li>
-                                <li>Methods:
-                                    <p>• Document.body returns the body element of a web page</p>
-                                    <p>• Document.images returns a node list of all the images contained in the
-                                        document.</p>
-                                    <p>• Document.links returns a node list of all the <a> elements and <area>
+                                        existing child elements.</li>
+                                    <li>Updating CSS
+                                        <ol>
+                                            <li>style property: superman.style.border = "red 2px solid";/li>
+                                            <li>camelCase notation: background-color is backgroundColor</li>
+                                            <li>can also use bracket notation (no need of camelCase notation):
+                                                superman.style['background color'] = 'blue';</li>
+                                            <li>display property: superman.style.display = 'none';
+                                                superman.style.display =
+                                                'block';</li>
+                                            <li>getComputedStyle() that will retrieve all the style information of an
+                                                element that is given as a parameter (only applies to inline styles and
+                                                styles set using JS): getComputedStyle(superman);</li>
+                                            <li>CSSStyleDeclaration objects have some built-in methods to help extract
+                                                the
+                                                information</li>
+                                            <li>to find out the element's color property:
+                                                getComputedStyle(superman).getPropertyCSSValue('color').cssText;</li>
+                                            <li>getPropertyCSSValue() is a method of CSSStyleDeclaration</li>
+
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Methods:
+                                <ol>
+                                    <li>Document.body returns the body element of a web page</li>
+                                    <li>Document.images returns a node list of all the images contained in the
+                                        document.</li>
+                                    <li>Document.links returns a node list of all the <a> elements and <area>
                                             elements
-                                            that have an href attribute.</p>
-                                    <p>• Document.anchors returns a node list of all the <a> elements that have a
+                                            that have an href attribute.</li>
+                                    <li>Document.anchors returns a node list of all the <a> elements that have a
                                             name
-                                            attribute.</p>
-                                    <p>• Document.forms returns a node list of all the forms in the document. This
+                                            attribute.</li>
+                                    <li>Document.forms returns a node list of all the forms in the document. This
                                         will
-                                        be used when we cover forms in Chapter 8.</p>
-                                    <p>Node lists
-                                        <p>• can be accessed using index notation</p>
-                                        <p>• has length property, which can be used to iterate through every element
-                                            using a for loop</p>
-                                        <p>• don’t have any other array methods such as slice, splice and join</p>
-                                        <p>• convert node list into an array using either Array.from(): const
-                                            imageArray
-                                            = Array.from(document.images); or the spread operator: const imageArray
-                                            =
-                                            [...document.images];</p>
-                                    </p>
-                                    <p>• To find the value of a node, use either nodeValue method or textContent
-                                        property</p>
-                                    <p>• getAttribute() method returns the value of the attribute provided as an
-                                        argument</p>
-                                    <p>• setAttribute can change the value of an element’s attributes. It takes two
+                                        be used when we cover forms in Chapter 8.</li>
+                                    <li>Node lists
+                                        <ol>
+                                            <li>can be accessed using index notation</li>
+                                            <li>has length property, which can be used to iterate through every element
+                                                using a for loop</li>
+                                            <li>don’t have any other array methods such as slice, splice and join</li>
+                                            <li>convert node list into an array using either Array.from(): const
+                                                imageArray
+                                                = Array.from(document.images); or the spread operator: const imageArray
+                                                =
+                                                [...document.images];</li>
+
+                                        </ol>
+                                    </li>
+                                    <li>To find the value of a node, use either nodeValue method or textContent
+                                        property</li>
+                                    <li>getAttribute() method returns the value of the attribute provided as an
+                                        argument</li>
+                                    <li>setAttribute can change the value of an element’s attributes. It takes two
                                         arguments: the attribute that you wish to change, and the new value of that
-                                        attribute: wonderWoman.setAttribute('class', 'villain');</p>
-                                    <p>• To access attributes, use either dot notation getAttribute()</p>
-                                    <p>• To modify class names of an element, use setAttribute() method or className
+                                        attribute: wonderWoman.setAttribute('class', 'villain');</li>
+                                    <li>To access attributes, use either dot notation getAttribute()</li>
+                                    <li>To modify class names of an element, use setAttribute() method or className
                                         property: wonderWoman.className; We can change the class back to 'hero' with
                                         the
                                         following code: wonderWoman.className = 'hero'. Changing the className
@@ -201,225 +238,263 @@
                                         of an element by assignment will overwrite all other classes that have
                                         already
                                         been set on the element.
-    
-                                        This problem can be avoided by using the classList property instead.</p>
-                                    <p>• classList property is a list of all the classes an element has
-                                        <p>• add method can be used to add a class to an element without overwriting
-                                            any
-                                            classes that already exist: wonderWoman.classList.add('warrior');</p>
-                                        <p>• remove method will remove a specific class from an element:
-                                            wonderWoman.classList.remove('warrior');</p>
-                                        <p>• toggle method is a particularly useful method that will add a class if
-                                            an
-                                            element doesn’t have it already, and remove the class if it does have
-                                            it. It
-                                            returns true if the class was added and false if it was removed:
-                                            <p>wonderWoman.classList.toggle('hero'); // will remove the 'hero'
-                                                class<br>
-                                                << false wonderWoman.classList.toggle('sport'); // will add the 'hero' <br>
-                                                    class back << true </p> </p> </p> </p> <p>• To create a dynamic
-                                                        markup:
-                                                        <ol>
-                                                            <li>Create the element node. createElement() method that
-                                                                takes a tag name as a parameter and returns that
-                                                                element:
-                                                                const flash = document.createElement('li');</li>
-                                                            <li>Create the text node. document.createTextNode()
-                                                                method
-                                                                takes a parameter, which is a string containing the text
-                                                                that goes in the node: const flashText =
-                                                                document.createTextNode('Flash');</li>
-                                                            <li>Append the text node to the element node. Use
-                                                                appendChild() method that will add another node (given
-                                                                as an
-                                                                argument) as a child node (bottom of the list):
-                                                                flash.appendChild(flashText); or
-                                                                textContent property: const flash =
-                                                                document.createElement('li');
-                                                                flash.textContent = 'Flash';</li>
-                                                        </ol>
-                                            </p>
-    
-                                            <p>• insertBefore() method will place a new element before another element in
-                                                the
-                                                markup: heroes.insertBefore(aquaman,wonderWoman);</p>
-                                            <p>• removeChild() method: heroes.removeChild(aquaman);</p>
-                                            <p>• replaceChild(): h1.replaceChild(newText,oldText);</p>
-                                </li>
-                                <li>Functions
-    
-                                    <p>• To support older versions of Internet Explorer, you could create a function
-                                        that will add extra class to an element, rather than just replace the
-                                        current
-                                        class: function addClass(element,newClass){}</p>
-                                    <p>• A Function To Create Elements: function createElement (tag,text) {}</p>
-                                </li>
-                                <li>Getting and Setting Attributes
-                                    <p>• getElementById() is a very quick way of finding elements in a document and is
-                                        probably the most commonly used method of accessing elements. </p>
-                                    <p>• getElementsByTagName() returns a live node list of all the elements with the tag
-                                        name that is provided as an argument :const listItems =
-                                        document.getElementsByTagName('li'); // Live collections</p>
-                                    <p>• getElementsByClassName() will return a live node list of all elements that have
-                                        the
-                                        class name that is supplied as an argument: const heroes =
-                                        document.getElementsByClassName('hero'); // Live collections</p>
-                                    <p>• document.querySelector() allows you to use CSS notation to find the first
-                                        element in
-                                        the document that matches a CSS selector provided as an argument. If no elements
-                                        match, it will return null: document.querySelector('#bats');</p>
-                                    <p>• document.querySelectorAll() method also uses CSS notation but returns a node
-                                        list of
-                                        all the elements in the document that match the CSS query selector (not a live
-                                        node
-                                        list though): document.querySelectorAll('.hero');</p>
-                                </li>
-                                
-                            </ol>
-                        </li>
-                    </ol>
-    
-                    </li>
-                    <li>From other sources
-                        <ol class="letter-list">
-                            <li>The way to create an object is to create a variable</li>
-                            <li>Assign values to an object: person.name = "Daniel";</li>
-                            <li>When we create variables or functions in a global scope, they're called variables and
-                                functions. But when we create variables and functions inside an object, they're called
-                                properties and methods.</li>
-                            <li>Object blueprint - placeholder to be filled in later on</li>
-                            <li>Objects always start with capitalized letter: function Person()</li>
-                            <li>Use "this" when referring to object property: this.name = name; </li>
-                            <li>With functions, when we want to pass in outside data, we use parameters that get
-                                referred to inside the function.</li>
-                            <li>The value of a property has always been allowed to be a JavaScript expression: const
-                                captainBritain = { name: 'Captain Britain', hero: bewitched ? false : true };</li>
-                            <li>The conditional (ternary) operator is the only JavaScript operator that takes three
-                                operands: a condition followed by a question mark (?), then an expression to execute if
-                                the condition is truthy followed by a colon (:), and finally the expression to execute
-                                if the condition is falsy. This operator is frequently used as an alternative to an
-                                if...else statement.
-                                <p>• condition ? expr1 : expr2</p>
-                                <p>• console.log((age >= 18)) ? "You are an adult!" : "You are a kid."</p>
+
+                                        This problem can be avoided by using the classList property instead.</li>
+                                    <li>classList property is a list of all the classes an element has
+                                        <ol>
+                                            <li>add method can be used to add a class to an element without overwriting
+                                                any
+                                                classes that already exist: wonderWoman.classList.add('warrior');</li>
+                                            <li>remove method will remove a specific class from an element:
+                                                wonderWoman.classList.remove('warrior');</li>
+                                            <li>toggle method is a particularly useful method that will add a class if
+                                                an
+                                                element doesn’t have it already, and remove the class if it does have
+                                                it. It
+                                                returns true if the class was added and false if it was removed:
+                                                <ol>
+                                                    <li>wonderWoman.classList.toggle('hero'); // will remove the 'hero'
+                                                        class<br>
+                                                        << false wonderWoman.classList.toggle('sport'); // will add
+                                                            the 'hero' <br>
+                                                            class back << true</li> </ol> </li> </ol> </li> <li>To
+                                                                create a dynamic
+                                                                markup:
+                                                                <ol>
+                                                                    <li>Create the element node. createElement() method
+                                                                        that
+                                                                        takes a tag name as a parameter and returns that
+                                                                        element:
+                                                                        const flash = document.createElement('li');</li>
+                                                                    <li>Create the text node. document.createTextNode()
+                                                                        method
+                                                                        takes a parameter, which is a string containing
+                                                                        the text
+                                                                        that goes in the node: const flashText =
+                                                                        document.createTextNode('Flash');</li>
+                                                                    <li>Append the text node to the element node. Use
+                                                                        appendChild() method that will add another node
+                                                                        (given
+                                                                        as an
+                                                                        argument) as a child node (bottom of the list):
+                                                                        flash.appendChild(flashText); or
+                                                                        textContent property: const flash =
+                                                                        document.createElement('li');
+                                                                        flash.textContent = 'Flash';</li>
+                                                                </ol>
+                                                    </li>
+                                                    <li>insertBefore() method will place a new element before another
+                                                        element
+                                                        in
+                                                        the
+                                                        markup: heroes.insertBefore(aquaman,wonderWoman);</li>
+                                                    <li>removeChild() method: heroes.removeChild(aquaman);</li>
+                                                    <li>replaceChild(): h1.replaceChild(newText,oldText);</li>
+                                                </ol>
+                                            </li>
+                                            <li>Functions
+                                                <ol>
+                                                    <li>To support older versions of Internet Explorer, you could create a
+                                                        function
+                                                        that will add extra class to an element, rather than just replace
+                                                        the
+                                                        current
+                                                        class: function addClass(element,newClass){}</li>
+                                                    <li>A Function To Create Elements: function createElement (tag,text) {}</li>                                                    
+                                                </ol>                                               
+                                            </li>
+                                            <li>Getting and Setting Attributes
+                                                <ol>
+                                                    <li>getElementById() is a very quick way of finding elements in a
+                                                        document and is
+                                                        probably the most commonly used method of accessing elements.</li>
+                                                    <li>getElementsByTagName() returns a live node list of all the elements
+                                                        with the
+                                                        tag
+                                                        name that is provided as an argument :const listItems =
+                                                        document.getElementsByTagName('li'); // Live collections</li>
+                                                    <li>getElementsByClassName() will return a live node list of all
+                                                        elements that have
+                                                        the
+                                                        class name that is supplied as an argument: const heroes =
+                                                        document.getElementsByClassName('hero'); // Live collections</li>
+                                                    <li>document.querySelector() allows you to use CSS notation to find the
+                                                        first
+                                                        element in
+                                                        the document that matches a CSS selector provided as an argument. If
+                                                        no elements
+                                                        match, it will return null: document.querySelector('#bats');</li>
+                                                    <li>document.querySelectorAll() method also uses CSS notation but
+                                                        returns a node
+                                                        list of
+                                                        all the elements in the document that match the CSS query selector
+                                                        (not a live
+                                                        node
+                                                        list though): document.querySelectorAll('.hero');</li>                                                   
+                                                </ol>                                                
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+
+                            </li>
+                            <li>From other sources
+                                <ol class="letter-list">
+                                    <li>The way to create an object is to create a variable</li>
+                                    <li>Assign values to an object: person.name = "Daniel";</li>
+                                    <li>When we create variables or functions in a global scope, they're called
+                                        variables and
+                                        functions. But when we create variables and functions inside an object, they're
+                                        called
+                                        properties and methods.</li>
+                                    <li>Object blueprint - placeholder to be filled in later on</li>
+                                    <li>Objects always start with capitalized letter: function Person()</li>
+                                    <li>Use "this" when referring to object property: this.name = name; </li>
+                                    <li>With functions, when we want to pass in outside data, we use parameters that get
+                                        referred to inside the function.</li>
+                                    <li>The value of a property has always been allowed to be a JavaScript expression:
+                                        const
+                                        captainBritain = { name: 'Captain Britain', hero: bewitched ? false : true };
+                                    </li>
+                                    <li>The conditional (ternary) operator is the only JavaScript operator that takes
+                                        three
+                                        operands: a condition followed by a question mark (?), then an expression to
+                                        execute if
+                                        the condition is truthy followed by a colon (:), and finally the expression to
+                                        execute
+                                        if the condition is falsy. This operator is frequently used as an alternative to
+                                        an
+                                        if...else statement.
+                                        <p>• condition ? expr1 : expr2</p>
+                                        <p>• console.log((age >= 18)) ? "You are an adult!" : "You are a kid."</p>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>From JavaScript: Novice to Ninja, 2nd Edition
+                                <ol class="letter-list">
+                                    <li>Objects: arrays, functions</li>
+                                    <li>An object literal is an object that is created directly in the language by wrapping all
+                                        its properties and methods in curly braces {}. Object literals are a distinguishing
+                                        feature of the JavaScript language, as they allow objects to be created quickly without
+                                        the need for defining a class. They also provide a useful way of organizing your code
+                                        without polluting the global namespace.</li>
+                                    <li>To create an object literal, simply enter a pair of curly braces: const spiderman = {};
+                                        OR const spiderman = new Object(); //former is object literal notation, latter is object
+                                        constructor (not recommended)</li>
+                                    <li>Accessing properties: dot notation or bracket notation: superman.name OR
+                                        superman['name']
+                                        <p>• Dot notation is much more common, but bracket notation has a few advantages: it's
+                                            the only way to access nonstandard property and method names that don’t follow the
+                                            variable naming rules.</p>
+                                    </li>
+                                    <li>A document node lists are not actual arrays. They have length property which can be used
+                                        to iterate through every element using a for loop.
+                                        <p>for (let i=0 ; i < document.images.length ; i++) {<br>
+        
+                                                // do something with each image using document.images[i]<br>
+        
+                                                }</p>
+        
+                                    </li>
+                                    <li>Turn node lists into arrays so you can use all the array methods on it:
+                                        <p>const imageArray = Array.from(document.images); OR const imageArray =
+                                            [...document.images];</p>
+                                    </li>
+                                    <li>getElementsByTagName() will return a live node list in document: const listItems =
+                                        document.getElementsByTagName('li'); </li>
+                                    <li>getElementsByClassName() will return a live node list of all elements that have the
+                                        class name that is supplied as an argument</li>
+                                    <li>The document.querySelector() method allows you to use CSS notation to find the first
+                                        element in the document:
+                                        <p>document.querySelector('#bats');<br>
+                                            << <li class="vigilante hero" id="bats">Batman</li>
+                                    </p>
+                            </li>
+                            <li>The document.querySelectorAll() method also uses CSS notation but returns a node list of all the
+                                elements in the document
+                                <p>document.querySelectorAll('.hero');<br>
+                                    << NodeList [<li class="hero">,
+                            <li id="bats">,
+                            <li class="hero">]</p>
+                            </li>
+                            <li>CSS query selectors are a powerful way of specifying very precise items on a page: const
+                                wonderWoman = document.querySelector('li:last-child');</li>
+                            <li>The childNodes property is a list of all the nodes that are children of the node concerned:
+                                <p>const heroes = document.getElementById('roster');<br>
+        
+                                    heroes.childNodes</p>
+                            </li>
+                            <li>Whitespace is treated as a text node.</li>
+                            <li>The children property only returns any element nodes that are children of that node, so will
+                                ignore any text nodes. </li>
+                            <li>nodeValue is the same as textContent OR innerText whwn finding value of an element</li>
+                            <li>When you setAttribute(), you call its value through getAttribute()
+                                <p>wonderWoman.setAttribute('id','amazon');<br>
+        
+                                    wonderWoman.getAttribute('id'): wonderWoman.id;</p> OR
+                            </li>
+                            <li>The legacy DOM allows access to attributes using dot notation: </li>
+                            <li>Another way of modifying class in element: wonderWoman.className = 'hero'
+                                <p>wonderWoman.className;<br>
+                                    << "villain" </p> <p>Overwrites classes on element. can be avoided by using classList:
+                                        wonderWoman.classList.add('warrior');
+                                </p>
+                                <p>removes a specific class from an element: wonderWoman.classList.remove('warrior');</p>
+                            </li>
+                            <li>The toggle method is a particularly useful method that will add a class if an element doesn’t
+                                have it already, and remove the class if it does have it. It returns true if the class was added
+                                and false if it was removed.
+                                <p>wonderWoman.classList.toggle('hero'); // will remove the 'hero' class
+                                    << false wonderWoman.classList.toggle('sport'); // will add the 'hero' class back <<
+                                        true</p> </li> </ol> </li> <li>From other sources
+                                        <ol class="letter-list">
+                                            <li>The way to create an object is to create a variable</li>
+                                            <li>Assign values to an object: person.name = "Daniel";</li>
+                                            <li>When we create variables or functions in a global scope, they're called
+                                                variables
+                                                and
+                                                functions. But when we create variables and functions inside an object, they're
+                                                called
+                                                properties and methods.</li>
+                                            <li>Object blueprint - placeholder to be filled in later on</li>
+                                            <li>Objects always start with capitalized letter: function Person()</li>
+                                            <li>Use "this" when referring to object property: this.name = name; </li>
+                                            <li>With functions, when we want to pass in outside data, we use parameters that get
+                                                referred to inside the function.</li>
+                                            <li>The value of a property has always been allowed to be a JavaScript expression:
+                                                const
+                                                captainBritain = { name: 'Captain Britain', hero: bewitched ? false : true };
+                                            </li>
+                                            <li>The conditional (ternary) operator is the only JavaScript operator that takes
+                                                three
+                                                operands: a condition followed by a question mark (?), then an expression to
+                                                execute
+                                                if
+                                                the condition is truthy followed by a colon (:), and finally the expression to
+                                                execute
+                                                if the condition is falsy. This operator is frequently used as an alternative to
+                                                an
+                                                if...else statement.
+                                                <p>• condition ? expr1 : expr2</p>
+                                                <p>• console.log((age >= 18)) ? "You are an adult!" : "You are a kid."</p>
+                                            </li>
+                                        </ol>
+                            </li>
+
+
+
+                            <li>Exercises
+                                <ol>
+                                    <li><a href="prompt.html" target="_blank">prompt()</a></li>
+                                    <li><a href="array.html" target="_blank">array</a></li>
+                                    <li><a href="quiz-ninja//objects/index.html" target="_blank">Quiz Ninja Project - Objects</a>
+                                    </li>
+                                </ol>
                             </li>
                         </ol>
-                    </li>
-                        <li>Exercises</li>
-                        <p>• <a href="prompt.html" target="_blank">prompt()</a></p>
-                        <p>• <a href="array.html" target="_blank">array</a></p>
-                    </ol>
-<<<<<<< HEAD
                     
-=======
-                    <li>From JavaScript: Novice to Ninja, 2nd Edition
-                        <ol class="letter-list">
-                            <li>Objects: arrays, functions</li>
-                            <li>An object literal is an object that is created directly in the language by wrapping all
-                                its properties and methods in curly braces {}. Object literals are a distinguishing
-                                feature of the JavaScript language, as they allow objects to be created quickly without
-                                the need for defining a class. They also provide a useful way of organizing your code
-                                without polluting the global namespace.</li>
-                            <li>To create an object literal, simply enter a pair of curly braces: const spiderman = {};
-                                OR const spiderman = new Object(); //former is object literal notation, latter is object
-                                constructor (not recommended)</li>
-                            <li>Accessing properties: dot notation or bracket notation: superman.name OR
-                                superman['name']
-                                <p>• Dot notation is much more common, but bracket notation has a few advantages: it's
-                                    the only way to access nonstandard property and method names that don’t follow the
-                                    variable naming rules.</p>
-                            </li>
-                            <li>A document node lists are not actual arrays. They have length property which can be used
-                                to iterate through every element using a for loop.
-                                <p>for (let i=0 ; i < document.images.length ; i++) {<br>
 
-                                        // do something with each image using document.images[i]<br>
-
-                                        }</p>
-
-                            </li>
-                            <li>Turn node lists into arrays so you can use all the array methods on it:
-                                <p>const imageArray = Array.from(document.images); OR const imageArray =
-                                    [...document.images];</p>
-                            </li>
-                            <li>getElementsByTagName() will return a live node list in document: const listItems =
-                                document.getElementsByTagName('li'); </li>
-                            <li>getElementsByClassName() will return a live node list of all elements that have the
-                                class name that is supplied as an argument</li>
-                            <li>The document.querySelector() method allows you to use CSS notation to find the first
-                                element in the document:
-                                <p>document.querySelector('#bats');<br>
-                                    << <li class="vigilante hero" id="bats">Batman</li>
-                            </p>
-                    </li>
-                    <li>The document.querySelectorAll() method also uses CSS notation but returns a node list of all the
-                        elements in the document
-                        <p>document.querySelectorAll('.hero');<br>
-                            << NodeList [<li class="hero">,
-                    <li id="bats">,
-                    <li class="hero">]</p>
-                    </li>
-                    <li>CSS query selectors are a powerful way of specifying very precise items on a page: const
-                        wonderWoman = document.querySelector('li:last-child');</li>
-                    <li>The childNodes property is a list of all the nodes that are children of the node concerned:
-                        <p>const heroes = document.getElementById('roster');<br>
-
-                            heroes.childNodes</p>
-                    </li>
-                    <li>Whitespace is treated as a text node.</li>
-                    <li>The children property only returns any element nodes that are children of that node, so will
-                        ignore any text nodes. </li>
-                    <li>nodeValue is the same as textContent OR innerText whwn finding value of an element</li>
-                    <li>When you setAttribute(), you call its value through getAttribute()
-                        <p>wonderWoman.setAttribute('id','amazon');<br>
-
-                            wonderWoman.getAttribute('id'): wonderWoman.id;</p> OR
-                    </li>
-                    <li>The legacy DOM allows access to attributes using dot notation: </li>
-                    <li>Another way of modifying class in element: wonderWoman.className = 'hero'
-                        <p>wonderWoman.className;<br>
-                            << "villain" </p> <p>Overwrites classes on element. can be avoided by using classList:
-                                wonderWoman.classList.add('warrior');
-                        </p>
-                        <p>removes a specific class from an element: wonderWoman.classList.remove('warrior');</p>
-                    </li>
-                    <li>The toggle method is a particularly useful method that will add a class if an element doesn’t
-                        have it already, and remove the class if it does have it. It returns true if the class was added
-                        and false if it was removed.
-                    <p>wonderWoman.classList.toggle('hero'); // will remove the 'hero' class
-                        << false
-                        
-                        wonderWoman.classList.toggle('sport'); // will add the 'hero' class back
-                        << true</p></li>
-                </ol>
-
-                </li>
-                <li>From other sources
-                    <ol class="letter-list">
-                        <li>The way to create an object is to create a variable</li>
-                        <li>Assign values to an object: person.name = "Daniel";</li>
-                        <li>When we create variables or functions in a global scope, they're called variables and
-                            functions. But when we create variables and functions inside an object, they're called
-                            properties and methods.</li>
-                        <li>Object blueprint - placeholder to be filled in later on</li>
-                        <li>Objects always start with capitalized letter: function Person()</li>
-                        <li>Use "this" when referring to object property: this.name = name; </li>
-                        <li>With functions, when we want to pass in outside data, we use parameters that get
-                            referred to inside the function.</li>
-                        <li>The value of a property has always been allowed to be a JavaScript expression: const
-                            captainBritain = { name: 'Captain Britain', hero: bewitched ? false : true };</li>
-                        <li>The conditional (ternary) operator is the only JavaScript operator that takes three
-                            operands: a condition followed by a question mark (?), then an expression to execute if
-                            the condition is truthy followed by a colon (:), and finally the expression to execute
-                            if the condition is falsy. This operator is frequently used as an alternative to an
-                            if...else statement.
-                            <p>• condition ? expr1 : expr2</p>
-                            <p>• console.log((age >= 18)) ? "You are an adult!" : "You are a kid."</p>
-                        </li>
-                    </ol>
-                </li>
->>>>>>> 5568aff6ebf7b76f78635016354702d84945c80c
-
-                <p><a href="../index.html"><i class="fa fa-home"></i></p>
+                    <p><a href="../index.html"><i class="fa fa-home"></i></p>
         </div>
 
     </main>
