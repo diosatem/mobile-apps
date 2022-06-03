@@ -16,14 +16,10 @@
         </ul>
         <div id="task-footer">
             <span id="task-number"></span>
-            <div class="dropdown">
-                <button class="dropbtn">View category</button>
-                <div class="dropdown-content">
-                    <span id="all">All</span>
-                    <span id="complete">Complete</span>
-                    <span id="incomplete">Incomplete</span>
-
-                </div>
+            <div id="filter">                
+                    <span class="all ">All</span>
+                    <span class="active">Active</span>
+                    <span class="completed">Completed</span>              
             </div>
 
             <span></span>
@@ -32,10 +28,10 @@
     </div>
     <div id="task-form">
         <input type="text" id="user-input" placeholder="Add a task here...">
-        <button id="add-task" type="button">+</button>
+        <button id="add-task-btn" type="button">+</button>
         <div id="alert-msg"></div>
     </div>
 </body>
-<script src="main.js"  type="module"></script>
+<script src="main.js" type="module"></script>
 
 </html>

@@ -4,6 +4,10 @@ index.js - frontend
 todo.js - controller. encapsulated all logic and business rules. can manipulate the frontend and talk to the model/backend (utils.js)
 utils.js - backend
 
+Model - controls the state of the application and the data. never communicates with the view.
+View - HTML and CSS
+Controller - middle. orchestrates what's going on. takes and sends information. coomunicates with the view
+
 module - a js file with js in it. once you stick a js in another file, the runtime engine automatically calls it a module
 
 don't embed js and css in html page as much as possible. always exclude it.
