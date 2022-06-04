@@ -19,14 +19,14 @@ function addItems(event) {
     if (userInput.value.trim() != "") {
         alertMsg.innerHTML = "Task successfully added.";
         alertMsg.style.color = "green";
-
+        taskList.innerHTML += `<li id="li-task" class="li-task"><input type="checkbox" id="check-task" class="check-task" name="task" value="task" onclick=""> <label for="check-task">${userInput.value}</label> <button class="delete-task">X</button></li>`;
+        saveToLocal(userInput.value);
+        userInput.value = "";
     } else {
         alertMsg.innerHTML = "Add a task!";
         alertMsg.style.color = "red";
     }
-    taskList.innerHTML += `<li id="li-task" class="li-task"><input type="checkbox" id="check-task" class="check-task" name="task" value="task" onclick=""> <label for="check-task">${userInput.value}</label> <button class="delete-task">X</button></li>`;
-    saveToLocal(userInput.value);
-    userInput.value = "";
+
 }
 
 function deleteItems(event) {
@@ -46,8 +46,8 @@ function filterItems(event) {
     const listChildNodes = [...taskList.children];
     for (const nodeItem of listChildNodes) {
         switch (event.target.className) {
-            case "all":
-                nodeItem.style.display = "flex";               
+            case "all":               
+                    nodeItem.style.display = "flex";              
                 break;
 
             case "completed":
