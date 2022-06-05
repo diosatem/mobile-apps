@@ -25,8 +25,7 @@ h2 {
     display: flex;
     padding: 20px;
     justify-content: center;
-    align-items: center;
-  
+    align-items: center;    
 }
 
 @media (max-width: 425px) {
@@ -37,7 +36,7 @@ h2 {
 
 .main div {
     padding: 50px;
-    min-height: 500px;
+    min-height: 100vh;
 }
 
 .title {
