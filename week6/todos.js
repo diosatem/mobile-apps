@@ -26,15 +26,16 @@ function addItems(event) {
         alertMsg.innerHTML = "Add a task!";
         alertMsg.style.color = "red";
     }
-
 }
 
 function deleteItems(event) {
     const item = event.target;
-    if (item.classList[0] === "delete-task") {
-        const removeLi = item.parentElement;
+    if (item.classList[0] === "delete-task") {        
+        const removeLi = item.parentElement;        
         deleteFromLocal(item);
+        console.log(deleteFromLocal(item));
         removeLi.remove();
+
     }
     if (item.classList[0] === "check-task") {
         const removeLi = item.parentElement;

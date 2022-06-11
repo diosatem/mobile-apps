@@ -1,0 +1,63 @@
+body {
+    background-color: antiquewhite;  
+    color:antiquewhite;
+  }
+  
+  h1 {
+    color:black;
+  }
+  
+  a {
+    color:aqua;
+    line-height: 2em;
+  }
+  
+  a:hover {
+    color: limegreen;
+  }
+  
+  a:visited {
+    color:burlywood;
+  }
+  
+  #people ul {
+    list-style-type: none;  
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  
+  .prev {
+    font-size:larger;
+    float: left;
+    margin-left:0.5em;
+    margin-bottom:1em;
+  }
+  
+  .next {
+    font-size:larger;
+    float: right;
+    margin-right:0.5em;
+    margin-bottom:1em;
+  }
+  
+  h3 {
+    margin:0;
+    padding:0 0 .5em 0;
+    color:rgb(206, 222, 226);
+  }
+  
+  #people li {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin:.5em;
+    flex-basis: 0;
+    padding:.5em;
+    background-color: rgb(74, 84, 56);
+    
+  }
+  
+  .ships {
+    display:flex;
+    flex-direction: column;
+  }

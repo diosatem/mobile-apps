@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDD 330 Portfolio - Week 5</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+
+<body>
+
+    <main class="main-week">
+        <div class="title-week">
+            <h1>Week 8</h1>
+            <p>WDD 330 Portfolio</p>
+
+
+        </div>
+        <div class="list-week">
+            <ol>
+                <li>Team Assignment</li>
+                <p>• <a href="team-activity/index.html">Ponder Team Activity: Working with a remote API</a></p>
+                <li>Reading/Exercises</li>
+
+                <ol>
+                    <li>Questions:</li>
+                    <ol class="letter-list">
+                        <li></li>
+                    </ol>
+                    <li>Insights:</li>
+                    <ol class="letter-list">
+
+                        <li>CSS3 Transforms and Transitions
+                            <ol class="letter-list">
+                                <li>Transforms
+                                    <ol>
+                                        <li>Transforms require vendor prefixing for IE9, Android up to 4.4.3, iOS8, and
+                                            Blackberry 10
+                                            <ol>
+                                                <li>-webkit-transform: translate(45px,-45px); /* iOS8, Android
+                                                    ↵4.4.3, BB10 */</li>
+                                                <li>-ms-transform: translate(45px,-45px); /* IE9 only */</li>
+
+                                            </ol>
+                                        </li>
+                                        <li>Transforms don’t work on inline elements. But that’s easy enough to fix.
+                                            We’ll just add display: inline-block; to the element</li>
+                                        <li>Cascades for moltiple transformations: transform - add space, order of
+                                            transform functions does matter: translateX(40px)
+                                            scale(1.5);</li>
+                                        <li>transform-origin property
+                                            <ol>
+                                                <li>has the same syntax as the background-position property</li>
+                                                <li>prefixing being required when the transform property requires it
+                                                </li>
+                                            </ol>
+                                        </li>
+                                        <li>Transform functions
+                                            <ol>
+                                                <li>translate
+                                                    <ol>
+                                                        <li>translate(x,y)</li>
+                                                        <li>translatex</li>
+                                                        <li>translatey</li>
+                                                        <li>no impact on the document flow</li>
+                                                        <li>alternative of the behavior of position: relative;</li>
+
+                                                    </ol>
+
+                                                </li>
+                                                <li>rotate
+                                                    <ol>
+                                                        <li>rotate()</li>
+                                                        <li>degrees, grads, radians, or turns</li>
+                                                    </ol>
+                                                </li>
+                                                <li>scale
+                                                    <ol>
+                                                        <li>scale(x,y) </li>
+                                                        <li>scaleX(x)</li>
+                                                        <li>scaleX(y)</li>
+                                                        <li>If only one value is provided, it will be used
+                                                            for both the x and y values, growing or shrinking your
+                                                            element or pseudo-element while maintaining the original
+                                                            aspect ratio.</li>
+                                                        <li>no impact on the document flow</li>
+                                                        <li>alternative of altering width, height, or font-size</li>
+                                                    </ol>
+                                                </li>
+                                                <li>skew
+                                                    <ol>
+                                                        <li>skew(x,y)</li>
+                                                        <li>skewX()</li>
+                                                        <li>skewY()</li>
+                                                        <li>If the second parameter is omitted, the skew will only occur
+                                                            on the x axis</li>
+
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>Transitions
+                                    <ol>
+
+                                        <li>Steps:
+                                            <ol>
+                                                <li>PRE-STATE: Declare the original state of the element in the default
+                                                    style
+                                                    declaration.</li>
+                                                <li>POST-STATE: Declare the final state of your transitioned element;
+                                                    for example, a
+                                                    :hover state.</li>
+                                                <li>IMPORTANT: Include the transition functions in your default style
+                                                    declaration
+                                                    using the transition properties:
+
+                                                    <ol>
+                                                        <li>transition-property
+                                                            <ol>
+                                                                <li>-webkit- prefix for all of your transition
+                                                                    properties
+                                                                    <ol>
+                                                                        <li> -webkit-transition-property:
+                                                                            -webkit-transform;<br>
+                                                                            transition-property: transform;</li>
+                                                                    </ol>
+                                                                </li>
+                                                                <li>In itself, the transition-property property has no
+                                                                    effect; that’s because we still need to specify the
+                                                                    duration of the transition</li>
+                                                                <li>Multiple declarations separated by commas or use the
+                                                                    keyword "all"
+                                                                    <ol>
+                                                                        <li>transition-property: transform, color;</li>
+                                                                    </ol>
+                                                                </li>
+                                                            </ol>
+                                                        </li>
+                                                        <li>transition-duration
+                                                            <ol>
+                                                                <li>transition-duration: 0.2s;</li>
+                                                                <li>200ms is generally considered the optimum time for a
+                                                                    transition: anything slower will make the website
+                                                                    seem slow, drawing generally unwanted attention to
+                                                                    what was supposed to be a subtle effect. Anything
+                                                                    faster may be too subtle.</li>
+                                                            </ol>
+                                                        </li>
+                                                        <li>transition-timing-function
+                                                            <ol>
+                                                                <li>ease, linear, ease-in, ease-out, or ease-in-out</li>
+                                                                <li>cubic-bezier</li>
+                                                                <li>steps(n, start) or steps(n, end)</li>
+                                                            </ol>
+                                                        </li>
+                                                        <li>transition-delay
+                                                            <ol>
+                                                                <li>-webkit-transition-delay: 50ms;<br>
+                                                                    transition-delay: 50ms;</li>
+                                                                <li>negative delays - it will start partway through the
+                                                                    animation. On the way back, it will jump 75% of the
+                                                                    way through the transition, and then transition back
+                                                                    to the default state.</li>
+                                                            </ol>
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                        <li>makes transforms dynamic</li>
+                                        <li>-webkit- vendor prefix is still needed for older mobile devices</li>
+                                        <li>Any property changing from one value to another for which you can find a
+                                            valid midpoint can be transitioned.</li>
+
+                                        <li>SHORTHAND: transition: transform 0.2s ease-out 50ms;
+                                            <ol>
+                                                <li>Note that the properties in the shorthand syntax can be in any
+                                                    order, however, if a delay is included, you must also include a
+                                                    duration, and the duration must precede the delay.</li>
+                                            </ol>
+                                        </li>
+                                        <li>Multiple Transitions in one call
+                                            <ol>
+                                                <li>If you want your properties to transition at different rates, or if
+                                                    you just want a select few to have a transition effect, include them
+                                                    as a comma-separated list: <br>
+                                                    transition-property: transform, color; <br>
+                                                    transition-duration: 0.2s, 0.1s; <br>
+                                                    transition-timing-function: ease-out, linear;<br>
+                                                    transition-delay: 50ms;</li>
+                                                <li>SHORTHAND: transition: transform 0.2s ease-out 50ms, color 0.1s
+                                                    linear 50ms;</li>
+                                            </ol>
+                                        </li>
+                                        <li>How do we know when a transition has ended? A transitionend event—prefixed
+                                            and camel-cased as webkitTransitionEnd for older mobile browsers—is fired
+                                            upon completion of a CSS transition in both directions.</li>
+                                        <li>Animations - keyframes
+                                            <ol>
+                                                <li>-webkit- still required</li>
+                                                <li>Animation Properties
+                                                    <ol>
+                                                        <li>animation-name
+                                                            <ol>
+                                                                <li>Note that you should not put quotes around the
+                                                                    animation name in either the property value or the
+                                                                    @keyframes at-rule, as the specifications state the
+                                                                    name is an identifier and not a string, so browsers
+                                                                    don’t support quoted animation names.</li>
+                                                            </ol>
+                                                        </li>
+                                                        <li>animation-duration</li>
+                                                        <li>animation-timing-function
+                                                            <ol>
+                                                                <li>ease, linear, ease-in, ease-out, ease-in-out</li>
+                                                                <li>cubic-bezier()</li>
+                                                                <li>step-start, step-end</li>
+                                                                <li>steps(number, direction)</li>
+                                                            </ol>
+                                                        </li>
+                                                        
+                                                        <li>animation-iteration-count</li>
+                                                        <li>animation-direction</li>
+                                                        <li>animation-delay</li>
+                                                        <li>animation-fill-mode</li>
+                                                        <li>animation-play-state</li>
+                                                        <li>SHORTHAND: animation: 300ms ease-in alternate 5s backwards appearDisappear;</li>
+                                                        <li>Nultiple Animations
+                                                            animation: <br>
+                                                            animationOne 300ms ease-in backwards, <br>
+                                                            animationTwo 600ms ease-out 1s forwards;<br>
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                            </ol>
+
+                                        </li>
+                                    </ol>
+                                </li>
+
+                            </ol>
+
+                        </li>
+                    </ol>
+                    </li>
+
+                    <li>Exercises
+                        <p>•
+                        </p>
+
+                    </li>
+                </ol>
+
+
+                <p><a href="../index.html"><i class="fa fa-home"></i></p>
+        </div>
+
+    </main>
+    <footer>
+        <p>Diosaflor Temblor (Jamorol)</p>
+        <p>Brigham Young University-Idaho</p>
+    </footer>
+    <script src="/js/main.js"> </script>
+
+</body>
+
+</html>
