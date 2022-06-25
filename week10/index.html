@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDD 330 Portfolio - Week 10</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+
+<body>
+
+    <main class="main-week">
+        <div class="title-week">
+            <h1>Week 10</h1>
+            <p>WDD 330 Portfolio</p>
+
+
+        </div>
+        <div class="list-week">
+            <ol>
+                <li>Team Assignment</li>
+                <p>• <a href="teamActivity10/index.html">Quakes near me</a></p>
+                <li>Reading/Exercises</li>
+
+                <ol>
+                    <li>Questions:</li>
+                    <ol class="letter-list">
+                        <li></li>
+                    </ol>
+                    <li>Insights:</li>
+                    <ol class="letter-list">
+                        <li>Client-side form validation
+                            <ol>
+                                <li>Validation done in the browser is called client-side validation, while validation
+                                    done on the server is called server-side validation</li>
+                                <li>Three main reasons to validate forms:
+                                    <ol>
+                                        <li>We want to get the right data, in the right format.</li>
+                                        <li>We want to protect our users' data.</li>
+                                        <li>We want to protect ourselves.</li>
+                                    </ol>
+                                </li>
+                                <li>Types of client-side validation
+                                    <ol>
+                                        <li>Built-in form validation (HTML5)
+                                            <ul>
+                                                <li>Better performancee then JS but not as customizable</li>
+                                                <li>Validation attributes:
+                                                    <ol>
+                                                        <li>required - matches the :required. while empty, matches
+                                                            :invalid. </li>
+                                                        <li>minlength and maxlength (for text)</li>
+                                                        <li>min and max (for numbers)</li>
+                                                        <li>type
+                                                            <ul>
+                                                                <li>input type="number" (and other types, such as range
+                                                                    and date) can also take a step attribute</li>
+                                                                <li></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>pattern (regex) -not supported by textarea
+                                                            <ul>
+                                                                <li>a — Matches one character that is a (not b, not aa,
+                                                                    and so on).</li>
+                                                                <li>abc — Matches a, followed by b, followed by c.</li>
+                                                                <li>ab?c—Matches a, optionally followed by a single b,
+                                                                    followed by c. ( ac or abc)</li>
+                                                                <li>ab*c—Matches a, optionally followed by any number of
+                                                                    bs, followed by c. ( ac , abc, abbbbbc, and so on).
+                                                                </li>
+                                                                <li>a|b — Matches one character that is a or b.</li>
+                                                                <li>abc|xyz — Matches exactly abc or exactly xyz (but
+                                                                    not abcxyz or a or y, and so on).</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                                <li>Valid element:
+                                                    <ul>
+                                                        <li>The element matches the :valid CSS pseudo-class, which lets
+                                                            you apply a specific style to valid elements.</li>
+                                                        <li>If the user tries to send the data, the browser will submit
+                                                            the form, provided there is nothing else stopping it from
+                                                            doing so (e.g., JavaScript).</li>
+                                                    </ul>
+                                                </li>
+
+                                                <li>Invalid element:
+                                                    <ul>
+                                                        <li>The element matches the :invalid CSS pseudo-class, and
+                                                            sometimes other UI pseudo-classes (e.g., :out-of-range)
+                                                            depending on the error, which lets you apply a specific
+                                                            style to invalid elements.</li>
+                                                        <li>If the user tries to send the data, the browser will block
+                                                            the form and display an error message.
+                                                            <ul>
+                                                                <li>badInput</li>
+                                                                <li>patternMismatch</li>
+                                                                <li>rangeOverflow</li>
+                                                                <li>rangeUnderflow</li>
+                                                                <li>stepMismatch</li>
+                                                                <li>tooLong</li>
+                                                                <li>tooShort</li>
+                                                                <li>typeMismatch</li>
+                                                                <li>valueMissing</li>
+                                                                <li>customError</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>JavaScript validation is coded using JavaScript.
+                                            <ul>
+                                                <li>Fully customizable, but yoou need to create it all (or use a
+                                                    library)</li>
+                                                <li>You must use JavaScript if you want to take control over the look
+                                                    and feel of native error messages or to deal with legacy browsers
+                                                    that do not support HTML's built-in form validation.</li>
+                                                <li>The Constraint Validation API - makes properties and methods
+                                                    available on the following elements
+                                                    <ul>
+                                                        <li>DOM interface elements
+                                                            <ol>
+                                                                <li>HTMLButtonElement (represents a button element)</li>
+                                                                <li>HTMLFieldSetElement (represents a fieldset element)
+                                                                </li>
+                                                                <li>HTMLInputElement (represents an input element)</li>
+                                                                <li>HTMLOutputElement (represents an output element)
+                                                                </li>
+                                                                <li>HTMLSelectElement (represents a select element)</li>
+                                                                <li>HTMLTextAreaElement (represents a textarea element)
+                                                                </li>
+                                                            </ol>
+                                                        </li>
+                                                        <li>Customizing these error messages is one of the most common
+                                                            use cases of the constraint validation API.</li>
+                                                    </ul>
+                                                </li>
+                                                
+                                            </ul>
+                                        </li>
+                                      
+                                    </ol>
+                                </li>
+                              
+                            </ol>
+                        </li>
+<li>Using the Fetch API
+    <ul>
+        <li>provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses</li>
+        <li>provides a global fetch() method that provides an easy, logical way to fetch resources asynchronously across the network</li>
+        <li>The simplest use of fetch() takes one argument — the path to the resource you want to fetch — and does not directly return the JSON response body but instead returns a promise that resolves with a Response object.</li>
+    <li>The fetch() method can optionally accept a second parameter, an init object that allows you to control a number of different settings</li>
+
+    </ul>
+</li>
+                    </ol>
+                    </li>
+
+                    <li>Exercises
+                        <p>• <a href="form-validation/form.html">Form validation</a>
+                        </p>
+
+                    </li>
+                </ol>
+
+
+                <p><a href="../index.html"><i class="fa fa-home"></i></p>
+        </div>
+
+    </main>
+    <footer>
+        <p>Diosaflor Temblor (Jamorol)</p>
+        <p>Brigham Young University-Idaho</p>
+    </footer>
+    <script src="/js/main.js"> </script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Open ToDo",
+            "file": "C:\\Users\\andrewc\\OneDrive - ZeroNox\\ByuI\\repos\\Wdd330\\Week4\\index.html",
+            "runtimeArgs": ["--disable-web-security"]
+        },
+        
+        {
+             "type": "pwa-chrome",
+             "request": "launch",
+             "name": "Open Week7",
+             "file": "C:\\Users\\andrewc\\OneDrive - ZeroNox\\ByuI\\repos\\Wdd330\\Week7\\index.html",
+            "runtimeArgs": ["--disable-web-security"]
+         },
+
+         {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open Week5",
+            "file": "C:\\Users\\andrewc\\OneDrive - ZeroNox\\ByuI\\repos\\Wdd330\\Week5\\datepicker.html",
+           "runtimeArgs": ["--disable-web-security"]
+        }
+       
+    ]
+}
