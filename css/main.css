@@ -86,14 +86,14 @@ footer {
    
 }
 
-ul>li {
+/* ul>li {
     font-weight: 700;
     font-size: 1.3rem;
-}
+} */
 
 li {
     line-height: 2;
 }
-.letter-list {
+.letter-list, ol {
 list-style-type: lower-alpha;
 }
