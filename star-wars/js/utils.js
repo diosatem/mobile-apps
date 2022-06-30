@@ -5,8 +5,7 @@ export async function getJSON(url) {
         throw Error(response.statusText);
       } else {
         const fetchJson = await response.json();
-        return fetchJson;
-        // renderPeopleList(people);
+        return fetchJson;        
       }
     } catch (error) {
       console.log(error);

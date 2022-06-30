@@ -9,13 +9,22 @@ const peopleDiv = document.getElementById("people-div");
 const searchBar = document.getElementById("search-bar");
 const parent = document.getElementById("go-to");
 const showNext = document.getElementById("next");
-let faveCharacters = [];
+const peopleLi = document.querySelector("li.person");
+// console.log(peopleLi[1].value);
+let filteredList = [];
 
 //Event Listeners
 searchBar.addEventListener("keyup", searchPerson);
+// peopleLi.addEventListener("click", addToLocal);
+
+//save to array
+function addToFave(e) {
+  return console.log("added", e);
+}
 
 // model code
 function getPeople(url) {
+  // const searchResults = fetchJson.map(element => element.name)
   return getJSON(url);
 }
 
@@ -27,7 +36,7 @@ function renderPeopleList(people, peopleDiv) {
 
   const peopleLi = people
     .map((person) => {
-      return `<li class="person"><span class="person-name">${person.name}</span> <i class="fa-solid fa-plus add added"></i></li>`;
+      return `<li class="person" onclick="addToFave();"><span class="person-name">${person.name}</span> <i class="fa-solid fa-plus add added"></i></li>`;
     })
     .join("");
 
@@ -38,19 +47,18 @@ function renderPeopleList(people, peopleDiv) {
 function searchPerson(e) {
   const searchString = e.target.value.toLowerCase();
   console.log(searchString);
-  const filteredCharacters = faveCharacters.filter((character) => {
+  const filteredCharacters = filteredList.filter((character) => {
     return (
       character.name.toLowerCase().includes(searchString) ||
       character.house.toLowerCase().includes(searchString)
     );
   });
-  renderPeopleList(filteredCharacters);
+  showPeople(filteredCharacters);
 }
 
 // controller code
-async function showPeople(url = "https://swapi.dev/api/people/") {
+async function showPeople(url = "https://swapi.dev/api/people/", characters) {
   const results = await getPeople(url);
-  console.log(results.next);
 
   //get the list element
   renderPeopleList(results.results, peopleDiv);
@@ -60,14 +68,19 @@ async function showPeople(url = "https://swapi.dev/api/people/") {
     const next = document.createElement("p");
     next.innerText = "Show more...";
     next.classList.add("next");
-
+    let timeOuttoken = 0;
     next.addEventListener("click", (event) => {
-      showPeople(results.next);
+      clearTimeout(timeOuttoken);
+      timeOuttoken = setTimeout(() => {
+        showPeople(results.next);
+      }, 800);
     });
 
     parent.appendChild(next);
     parent.removeChild(next.previousSibling);
   }
+
+  addToFave();
 }
 
 async function getPersonDetails(url) {
