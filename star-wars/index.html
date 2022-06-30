@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Star Wars Faves</title>
-</head>
-<body>
-    <header>
-        <img src="images/star-wars-logo-500px.webp" alt="Star Wars logo">
-        <h1>Who is your favorite character?</h1>
-        <div id="search"></div>
-    </header>
-    <main>
-        <div id="view">View your list</div>
-        <div id="characters"></div>
-        <div id="go-to">
-            <span id="previous"></span>
-            <span id="next"></span>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="https://kit.fontawesome.com/ae70db09cb.js" crossorigin="anonymous"></script></head>
+  <body>
+    <div class="background"> </div>
+      <header>
+        <img src="images/star wars yellow.png" alt="Star Wars logo" />
+        <h1>My Favorite Characters</h1>
+        <div id="search-wrapper">
+          <input
+            type="text"
+            name="searchBar"
+            id="search-bar"
+            placeholder="Search for your favorite character" minlength="1"
+          />
+          <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-    </main>
-</body>
+      </header>
+      <main>
+        <div id="view">View your list</div>
+        <div id="people-div"></div>
+        <div id="go-to">
+          <!-- <button id="show-more">Show more...</button> -->
+               </div>
+      </main>
+ 
+    <script src="js/main.js" type="module"></script>
+    
+  </body>
 </html>

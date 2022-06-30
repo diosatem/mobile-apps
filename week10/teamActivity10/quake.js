@@ -3,15 +3,15 @@ import { getJSON } from './utilities.js';
 export default class Quake {
   constructor() {
     this.baseUrl =
-      'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2022-05-23&endtime=2022-06-23';
+      'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson';
     // this is where we will store the last batch of retrieved quakes in the model.  I don't always do this...in this case the api doesn't have an endpoint to request one quake.
     this._quakes = [];
   }
-  async getEarthQuakesByRadius(position, radius = 100) {
+  async getEarthQuakesByRadius(position, startDate = '2020-01-01', endDate='2022-06-25', radius = 100, ) {
     // use the getJSON function and the position provided to build out the correct URL to get the data we need.  Store it into this._quakes, then return it
     const query =
       this.baseUrl +
-      `&latitude=${position.lat}&longitude=${position.lon}&maxradiuskm=${radius}`;
+      `&starttime=${startDate}&endtime=${endDate}&latitude=${position.lat}&longitude=${position.lon}&maxradiuskm=${radius}`;
     console.log(query);
     // fetch the data
     this._quakes = await getJSON(query);
@@ -19,6 +19,6 @@ export default class Quake {
   }
   getQuakeById(id) {
     // filter this._quakes for the record identified by id and return it
-    return this._quakes.features.filter(item => item.id === id)[0];
+    return this._quakes.features.filter((item) => item.id === id)[0];
   }
 }

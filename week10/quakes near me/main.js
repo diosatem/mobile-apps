@@ -22,6 +22,7 @@ async function everything() {
   console.log(query);
   // fetch the data
   quakes = await getJSON(query);
+  console.log(quakes);
   // get the element we will render the list in
   const listElement = document.querySelector("#quakeList");
   // render the list of quakes
@@ -34,7 +35,7 @@ ${new Date(
     )}
 `;
   });
-  listElement.innerHTML = listHtml.join("");
+  listElement.innerHTML = listHtml.join(`<br>`);
   // attach a listener to watch for a click on the quake. If it sees one then render out the details of the quake
   listElement.addEventListener("click", (event) => {
     console.log(event.currentTarget); // note the difference between target and currentTarget

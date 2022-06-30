@@ -5,6 +5,7 @@ export function getJSON(url) {
                 throw Error(response.statusText);
             } else {
                 return response.json();
+                
             }
         })
         .catch(function(error) {

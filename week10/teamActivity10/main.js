@@ -3,7 +3,7 @@
 import QuakesController from './quakescontroller.js';
 
 const baseUrl =
-  "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2020-01-01&endtime=2020-02-02";
+  "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2020-01-01&endtime=2022-06-22";
 
 let quakes = [];
 /*
@@ -87,6 +87,20 @@ async function showQuakes() {
  
 }
 
+async function getEarthquakes(event) {
+  const lat = document.getElementById("lat");
+  const lon = document.getElementById("lon");
+  const startdate = document.getElementById("startDate");
+  const enddate = document.getElementById("endDate");
+  const quakesController = new QuakesController("#quakeList", { lat: lat.value, lon:lon.value});
+  await quakesController.init(startdate.value, enddate.value);
+}
+
 window.onload = () => {
   showQuakes();
+
+
+  
+  const btnGet = document.getElementById('get-quakes');
+  btnGet.addEventListener('click', getEarthquakes);
 }

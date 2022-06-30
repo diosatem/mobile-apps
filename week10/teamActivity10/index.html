@@ -9,6 +9,17 @@
   <body>
     <main>
       <h1>Quake List</h1>
+      <div style="display:flex;flex-direction:column">
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate" value="2020-01-01">
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate">
+        <label for="lat">Latitude</label>
+        <input type="number" id="lat" >
+        <label for="lon">Longitude</label>
+        <input type="number" id="lon">
+        <button id="get-quakes">Get Earthquakes</button>
+      </div>
       <ul id="quakeList"></ul>
     </main>
   </body>

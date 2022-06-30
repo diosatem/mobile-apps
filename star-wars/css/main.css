@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Seymour+One&display=swap");
+body {
+  /* background-image: url(../images/2.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+  padding: 50px;
+  min-height: 1400px;
+  color: white;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  background-color: #000;
+}
+
+.background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 1px;
+  width: 1px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: -24vw -44vh 2px 2px #fff, 38vw -4vh 0px 0px #fff,
+    -20vw -48vh 1px 2px #fff, -39vw 38vh 3px 1px #fff, -42vw -11vh 0px 3px #fff,
+    12vw 15vh 3px 3px #fff, 42vw 6vh 3px 2px #fff, -8vw 9vh 0px 2px #fff,
+    34vw -38vh 1px 0px #fff, -17vw 45vh 3px 1px #fff, 22vw -36vh 3px 2px #fff,
+    -42vw 1vh 1px 0px #fff;
+  animation: zoom 10s alternate infinite;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+main,
+header {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+ul {
+   list-style-type: none;
+  display: flex;
+  column-gap: 50px;
+  row-gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+}
+
+li.person {
+  padding: 20px;
+  background-color: #ffc500;
+  color: black;
+  min-width: 300px;
+  max-width: 500px;
+  text-align: left;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+}
+
+li.person:hover {
+  background-color: rgb(255, 233, 25, 0.5);
+  cursor: pointer;
+}
+
+h1 {
+  /* color: #57ffff; */
+  font-family: "Seymour One", sans-serif;
+  font-size: 1.5rem;
+  padding: 20px 0 10px;
+}
+
+/*search bar*/
+input {
+  padding: 15px;
+  width: 90%;
+  font-size: 1.2rem;
+  outline: none;
+  margin-bottom: 20px;
+  background-color: black;
+  /* border: none; */
+}
+
+input:focus {
+  background-color: black;
+  color: white;
+}
+
+#search-wrapper {
+  position: relative;
+}
+
+.fa-magnifying-glass{
+  position: absolute;
+  right: 40px;
+  font-size: 1.5rem;
+  top: 15px;
+  cursor: pointer;
+}
+
+/*logo*/
+img {
+  max-width: 300px;
+}
+
+/*prev/next buttons*/
+#go-to {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.prev, .next, #show-more {
+  cursor: pointer;
+}
+
+button {
+  all: unset;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  position: relative;
+  color: #f0f0f0;
+  cursor: pointer;
+  z-index: 1;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button::after,
+button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -99999;
+  transition: all 0.4s;
+}
+
+button::before {
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #28282d;
+  border-radius: 10px;
+}
+
+button::after {
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff15;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 50px;
+}
+
+button:hover::before {
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+}
+
+button:hover::after {
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+button:active::after {
+  transition: 0s;
+  transform: translate(0, 5%);
+}
