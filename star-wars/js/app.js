@@ -10,7 +10,6 @@ const searchBar = document.getElementById("search-bar");
 const parent = document.getElementById("go-to");
 const showNext = document.getElementById("next");
 const peopleLi = document.querySelector("li.person");
-// console.log(peopleLi[1].value);
 let filteredList = [];
 
 //Event Listeners
@@ -47,6 +46,11 @@ function renderPeopleList(people, peopleDiv) {
 function searchPerson(e) {
   const searchString = e.target.value.toLowerCase();
   console.log(searchString);
+
+  if (searchString.trim().length === 0) {
+    return;
+  }
+
   const filteredCharacters = filteredList.filter((character) => {
     return (
       character.name.toLowerCase().includes(searchString) ||
@@ -73,6 +77,7 @@ async function showPeople(url = "https://swapi.dev/api/people/", characters) {
       clearTimeout(timeOuttoken);
       timeOuttoken = setTimeout(() => {
         showPeople(results.next);
+        console.log(results.next);
       }, 800);
     });
 
