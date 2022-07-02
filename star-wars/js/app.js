@@ -6,9 +6,10 @@ import { getJSON, readFromLS } from "./utils.js";
 
 //Selectors
 const peopleDiv = document.getElementById("people-div");
+const faveDiv = document.getElementById("fave-div");
+faveDiv.innerHTML = `View list`
 const searchBar = document.getElementById("search-bar");
 const parent = document.getElementById("go-to");
-const showNext = document.getElementById("next");
 const peopleLi = document.querySelector("li.person");
 let filteredList = [];
 
@@ -23,7 +24,8 @@ function addToFave(e) {
 
 // model code
 function getPeople(url) {
-  // const searchResults = fetchJson.map(element => element.name)
+  // const searchResults = getJSON.map(element => element.name)
+  // return searchResults(url)
   return getJSON(url);
 }
 
@@ -46,11 +48,9 @@ function renderPeopleList(people, peopleDiv) {
 function searchPerson(e) {
   const searchString = e.target.value.toLowerCase();
   console.log(searchString);
-
   if (searchString.trim().length === 0) {
     return;
   }
-
   const filteredCharacters = filteredList.filter((character) => {
     return (
       character.name.toLowerCase().includes(searchString) ||
