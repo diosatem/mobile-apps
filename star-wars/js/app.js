@@ -80,6 +80,7 @@ function showMore(results) {
     parent.removeChild(next.previousSibling);
   } else if (results.next == null) {
     console.log("end of list");
+    parent.style.display = "none";
   }
 }
 
