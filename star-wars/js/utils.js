@@ -1,11 +1,16 @@
 export async function getJSON(url) {
     try {
       const response = await fetch(url);
+     
       if (!response.ok) {
         throw Error(response.statusText);
       } else {
-        const fetchJson = await response.json();
-        return fetchJson;        
+        let peopleArray = [];
+        peopleArray = await response.json();
+        console.log(typeof peopleArray);
+        return peopleArray;       
+        //  const fetchJson = await response.json();
+        //  return fetchJson;
       }
     } catch (error) {
       console.log(error);

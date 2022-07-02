@@ -7,29 +7,27 @@ import { getJSON, readFromLS } from "./utils.js";
 //Selectors
 const peopleDiv = document.getElementById("people-div");
 const faveDiv = document.getElementById("fave-div");
-faveDiv.innerHTML = `View list`
+faveDiv.innerHTML = `View list`;
 const searchBar = document.getElementById("search-bar");
 const parent = document.getElementById("go-to");
 const peopleLi = document.querySelector("li.person");
-let filteredList = [];
+
+let peopleList = [];
 
 //Event Listeners
 searchBar.addEventListener("keyup", searchPerson);
 // peopleLi.addEventListener("click", addToLocal);
 
-//save to array
-function addToFave(e) {
-  return console.log("added", e);
-}
 
-// model code
+//Model code
 function getPeople(url) {
-  // const searchResults = getJSON.map(element => element.name)
-  // return searchResults(url)
   return getJSON(url);
+  //   peopleList = getJSON(url);
+  // console.log(peopleList);
+  //     return peopleList;
 }
 
-//  View code
+//View code
 function renderPeopleList(people, peopleDiv) {
   const parentList = document.createElement("ul");
   parentList.classList.add("parent-list");
@@ -37,37 +35,34 @@ function renderPeopleList(people, peopleDiv) {
 
   const peopleLi = people
     .map((person) => {
-      return `<li class="person" onclick="addToFave();"><span class="person-name">${person.name}</span> <i class="fa-solid fa-plus add added"></i></li>`;
+      return `<li class="person" onclick="addToLocal()"><span class="person-name">${person.name}</span> <i class="fa-solid fa-plus add delete"></i></li>`;
     })
     .join("");
 
-  parentList.innerHTML = peopleLi;
+  parentList.innerHTML = peopleLi;  
 }
 
-//search bar
+function addToLocal(e) {
+const item = e.target;
+console.log("Hello");
+}
+
+//Search code
 function searchPerson(e) {
   const searchString = e.target.value.toLowerCase();
   console.log(searchString);
+
   if (searchString.trim().length === 0) {
     return;
   }
-  const filteredCharacters = filteredList.filter((character) => {
-    return (
-      character.name.toLowerCase().includes(searchString) ||
-      character.house.toLowerCase().includes(searchString)
-    );
+  const filteredCharacters = peopleList.filter((character) => {
+    return character.name.toLowerCase().includes(searchString);
   });
-  showPeople(filteredCharacters);
+  // renderPeopleList(filteredCharacters);
 }
 
-// controller code
-async function showPeople(url = "https://swapi.dev/api/people/", characters) {
-  const results = await getPeople(url);
-
-  //get the list element
-  renderPeopleList(results.results, peopleDiv);
-
-  //show more button
+ //Show more button
+function showMore(results) { 
   if (results.next) {
     const next = document.createElement("p");
     next.innerText = "Show more...";
@@ -83,9 +78,22 @@ async function showPeople(url = "https://swapi.dev/api/people/", characters) {
 
     parent.appendChild(next);
     parent.removeChild(next.previousSibling);
+  } else if (results.next == null) {
+    console.log("end of list");
   }
+}
 
-  addToFave();
+// controller code
+async function showPeople(url = "https://swapi.dev/api/people/") {
+  const results = await getPeople(url);
+  console.log(results);
+
+  //get the list element
+  renderPeopleList(results.results, peopleDiv);
+
+  //show more button
+  showMore(results);
+  
 }
 
 async function getPersonDetails(url) {
