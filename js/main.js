@@ -42,6 +42,10 @@ url: "week1/index.html"
         label: "10",
         url: "week10/index.html"
       },
+      {
+        label: "11",
+        url: "week11/index.html"
+      },
   ]
   var namelist = allWeeks.map(function (t, i) {
     return `<b>Week # : </b> ${t.label}<br/><b>URL : </b> <a href=${t.url}>${t.url}</a><br/><br/>`;
