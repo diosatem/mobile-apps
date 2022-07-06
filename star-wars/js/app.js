@@ -110,7 +110,9 @@ function displayFave(fave) {
     console.log(
       "🚀 ~ file: app.js ~ line 110 ~ displayFave ~ fave[0]",
       fave[0]
+      
     );
+    favePeople[0].style.display = "none";
   });
   console.log(
     "🚀 ~ file: app.js ~ line 110 ~ displayFave ~ favePeople",

@@ -251,10 +251,6 @@ margin: 20px auto 40px auto;
 z-index: 0;
 }
 
-#view-btn:hover {
-  background-color: #444;
-}
-
 body {
   transition: margin-left .5s;
   padding: 20px;
