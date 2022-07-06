@@ -111,7 +111,9 @@ input:focus {
   .fa-magnifying-glass {
     right: 15px;
   }
-
+  input {
+    font-size: .8rem;
+  }
 }
 
 /*logo*/
@@ -122,11 +124,14 @@ img {
 /*prev/next buttons*/
 #go-to {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  column-gap: 200px;
+  row-gap: 200px;
+  margin-top: 50px;
 }
 
-.prev, .next, #show-more {
+#prev, #next {
   cursor: pointer;
 }
 
@@ -195,4 +200,62 @@ button:hover::after {
 button:active::after {
   transition: 0s;
   transform: translate(0, 5%);
+}
+
+/*side panel*/
+.fave-div {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #ffc500;
+  overflow-x: scroll;
+  padding-top: 60px;
+  transition: 0.5s;  
+}
+
+li.fave {
+  padding: 20px;
+  background-color: #111;
+  color: #fff;
+  /* min-width: 250px;
+  max-width: 500px; */
+  text-align: left;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  display: block;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+li.fave:hover {
+  color: #f1f1f1;
+}
+
+#close-btn {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  font-size: 26px;
+  padding-top: 15px;
+  cursor: pointer;
+  color: #111;
+}
+
+#view-btn {
+margin: 20px auto 40px auto;
+z-index: 0;
+}
+
+#view-btn:hover {
+  background-color: #444;
+}
+
+body {
+  transition: margin-left .5s;
+  padding: 20px;
 }

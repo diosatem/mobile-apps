@@ -75,7 +75,7 @@ function saveToLocal(item) {
     if (localStorage.getItem("items") === null) {
         items = [];
     } else {
-        items = JSON.parse(localStorage.getItem("items"));;
+        items = JSON.parse(localStorage.getItem("items"));
     }
     items.push(item);
     localStorage.setItem("items", JSON.stringify(items));

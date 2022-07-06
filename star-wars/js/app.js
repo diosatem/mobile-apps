@@ -1,71 +1,59 @@
 import { getJSON, readFromLS } from "./utils.js";
 
-// export default class FaveCharacter {
-
-//   }
-
 //Selectors
 const peopleDiv = document.getElementById("people-div");
 const faveDiv = document.getElementById("fave-div");
-faveDiv.innerHTML = `View list`;
 const searchBar = document.getElementById("search-bar");
-const parent = document.getElementById("go-to");
+const parentNext = document.getElementById("next");
+const parentPrev = document.getElementById("prev");
 const peopleLi = document.querySelector("li.person");
-
+const parentList = document.getElementsByClassName("parent-list")[0];
+const viewBtn = document.getElementById("view-btn");
+const closeBtn = document.getElementById("close-btn");
 let peopleList = [];
 
 //Event Listeners
 searchBar.addEventListener("keyup", searchPerson);
-// peopleLi.addEventListener("click", addToLocal);
-
+parentList.addEventListener("click", addToFave);
+viewBtn.addEventListener("click", openNav);
+closeBtn.addEventListener("click", closeNav);
 
 //Model code
 function getPeople(url) {
   return getJSON(url);
-  //   peopleList = getJSON(url);
-  // console.log(peopleList);
-  //     return peopleList;
 }
 
 //View code
-function renderPeopleList(people, peopleDiv) {
-  const parentList = document.createElement("ul");
-  parentList.classList.add("parent-list");
-  peopleDiv.appendChild(parentList);
-
+function renderPeopleList(people) {
   const peopleLi = people
     .map((person) => {
-      return `<li class="person" onclick="addToLocal()"><span class="person-name">${person.name}</span> <i class="fa-solid fa-plus add delete"></i></li>`;
+      return `<li class="person"><span class="person-name">${person.name}</span> <i class="fa-solid fa-plus add delete"></i></li>`;
     })
     .join("");
 
-  parentList.innerHTML = peopleLi;  
-}
-
-function addToLocal(e) {
-const item = e.target;
-console.log("Hello");
+  parentList.innerHTML = peopleLi;
 }
 
 //Search code
 function searchPerson(e) {
   const searchString = e.target.value.toLowerCase();
-  console.log(searchString);
-
-  if (searchString.trim().length === 0) {
-    return;
-  }
+  // console.log(searchString);
+  // if (searchString != "") {
   const filteredCharacters = peopleList.filter((character) => {
     return character.name.toLowerCase().includes(searchString);
   });
-  // renderPeopleList(filteredCharacters);
+  // console.log(peopleList);
+  renderPeopleList(filteredCharacters);
+  // } else {
+  // peopleDiv.innerText = "Please enter a valid name."
+  // }
 }
 
- //Show more button
-function showMore(results) { 
+//Show buttons
+function nextBtn(results) {
   if (results.next) {
-    const next = document.createElement("p");
-    next.innerText = "Show more...";
+    const next = document.createElement("button");
+    next.innerText = "Next";
     next.classList.add("next");
     let timeOuttoken = 0;
     next.addEventListener("click", (event) => {
@@ -75,26 +63,107 @@ function showMore(results) {
         console.log(results.next);
       }, 800);
     });
-
-    parent.appendChild(next);
-    parent.removeChild(next.previousSibling);
-  } else if (results.next == null) {
+    parentNext.appendChild(next);
+    parentNext.removeChild(next.previousSibling);
+     } else if (results.next == null) {
     console.log("end of list");
-    parent.style.display = "none";
+    next.innerText = "";
   }
+}
+
+function prevBtn(results) {
+  if (results.previous) {
+    const prev = document.createElement("button");
+    prev.innerText = "Previous";
+    prev.classList.add("prev");
+    let timeOuttoken = 0;
+    prev.addEventListener("click", (event) => {
+      clearTimeout(timeOuttoken);
+      timeOuttoken = setTimeout(() => {
+        showPeople(results.previous);
+        // console.log(results.previous);
+      }, 800);     
+    });
+    parentPrev.appendChild(prev);
+    parentPrev.removeChild(prev.previousSibling);
+     } else if (results.previous == null) {
+    prev.innerText = "";
+  }
+}
+
+let favePeople = [];
+function addToFave(e) {
+  const fave = e.target;
+  if (fave.classList[0] === "person") {
+    favePeople.push(fave);
+    console.log("🚀 ~ file: app.js ~ line 95 ~ addToFave ~ fave", fave)
+    //  alert(favePeople[0].innerText);
+    
+    displayFave(fave);
+  }
+}
+
+function displayFave(fave) {
+  // faveDiv.innerHTML = "";
+  favePeople.forEach((fave) => {
+    faveDiv.innerHTML += `<li class="fave"><span class="fave-name">${fave[0]}</span> <i class="fa-solid fa-minus delete"></i></li>`;
+    console.log(
+      "🚀 ~ file: app.js ~ line 110 ~ displayFave ~ fave[0]",
+      fave[0]
+    );
+  });
+  console.log(
+    "🚀 ~ file: app.js ~ line 110 ~ displayFave ~ favePeople",
+    favePeople
+  );
+}
+
+// function saveToLocal(faveChar) {
+//   let faves;
+//   faveDiv.innerHTML = "";
+  // if (localStorage.getItem("faves") === null) {
+  //     favePeople = [];
+  // } else {
+  //     items = JSON.parse(localStorage.getItem("items"));
+  // }
+
+//   favePeople.push(faveChar);
+//   localStorage.setItem("faves", JSON.stringify(faveChar));
+//   console.log(faves);
+// }
+
+// side panel
+const x = window.matchMedia("(min-width: 426px)");
+
+function openNav() {
+  if (x.matches) {
+    faveDiv.style.width = "400px";
+    document.body.style.marginRight = "400px";
+  } else {
+    faveDiv.style.width = "250px";
+    document.body.style.marginRight = "0";
+  }
+}
+
+function closeNav() {
+  faveDiv.style.width = "0";
+  document.body.style.marginRight = "0";
 }
 
 // controller code
 async function showPeople(url = "https://swapi.dev/api/people/") {
   const results = await getPeople(url);
-  console.log(results);
+  // console.log(results);
 
   //get the list element
+  peopleList.push(...results.results);
   renderPeopleList(results.results, peopleDiv);
 
-  //show more button
-  showMore(results);
-  
+  //next button
+  nextBtn(results);
+
+  //previous button
+  prevBtn(results);
 }
 
 async function getPersonDetails(url) {
@@ -103,4 +172,5 @@ async function getPersonDetails(url) {
   renderPersonDetails(people);
   //with the results populate the elements in the #detailsbox
 }
+
 showPeople();
