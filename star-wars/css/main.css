@@ -42,25 +42,28 @@ main,
 header {
   max-width: 800px;
   margin: 0 auto;
+  /* padding: 0 250px; */
 }
 
 ul {
-   list-style-type: none;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.parent-list {  
   display: flex;
   column-gap: 50px;
   row-gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  padding-left: 0;
+  align-items: center;  
 }
 
 li.person {
   padding: 20px;
   background-color: #ffc500;
   color: black;
-  min-width: 250px;
-  max-width: 500px;
+  width: 300px;
   text-align: left;
   border-radius: 3px;
   display: flex;
@@ -81,40 +84,52 @@ h1 {
 }
 
 /*search bar*/
-input {
-  padding: 15px;
-  width: 90%;
+#search-bar {
+  padding: 15px 20px;
+  width: 85%;
   font-size: 1.2rem;
   outline: none;
-  margin: 20px 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
   background-color: black;
+  border: 2px solid #57FFFF;
+  border-radius: 50px;
+  color: #fff;
 }
 
-input:focus {
+#search-bar:focus {
   background-color: black;
   color: white;
 }
 
 #search-wrapper {
   position: relative;
+  
 }
 
-.fa-magnifying-glass{
+.fa-magnifying-glass {
   position: absolute;
-  right: 40px;
+  right: 60px;
   font-size: 1.5rem;
   top: 35px;
   cursor: pointer;
+  color: #57FFFF;
 }
+
+#alert {
+  color: #57FFFF;
+  }
+
+  header {
+    margin-bottom: 50px;
+  }
 
 @media (max-width: 425px) {
   .fa-magnifying-glass {
-    right: 15px;
-  }
-  input {
-    font-size: .8rem;
+    right: 25px;
   }
 }
+
 
 /*logo*/
 img {
@@ -214,26 +229,33 @@ button:active::after {
   overflow-x: scroll;
   padding-top: 60px;
   transition: 0.5s;  
+  margin-top: 0;
 }
 
-li.fave {
+.fave-div p {
+  color: #000;
+}
+
+.fave-div div {
+  color: #57FFFF;
+}
+
+.li-fave {
+  margin: 20px;
   padding: 20px;
   background-color: #111;
-  color: #fff;
-  /* min-width: 250px;
-  max-width: 500px; */
-  text-align: left;
-  border-radius: 3px;
-  display: flex;
-  justify-content: space-between;
-  flex-flow: row nowrap;
-  display: block;
+   text-align: center;
+  border-radius: 3px; 
   margin-bottom: 20px;
   transition: 0.3s;
 }
 
-li.fave:hover {
-  color: #f1f1f1;
+.li-fave:hover {
+  background-color: rgb(17, 17, 17, .9);
+}
+
+.li-fave p {
+  color: #fff; 
 }
 
 #close-btn {
@@ -247,11 +269,22 @@ li.fave:hover {
 }
 
 #view-btn {
-margin: 20px auto 40px auto;
+margin: 20px auto 20px auto;
 z-index: 0;
 }
 
 body {
   transition: margin-left .5s;
   padding: 20px;
+}
+
+.fa-solid {
+  cursor: pointer;
+}
+
+.div-fave3 {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  /* color: #fff; */
 }

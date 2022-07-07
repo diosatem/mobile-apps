@@ -4,19 +4,20 @@ import { getJSON, readFromLS } from "./utils.js";
 const peopleDiv = document.getElementById("people-div");
 const faveDiv = document.getElementById("fave-div");
 const searchBar = document.getElementById("search-bar");
+const alertMsg = document.getElementById("alert");
 const parentNext = document.getElementById("next");
 const parentPrev = document.getElementById("prev");
 const peopleLi = document.querySelector("li.person");
 const parentList = document.getElementsByClassName("parent-list")[0];
 const viewBtn = document.getElementById("view-btn");
 const closeBtn = document.getElementById("close-btn");
-let peopleList = [];
 
 //Event Listeners
 searchBar.addEventListener("keyup", searchPerson);
 parentList.addEventListener("click", addToFave);
 viewBtn.addEventListener("click", openNav);
 closeBtn.addEventListener("click", closeNav);
+// document.getElementsByClassName("fa-trash").addEventListener("click", removeFave, false);
 
 //Model code
 function getPeople(url) {
@@ -30,26 +31,32 @@ function renderPeopleList(people) {
       return `<li class="person"><span class="person-name">${person.name}</span> <i class="fa-solid fa-plus add delete"></i></li>`;
     })
     .join("");
-
   parentList.innerHTML = peopleLi;
+  console.log(people[0].birth_year);
+  console.log(people[0].height);
+  console.log(people[0].gender);
+  console.log(people[0].hair_color);
+  console.log(people[0].skin_color);
+  console.log(people[0].eye_color);
+  // displayFave(details);
 }
 
 //Search code
+let peopleList = [];
 function searchPerson(e) {
+  alertMsg.innerText = "";
   const searchString = e.target.value.toLowerCase();
-  // console.log(searchString);
-  // if (searchString != "") {
-  const filteredCharacters = peopleList.filter((character) => {
-    return character.name.toLowerCase().includes(searchString);
-  });
-  // console.log(peopleList);
-  renderPeopleList(filteredCharacters);
-  // } else {
-  // peopleDiv.innerText = "Please enter a valid name."
-  // }
+  if (searchString != 0) {
+    const filteredCharacters = peopleList.filter((character) => {
+      return character.name.toLowerCase().includes(searchString);
+    });
+    renderPeopleList(filteredCharacters);
+  } else {
+    alertMsg.innerText = "Enter a valid name.";
+  }
 }
 
-//Show buttons
+//Show next/prev buttons
 function nextBtn(results) {
   if (results.next) {
     const next = document.createElement("button");
@@ -65,7 +72,7 @@ function nextBtn(results) {
     });
     parentNext.appendChild(next);
     parentNext.removeChild(next.previousSibling);
-     } else if (results.next == null) {
+  } else if (results.next == null) {
     console.log("end of list");
     next.innerText = "";
   }
@@ -82,60 +89,42 @@ function prevBtn(results) {
       timeOuttoken = setTimeout(() => {
         showPeople(results.previous);
         // console.log(results.previous);
-      }, 800);     
+      }, 800);
     });
     parentPrev.appendChild(prev);
     parentPrev.removeChild(prev.previousSibling);
-     } else if (results.previous == null) {
+  } else if (results.previous == null) {
     prev.innerText = "";
   }
 }
 
+//Adding favorite characters
 let favePeople = [];
 function addToFave(e) {
   const fave = e.target;
   if (fave.classList[0] === "person") {
     favePeople.push(fave);
-    console.log("🚀 ~ file: app.js ~ line 95 ~ addToFave ~ fave", fave)
-    //  alert(favePeople[0].innerText);
-    
     displayFave(fave);
   }
 }
 
+//Displaying favorite characters
 function displayFave(fave) {
-  // faveDiv.innerHTML = "";
-  favePeople.forEach((fave) => {
-    faveDiv.innerHTML += `<li class="fave"><span class="fave-name">${fave[0]}</span> <i class="fa-solid fa-minus delete"></i></li>`;
-    console.log(
-      "🚀 ~ file: app.js ~ line 110 ~ displayFave ~ fave[0]",
-      fave[0]
-      
-    );
-    favePeople[0].style.display = "none";
-  });
-  console.log(
-    "🚀 ~ file: app.js ~ line 110 ~ displayFave ~ favePeople",
-    favePeople
-  );
+  faveDiv.innerHTML += `<li class="li-fave"><div class="div-fave1"><span class="fave-name">${fave.innerText}</span></div><div class="div-fave2"><p>More info<p><p>Picture<p><p>Quote<p></div><div class="div-fave3"><i class="fa-solid fa-image"></i><i class="fa-solid fa-quote-left"></i><i class="fa-solid fa-trash" onclick="removeFave()"></i></div></li>`;
+  favePeople[0].style.display = "none";
 }
 
-// function saveToLocal(faveChar) {
-//   let faves;
-//   faveDiv.innerHTML = "";
-  // if (localStorage.getItem("faves") === null) {
-  //     favePeople = [];
-  // } else {
-  //     items = JSON.parse(localStorage.getItem("items"));
-  // }
-
-//   favePeople.push(faveChar);
-//   localStorage.setItem("faves", JSON.stringify(faveChar));
-//   console.log(faves);
-// }
+//Removing favorite characters
+function removeFave(e) {
+  const fave = e.target;
+  if (fave.classList[0] == "fa-trash") {
+    console.log("deleted");
+  }
+  // favePeople.splice(index,1);
+}
 
 // side panel
-const x = window.matchMedia("(min-width: 426px)");
+const x = window.matchMedia("(min-width: 768px)");
 
 function openNav() {
   if (x.matches) {
@@ -160,6 +149,9 @@ async function showPeople(url = "https://swapi.dev/api/people/") {
   //get the list element
   peopleList.push(...results.results);
   renderPeopleList(results.results, peopleDiv);
+
+  //fave list
+  // displayFave(results.results);
 
   //next button
   nextBtn(results);

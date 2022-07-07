@@ -16,23 +16,26 @@
     <header>
       <img src="images/star wars yellow.png" alt="Star Wars logo" />
       <h1>My Favorite Characters</h1>
+      <button id="view-btn">View List</button>
       <div id="search-wrapper">
         <input
           type="text"
           name="searchBar"
           id="search-bar"
-          placeholder="Search for your favorite character"
+          placeholder="“You will find only what you bring in.” – Yoda"
           minlength="1"
         />
         <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
+             </div>
+      <span id="alert"></span>
     </header>
     <main>
-      <div id="fave-div" class="fave-div">
+      <ul id="fave-div" class="fave-div">
         <i class="fa-solid fa-x" id="close-btn" class="close-btn"></i>
                <!-- <a href="javascript:void(0)" id="close-btn" class="close-btn">&times;</a> -->
-      </div>
-      <button id="view-btn">View List</button>
+               <p>Your Favorite Characters</p>
+      </ul>
+      
       <div id="people-div">
         <ul class="parent-list"></ul>
       </div>
