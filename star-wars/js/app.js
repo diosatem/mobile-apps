@@ -106,10 +106,8 @@ function addToFave(e) {
     faveDiv.innerHTML += `<li class="li-fave"><div class="div-fave1"><span class="fave-name">${fave.innerText}</span></div><div class="div-fave2"><p>More info<p><p>Picture<p><p>Quote<p></div><div class="div-fave3"><i class="fa-solid fa-image"></i><i class="fa-solid fa-quote-left"></i><i class="fa-solid fa-trash" onclick="removeFave()"></i></div></li>`;
     favePeople.push(fave);
     fave.style.display = "none";
-      }
+  }
 }
-
-
 
 //Removing favorite characters
 function removeFave(e) {
