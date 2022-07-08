@@ -226,7 +226,7 @@ button:active::after {
   right: 0;
   background-color: #ffc500;
   overflow-x: scroll;
-  padding-top: 20px;
+  padding-top: 60px;
   transition: 0.5s;
   margin-top: 0;
 }
@@ -242,12 +242,11 @@ button:active::after {
 }
 
 .li-fave {
-  margin: 20px;
+  margin: 20px 20px 100px;
   padding: 20px;
   background-color: #111;
   text-align: center;
   border-radius: 3px;
-  margin-bottom: 20px;
   transition: 0.3s;
   list-style-type: none;
 }
@@ -260,15 +259,15 @@ button:active::after {
   color: #fff;
 }
 
-/* #close-btn {
+#close-btn {
   position: absolute;
   top: 0;
   left: 20px;
   font-size: 26px;
   padding-top: 15px;
   cursor: pointer;
-  color: #fff;
-} */
+  color: #000;
+}
 
 #view-btn {
   margin: 20px auto 20px auto;
@@ -292,7 +291,7 @@ body {
   display: flex;
   justify-content: space-between;
   flex-flow: row nowrap;
-  /* color: #fff; */
+padding-bottom: 20px;
 }
 
 .fave-name {

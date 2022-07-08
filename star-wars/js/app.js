@@ -12,15 +12,16 @@ const parentList = document.getElementsByClassName("parent-list")[0];
 const viewBtn = document.getElementById("view-btn");
 const closeBtn = document.getElementById("close-btn");
 const fileInput = document.getElementById("file-input");
-const favePic = document.getElementsByClassName("fave-pic");
+
 
 //Event Listeners
 searchBar.addEventListener("keyup", searchPerson);
 parentList.addEventListener("click", addToFave);
 viewBtn.addEventListener("click", openNav);
-// closeBtn.addEventListener("click", closeNav);
+closeBtn.addEventListener("click", closeNav);
 // document.getElementsByClassName("fa-trash").addEventListener("click", removeFave, false);
-// favePic.addEventListener("onchange", preview);
+
+
 
 //Model code
 function getPeople(url) {
@@ -110,41 +111,13 @@ function prevBtn(results) {
 
 //Adding/Display favorite characters
 let favePeople = [];
+
 function addToFave(e) {
   const fave = e.target;
   if (fave.classList[0] === "person") {
     const getInfo = peopleList.find((item) => {
       return item.name === fave.innerText;
     });
-    // faveDiv.innerHTML += `<li class="li-fave">
-    // <div class="div-fave1">
-    // <span class="fave-name">${getInfo.name}</span>
-    // </div>
-
-    // <div class="div-fave2">
-
-    // <div class="fave-info">
-    //  <p>Height: ${getInfo.height}<p>
-    // <p>Mass: ${getInfo.mass}<p>
-    // <p>Hair color: ${getInfo.hair_color}<p>
-    // <p>Skin color: ${getInfo.skin_color}<p>
-    // <p>Eye color: ${getInfo.eye_color}<p>
-    // <p>Birth year: ${getInfo.birth_year}<p>
-    // <p>Gender: ${getInfo.gender}<p>  
-    // </div>
-
-    // <div class="fave-pic"><div>
-    // <div class="fave-quote">Quote<div>
-    // </div>
-
-    // <div class="div-fave3">
-    // <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple>
-    // <label for="file-input"><i class="fa-solid fa-image"></i> &nbsp;Upload a Photo</label>
-    // </input>
-    // <i class="fa-solid fa-quote-left"></i>
-    // <i class="fa-solid fa-trash" onclick="removeFave()"></i>
-    // </div>
-    // </li>`;
 
     faveDiv.insertAdjacentHTML("beforeend", `<li class="li-fave">
     <div class="div-fave1">
@@ -163,12 +136,12 @@ function addToFave(e) {
     <p>Gender: ${getInfo.gender}<p>  
     </div>
 
-    <div class="fave-pic"><div>
-    <div class="fave-quote">Quote<div>
+    <div class="fave-pic"></div>
+    <div class="fave-quote">Quote</div>
     </div>
 
     <div class="div-fave3">
-    <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple>
+    <input type="file" id="file-input" accept="image/png, image/jpeg" multiple>
     <label for="file-input"><i class="fa-solid fa-image"></i> &nbsp;Upload a Photo</label>
     </input>
     <i class="fa-solid fa-quote-left"></i>
@@ -179,14 +152,16 @@ function addToFave(e) {
 
     favePeople.push(fave);
     fave.style.display = "none";
-  }
 
+    localStorage.setItem("faves", JSON.stringifyfavePeople);
+// console.log("🚀 ~ file: app.js ~ line 114 ~ localStorage", localStorage)
+  }
 }
 
 //Adding image for favorite characters
-function preview() {
+let favePic = document.getElementsByClassName("fave-pic");
+function preview() {  
   favePic.innerHTML = "";
-
   for (i of fileInput.files) {
     let reader = new FileReader();
     let figure = document.createElement("figure");
@@ -194,47 +169,55 @@ function preview() {
     figCap.innerText = i.name;
     figure.appendChild(figCap);
     reader.onload = () => {
-      console.log("uploaded")
       let img = document.createElement("img");
       img.setAttribute("src", reader.result);
       figure.insertBefore(img, figCap);
-    };
+    }
     favePic.appendChild(figure);
     reader.readAsDataURL(i);
   }
 }
 
-//Removing favorite characters
-function removeFave(e) {
-  const fave = e.target;
-  if (fave.classList[0] == "fa-trash") {
-    console.log("deleted");
+for (let i = 0 ; i < favePic.length; i++) {
+  console.log("upload pic")
+  favePic[i].addEventListener("onchange", preview);
   }
-  // favePeople.splice(index,1);
-}
+
+// //Removing favorite characters
+// function removeFave(e) {
+//   const fave = e.target;
+//   if (fave.classList[0] == "fa-trash") {
+//     console.log("deleted");
+//   }
+//   // favePeople.splice(index,1);
+// }
 
 //Side panel
 const x = window.matchMedia("(min-width: 768px)");
 
 function openNav() {
-  // if (x.matches) {
-  if (faveDiv.style.display === "none") {
-    faveDiv.style.display = "block";
-    faveDiv.style.width = "500px";
-    document.body.style.marginRight = "500px";
-    viewBtn.innerHTML = `<i class="fa-solid fa-eye-slash view"></i> Close List`;
-  } else {
-    faveDiv.style.display = "none";
-    faveDiv.style.width = "250px";
+  if (x.matches) {
+    if (faveDiv.style.display === "none") {
+      faveDiv.style.display = "block";
+      faveDiv.style.width = "500px";
+      document.body.style.marginRight = "500px";
+      viewBtn.innerHTML = `<i class="fa-solid fa-eye-slash view"></i> Close List`;
+    } else {
+      faveDiv.style.display = "none";      
+      document.body.style.marginRight = "0";
+      viewBtn.innerHTML = `<i class="fa-solid fa-eye view"></i> View List`;
+    }
+   } else {
+    faveDiv.style.width = "100%";
     document.body.style.marginRight = "0";
-    viewBtn.innerHTML = `<i class="fa-solid fa-eye view"></i> View List`;
   }
 }
 
-// function closeNav() {
-//   faveDiv.style.width = "0";
-//   document.body.style.marginRight = "0";
-// }
+function closeNav() {
+  faveDiv.style.width = "0";
+  document.body.style.marginRight = "0";
+  viewBtn.innerHTML = `<i class="fa-solid fa-eye view"></i> View List`;
+}
 
 // controller code
 async function showPeople(url = "https://swapi.dev/api/people/") {
