@@ -11,16 +11,21 @@ const peopleLi = document.querySelector("li.person");
 const parentList = document.getElementsByClassName("parent-list")[0];
 const viewBtn = document.getElementById("view-btn");
 const closeBtn = document.getElementById("close-btn");
+const fileInput = document.getElementById("file-input");
+const favePic = document.getElementsByClassName("fave-pic");
 
 //Event Listeners
 searchBar.addEventListener("keyup", searchPerson);
 parentList.addEventListener("click", addToFave);
 viewBtn.addEventListener("click", openNav);
-closeBtn.addEventListener("click", closeNav);
+// closeBtn.addEventListener("click", closeNav);
 // document.getElementsByClassName("fa-trash").addEventListener("click", removeFave, false);
+// favePic.addEventListener("onchange", preview);
 
 //Model code
 function getPeople(url) {
+  console.log("Loading people...");
+
   return getJSON(url);
 }
 
@@ -32,14 +37,19 @@ function renderPeopleList(people) {
     })
     .join("");
   parentList.innerHTML = peopleLi;
-  console.log(people[0].birth_year);
-  console.log(people[0].height);
-  console.log(people[0].gender);
-  console.log(people[0].hair_color);
-  console.log(people[0].skin_color);
-  console.log(people[0].eye_color);
   // displayFave(details);
 }
+
+//Loader
+document.onreadystatechange = function () {
+  if (document.readyState !== "complete") {
+    document.querySelector("body").style.visibility = "hidden";
+    document.querySelector("#loader").style.visibility = "visible";
+  } else {
+    document.querySelector("#loader").style.display = "none";
+    document.querySelector("body").style.visibility = "visible";
+  }
+};
 
 //Search code
 let peopleList = [];
@@ -103,9 +113,61 @@ let favePeople = [];
 function addToFave(e) {
   const fave = e.target;
   if (fave.classList[0] === "person") {
-    faveDiv.innerHTML += `<li class="li-fave"><div class="div-fave1"><span class="fave-name">${fave.innerText}</span></div><div class="div-fave2"><p>More info<p><p>Picture<p><p>Quote<p></div><div class="div-fave3"><i class="fa-solid fa-image"></i><i class="fa-solid fa-quote-left"></i><i class="fa-solid fa-trash" onclick="removeFave()"></i></div></li>`;
+    const getInfo = peopleList.find((item) => {
+      return item.name === fave.innerText;
+    });
+    faveDiv.innerHTML += `<li class="li-fave">
+    <div class="div-fave1">
+    <span class="fave-name">${getInfo.name}</span>
+    </div>
+
+    <div class="div-fave2">
+
+    <div class="fave-info">
+     <p>Height: ${getInfo.height}<p>
+    <p>Mass: ${getInfo.mass}<p>
+    <p>Hair color: ${getInfo.hair_color}<p>
+    <p>Skin color: ${getInfo.skin_color}<p>
+    <p>Eye color: ${getInfo.eye_color}<p>
+    <p>Birth year: ${getInfo.birth_year}<p>
+    <p>Gender: ${getInfo.gender}<p>  
+    </div>
+
+    <div class="fave-pic"><div>
+    <div class="fave-quote">Quote<div>
+    </div>
+
+    <div class="div-fave3">
+    <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple>
+    <label for="file-input"><i class="fa-solid fa-image"></i> &nbsp;Upload a Photo</label>
+    </input>
+    <i class="fa-solid fa-quote-left"></i>
+    <i class="fa-solid fa-trash" onclick="removeFave()"></i>
+    </div>
+    </li>`;
     favePeople.push(fave);
     fave.style.display = "none";
+  }
+}
+
+//Adding image for favorite characters
+function preview() {
+  favePic.innerHTML = "";
+
+  for (i of fileInput.files) {
+    let reader = new FileReader();
+    let figure = document.createElement("figure");
+    let figCap = document.createElement("figcaption");
+    figCap.innerText = i.name;
+    figure.appendChild(figCap);
+    reader.onload = () => {
+      console.log("uploaded")
+      let img = document.createElement("img");
+      img.setAttribute("src", reader.result);
+      figure.insertBefore(img, figCap);
+    };
+    favePic.appendChild(figure);
+    reader.readAsDataURL(i);
   }
 }
 
@@ -118,23 +180,28 @@ function removeFave(e) {
   // favePeople.splice(index,1);
 }
 
-// side panel
+//Side panel
 const x = window.matchMedia("(min-width: 768px)");
 
 function openNav() {
-  if (x.matches) {
-    faveDiv.style.width = "400px";
-    document.body.style.marginRight = "400px";
+  // if (x.matches) {
+  if (faveDiv.style.display === "none") {
+    faveDiv.style.display = "block";
+    faveDiv.style.width = "500px";
+    document.body.style.marginRight = "500px";
+    viewBtn.innerHTML = `<i class="fa-solid fa-eye-slash view"></i> Close List`;
   } else {
+    faveDiv.style.display = "none";
     faveDiv.style.width = "250px";
     document.body.style.marginRight = "0";
+    viewBtn.innerHTML = `<i class="fa-solid fa-eye view"></i> View List`;
   }
 }
 
-function closeNav() {
-  faveDiv.style.width = "0";
-  document.body.style.marginRight = "0";
-}
+// function closeNav() {
+//   faveDiv.style.width = "0";
+//   document.body.style.marginRight = "0";
+// }
 
 // controller code
 async function showPeople(url = "https://swapi.dev/api/people/") {
@@ -145,21 +212,11 @@ async function showPeople(url = "https://swapi.dev/api/people/") {
   peopleList.push(...results.results);
   renderPeopleList(results.results, peopleDiv);
 
-  //fave list
-  // displayFave(results.results);
-
   //next button
   nextBtn(results);
 
   //previous button
   prevBtn(results);
-}
-
-async function getPersonDetails(url) {
-  //call getJSON functions for the provided url
-  const person = await getPeople(url);
-  renderPersonDetails(people);
-  //with the results populate the elements in the #detailsbox
 }
 
 showPeople();

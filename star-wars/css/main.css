@@ -42,7 +42,7 @@ main,
 header {
   max-width: 800px;
   margin: 0 auto;
-  /* padding: 0 250px; */
+padding-right: 0;
 }
 
 ul {
@@ -50,13 +50,13 @@ ul {
   padding-left: 0;
 }
 
-.parent-list {  
+.parent-list {
   display: flex;
   column-gap: 50px;
   row-gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
 }
 
 li.person {
@@ -92,7 +92,7 @@ h1 {
   margin-top: 20px;
   margin-bottom: 10px;
   background-color: black;
-  border: 2px solid #57FFFF;
+  border: 2px solid #57ffff;
   border-radius: 50px;
   color: #fff;
 }
@@ -104,7 +104,6 @@ h1 {
 
 #search-wrapper {
   position: relative;
-  
 }
 
 .fa-magnifying-glass {
@@ -113,23 +112,22 @@ h1 {
   font-size: 1.5rem;
   top: 35px;
   cursor: pointer;
-  color: #57FFFF;
+  color: #57ffff;
 }
 
 #alert {
-  color: #57FFFF;
-  }
+  color: #57ffff;
+}
 
-  header {
-    margin-bottom: 50px;
-  }
+header {
+  margin-bottom: 50px;
+}
 
 @media (max-width: 425px) {
   .fa-magnifying-glass {
     right: 25px;
   }
 }
-
 
 /*logo*/
 img {
@@ -146,7 +144,8 @@ img {
   margin-top: 50px;
 }
 
-#prev, #next {
+#prev,
+#next {
   cursor: pointer;
 }
 
@@ -227,54 +226,61 @@ button:active::after {
   right: 0;
   background-color: #ffc500;
   overflow-x: scroll;
-  padding-top: 60px;
-  transition: 0.5s;  
+  padding-top: 20px;
+  transition: 0.5s;
   margin-top: 0;
 }
 
-.fave-div p {
+.your-fave {
+  font-size: 1.5rem;
+  font-weight: 700;
   color: #000;
 }
 
 .fave-div div {
-  color: #57FFFF;
+  color: #57ffff;
 }
 
 .li-fave {
   margin: 20px;
   padding: 20px;
   background-color: #111;
-   text-align: center;
-  border-radius: 3px; 
+  text-align: center;
+  border-radius: 3px;
   margin-bottom: 20px;
   transition: 0.3s;
+  list-style-type: none;
 }
 
 .li-fave:hover {
-  background-color: rgb(17, 17, 17, .9);
+  background-color: rgb(17, 17, 17, 0.9);
 }
 
 .li-fave p {
-  color: #fff; 
+  color: #fff;
 }
 
-#close-btn {
+/* #close-btn {
   position: absolute;
   top: 0;
   left: 20px;
   font-size: 26px;
   padding-top: 15px;
   cursor: pointer;
-  color: #111;
-}
+  color: #fff;
+} */
 
 #view-btn {
-margin: 20px auto 20px auto;
-z-index: 0;
+  margin: 20px auto 20px auto;
+  z-index: 0;
+}
+
+.view {
+  padding-right: 10px;
 }
 
 body {
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
   padding: 20px;
 }
 
@@ -287,4 +293,53 @@ body {
   justify-content: space-between;
   flex-flow: row nowrap;
   /* color: #fff; */
+}
+
+.fave-name {
+  font-size: 1.5rem;
+  font-family: "Seymour One", sans-serif;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label {
+  display: block;
+  /* position: relative; */
+  text-align: center;
+  cursor: pointer;
+}
+
+.fave-pic {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #57ffff;
+  /* position: relative; */
+margin: auto;
+}
+
+/*loader*/
+#loader {
+  border: 12px solid #57ffff;
+  border-radius: 50%;
+  border-top: 12px solid #09162e;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.center {
+  position: absolute;
+  top: 20%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
