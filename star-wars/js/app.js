@@ -116,7 +116,37 @@ function addToFave(e) {
     const getInfo = peopleList.find((item) => {
       return item.name === fave.innerText;
     });
-    faveDiv.innerHTML += `<li class="li-fave">
+    // faveDiv.innerHTML += `<li class="li-fave">
+    // <div class="div-fave1">
+    // <span class="fave-name">${getInfo.name}</span>
+    // </div>
+
+    // <div class="div-fave2">
+
+    // <div class="fave-info">
+    //  <p>Height: ${getInfo.height}<p>
+    // <p>Mass: ${getInfo.mass}<p>
+    // <p>Hair color: ${getInfo.hair_color}<p>
+    // <p>Skin color: ${getInfo.skin_color}<p>
+    // <p>Eye color: ${getInfo.eye_color}<p>
+    // <p>Birth year: ${getInfo.birth_year}<p>
+    // <p>Gender: ${getInfo.gender}<p>  
+    // </div>
+
+    // <div class="fave-pic"><div>
+    // <div class="fave-quote">Quote<div>
+    // </div>
+
+    // <div class="div-fave3">
+    // <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple>
+    // <label for="file-input"><i class="fa-solid fa-image"></i> &nbsp;Upload a Photo</label>
+    // </input>
+    // <i class="fa-solid fa-quote-left"></i>
+    // <i class="fa-solid fa-trash" onclick="removeFave()"></i>
+    // </div>
+    // </li>`;
+
+    faveDiv.insertAdjacentHTML("beforeend", `<li class="li-fave">
     <div class="div-fave1">
     <span class="fave-name">${getInfo.name}</span>
     </div>
@@ -144,10 +174,13 @@ function addToFave(e) {
     <i class="fa-solid fa-quote-left"></i>
     <i class="fa-solid fa-trash" onclick="removeFave()"></i>
     </div>
-    </li>`;
+    </li>`);
+
+
     favePeople.push(fave);
     fave.style.display = "none";
   }
+
 }
 
 //Adding image for favorite characters
