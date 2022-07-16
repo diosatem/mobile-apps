@@ -16,6 +16,7 @@ filter.addEventListener("click", filterItems);
 
 //Functions
 function addItems(event) {
+    //get data from input box
     if (userInput.value.trim() != "") {
         alertMsg.innerHTML = "Task successfully added.";
         alertMsg.style.color = "green";
@@ -72,6 +73,7 @@ function filterItems(event) {
 
 function saveToLocal(item) {
     let items;
+    //if there is nothing saved at the start then save to array
     if (localStorage.getItem("items") === null) {
         items = [];
     } else {

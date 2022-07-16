@@ -1,4 +1,6 @@
-import { getJSON, readFromLS } from "./utils.js";
+import getJSON from "./model/utils.js";
+import favoriteList from "./views/favoriteList.js";
+import { deleteLS, readFromLS, writeToLS } from "./model/ls.js";
 
 //Selectors
 const peopleDiv = document.getElementById("people-div");
@@ -12,21 +14,19 @@ const parentList = document.getElementsByClassName("parent-list")[0];
 const viewBtn = document.getElementById("view-btn");
 const closeBtn = document.getElementById("close-btn");
 const fileInput = document.getElementById("file-input");
-
+const trashIcon = document.getElementById("trash-icon");
+const favePic = document.getElementsByClassName("fave-pic");
+const inputLabel = document.getElementById("input-label");
 
 //Event Listeners
+document.addEventListener("DOMContentLoaded", displayItems);
 searchBar.addEventListener("keyup", searchPerson);
 parentList.addEventListener("click", addToFave);
 viewBtn.addEventListener("click", openNav);
-closeBtn.addEventListener("click", closeNav);
-// document.getElementsByClassName("fa-trash").addEventListener("click", removeFave, false);
-
-
 
 //Model code
 function getPeople(url) {
-  console.log("Loading people...");
-
+  console.log("Loading Star Wars characters...");
   return getJSON(url);
 }
 
@@ -110,87 +110,70 @@ function prevBtn(results) {
 }
 
 //Adding/Display favorite characters
-let favePeople = [];
-
 function addToFave(e) {
   const fave = e.target;
   if (fave.classList[0] === "person") {
-    const getInfo = peopleList.find((item) => {
-      return item.name === fave.innerText;
-    });
+    const getInfo = peopleList.find((item) => item.name === fave.innerText);
 
-    faveDiv.insertAdjacentHTML("beforeend", `<li class="li-fave">
-    <div class="div-fave1">
-    <span class="fave-name">${getInfo.name}</span>
-    </div>
+    faveDiv.insertAdjacentHTML("beforeend", favoriteList(getInfo));
 
-    <div class="div-fave2">
+    writeToLS(getInfo.name, getInfo);
+    saveToLocal(getInfo.name, getInfo);
 
-    <div class="fave-info">
-     <p>Height: ${getInfo.height}<p>
-    <p>Mass: ${getInfo.mass}<p>
-    <p>Hair color: ${getInfo.hair_color}<p>
-    <p>Skin color: ${getInfo.skin_color}<p>
-    <p>Eye color: ${getInfo.eye_color}<p>
-    <p>Birth year: ${getInfo.birth_year}<p>
-    <p>Gender: ${getInfo.gender}<p>  
-    </div>
+    const fileInput = document.getElementById("file-input");
+    fileInput.onchange = preview;
+    const trashIcon = document.getElementById("trash-icon");
+    trashIcon.onclick = removeFave;
 
-    <div class="fave-pic"></div>
-    <div class="fave-quote">Quote</div>
-    </div>
-
-    <div class="div-fave3">
-    <input type="file" id="file-input" accept="image/png, image/jpeg" multiple>
-    <label for="file-input"><i class="fa-solid fa-image"></i> &nbsp;Upload a Photo</label>
-    </input>
-    <i class="fa-solid fa-quote-left"></i>
-    <i class="fa-solid fa-trash" onclick="removeFave()"></i>
-    </div>
-    </li>`);
-
-
-    favePeople.push(fave);
     fave.style.display = "none";
-
-    localStorage.setItem("faves", JSON.stringifyfavePeople);
-// console.log("🚀 ~ file: app.js ~ line 114 ~ localStorage", localStorage)
   }
+}
+
+function saveToLocal(faveName, faveInfo) {
+  let favePeople;
+  if (localStorage.getItem("faveName") === null) {
+    favePeople = [];
+  } else {
+    favePeople = readFromLS(faveName);
+  }
+  favePeople.push(faveName);
+  writeToLS(faveName, faveInfo);
+  console.log(faveName);
+}
+
+function displayItems(faveName) {
+  console.log("loading faves");
+  let favePeople;
+  if (localStorage.getItem("faveName") === null) {
+    favePeople = [];
+  } else {
+    favePeople = readFromLS(faveName);
+  }
+  favePeople.forEach(function (faveName) {
+    faveDiv.innerHTML += `favoriteList(getInfo)`;
+  });
 }
 
 //Adding image for favorite characters
-let favePic = document.getElementsByClassName("fave-pic");
-function preview() {  
-  favePic.innerHTML = "";
-  for (i of fileInput.files) {
-    let reader = new FileReader();
-    let figure = document.createElement("figure");
-    let figCap = document.createElement("figcaption");
-    figCap.innerText = i.name;
-    figure.appendChild(figCap);
-    reader.onload = () => {
-      let img = document.createElement("img");
-      img.setAttribute("src", reader.result);
-      figure.insertBefore(img, figCap);
-    }
-    favePic.appendChild(figure);
-    reader.readAsDataURL(i);
-  }
+let uploadedImage = "";
+function preview() {
+  let fileInput = document.getElementById("file-input");
+  const favePic = document.getElementsByClassName("fave-pic")[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+    uploadedImage = reader.result;
+    favePic.style.backgroundImage = `url(${uploadedImage})`;
+  };
+  reader.readAsDataURL(this.files[0]);
+  console.log(document.getElementById("input-label"));
 }
 
-for (let i = 0 ; i < favePic.length; i++) {
-  console.log("upload pic")
-  favePic[i].addEventListener("onchange", preview);
-  }
-
-// //Removing favorite characters
-// function removeFave(e) {
-//   const fave = e.target;
-//   if (fave.classList[0] == "fa-trash") {
-//     console.log("deleted");
-//   }
-//   // favePeople.splice(index,1);
-// }
+//Removing favorite characters
+function removeFave(e) {
+  console.log("deleted");
+  const fave = e.target;
+  fave.style.display = "block";
+}
 
 //Side panel
 const x = window.matchMedia("(min-width: 768px)");
@@ -203,16 +186,17 @@ function openNav() {
       document.body.style.marginRight = "500px";
       viewBtn.innerHTML = `<i class="fa-solid fa-eye-slash view"></i> Close List`;
     } else {
-      faveDiv.style.display = "none";      
+      faveDiv.style.display = "none";
       document.body.style.marginRight = "0";
       viewBtn.innerHTML = `<i class="fa-solid fa-eye view"></i> View List`;
     }
-   } else {
+  } else {
     faveDiv.style.width = "100%";
     document.body.style.marginRight = "0";
   }
 }
 
+// closeBtn.addEventListener("click", closeNav);
 function closeNav() {
   faveDiv.style.width = "0";
   document.body.style.marginRight = "0";

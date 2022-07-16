@@ -1,4 +1,4 @@
-export async function getJSON(url) {
+export default async function getJSON(url) {
   try {
     const response = await fetch(url);
 
@@ -13,12 +13,5 @@ export async function getJSON(url) {
   } catch (error) {
     console.log(error);
   }
-}
-
-export function readFromLS(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
-export function writeToLS(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
 }
 
