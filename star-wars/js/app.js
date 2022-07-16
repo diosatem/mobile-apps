@@ -17,6 +17,7 @@ const fileInput = document.getElementById("file-input");
 const trashIcon = document.getElementById("trash-icon");
 const favePic = document.getElementsByClassName("fave-pic");
 const inputLabel = document.getElementById("input-label");
+const faveLi = document.getElementsByClassName("li-fave");
 
 //Event Listeners
 document.addEventListener("DOMContentLoaded", displayItems);
@@ -146,12 +147,14 @@ function displayItems(faveName) {
   let favePeople;
   if (localStorage.getItem("faveName") === null) {
     favePeople = [];
+    console.log("🚀 ~ file: app.js ~ line 150 ~ displayItems ~ favePeople", favePeople)
   } else {
     favePeople = readFromLS(faveName);
+    console.log("🚀 ~ file: app.js ~ line 153 ~ displayItems ~ favePeople", favePeople)
   }
-  favePeople.forEach(function (faveName) {
-    faveDiv.innerHTML += `favoriteList(getInfo)`;
-  });
+  // favePeople.forEach(function (faveName) {
+  //   faveDiv.innerHTML += `favoriteList(getInfo)`;
+  // });
 }
 
 //Adding image for favorite characters
@@ -165,14 +168,19 @@ function preview() {
     favePic.style.backgroundImage = `url(${uploadedImage})`;
   };
   reader.readAsDataURL(this.files[0]);
-  console.log(document.getElementById("input-label"));
+  
 }
 
 //Removing favorite characters
-function removeFave(e) {
-  console.log("deleted");
+function removeFave(e) {  
   const fave = e.target;
-  fave.style.display = "block";
+  
+  if (fave.classList[0] === "trash-icon") {    
+    console.log("deleted");    
+    let trashDiv = document.getElementsByClassName("div-fave3")[0];
+    const removeLi = trashDiv.parentElement;        
+    removeLi.remove();
+}
 }
 
 //Side panel

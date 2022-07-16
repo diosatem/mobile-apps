@@ -24,7 +24,7 @@ export default function favoriteList(getInfo) {
     <div class="div-fave3">
     
     
-    <i id="trash-icon" class="fa-solid fa-trash"></i>
+    <i id="trash-icon" class="trash-icon fa-solid fa-trash"></i>
     </div>
     </li>`
 }
