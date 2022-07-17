@@ -249,6 +249,7 @@ button:active::after {
   border-radius: 3px;
   transition: 0.3s;
   list-style-type: none;
+  cursor: move;
 }
 
 .li-fave:hover {
@@ -317,7 +318,6 @@ label {
   width: 211px;
   height: 375px;
   border: 1px solid #57ffff;
-  /* position: relative; */
 margin: auto;
 background-position: center;
 background-size: cover;
@@ -325,6 +325,10 @@ background-repeat: no-repeat;
 display: flex;
 justify-content: center;
 align-items: flex-end;
+}
+
+.dragging {
+  opacity: .5;
 }
 
 /*loader*/

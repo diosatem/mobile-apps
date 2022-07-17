@@ -1,5 +1,5 @@
 export default function favoriteList(getInfo) {
-   return `<li class="li-fave">
+   return `<li class="li-fave" draggable="true">
     <div class="div-fave1">
     <span class="fave-name">${getInfo.name}</span>
     </div>

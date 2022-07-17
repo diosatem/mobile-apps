@@ -9,21 +9,15 @@ const searchBar = document.getElementById("search-bar");
 const alertMsg = document.getElementById("alert");
 const parentNext = document.getElementById("next");
 const parentPrev = document.getElementById("prev");
-const peopleLi = document.querySelector("li.person");
 const parentList = document.getElementsByClassName("parent-list")[0];
 const viewBtn = document.getElementById("view-btn");
-const closeBtn = document.getElementById("close-btn");
-const fileInput = document.getElementById("file-input");
-const trashIcon = document.getElementById("trash-icon");
-const favePic = document.getElementsByClassName("fave-pic");
-const inputLabel = document.getElementById("input-label");
-const faveLi = document.getElementsByClassName("li-fave");
 
 //Event Listeners
 document.addEventListener("DOMContentLoaded", displayItems);
 searchBar.addEventListener("keyup", searchPerson);
 parentList.addEventListener("click", addToFave);
 viewBtn.addEventListener("click", openNav);
+
 
 //Model code
 function getPeople(url) {
@@ -83,7 +77,7 @@ function nextBtn(results) {
       }, 800);
     });
     parentNext.appendChild(next);
-    parentNext.removeChild(next.previousSibling);
+    if (next.previousSibling) parentNext.removeChild(next.previousSibling);
   } else if (results.next == null) {
     console.log("end of list");
     next.innerText = "";
@@ -104,7 +98,7 @@ function prevBtn(results) {
       }, 800);
     });
     parentPrev.appendChild(prev);
-    parentPrev.removeChild(prev.previousSibling);
+    if (prev.previousSibling) parentPrev.removeChild(prev.previousSibling);
   } else if (results.previous == null) {
     prev.innerText = "";
   }
@@ -118,18 +112,35 @@ function addToFave(e) {
 
     faveDiv.insertAdjacentHTML("beforeend", favoriteList(getInfo));
 
+    //localstorage
     writeToLS(getInfo.name, getInfo);
     saveToLocal(getInfo.name, getInfo);
 
+    //upload and delete
     const fileInput = document.getElementById("file-input");
     fileInput.onchange = preview;
     const trashIcon = document.getElementById("trash-icon");
     trashIcon.onclick = removeFave;
 
+    //main array
     fave.style.display = "none";
+
+    //drag and drop
+    const liFave = document.querySelectorAll(".li-fave");
+    console.log("🚀 ~ file: app.js ~ line 130 ~ addToFave ~ liFave", liFave)
+    liFave.ondragstart = dragStart;
   }
 }
 
+//Dragstart
+function dragStart(e) {
+  console.log("hello");
+  dragged = e.target;
+  e.target.classList.add("dragging");
+}
+
+
+//Save to localstorage
 function saveToLocal(faveName, faveInfo) {
   let favePeople;
   if (localStorage.getItem("faveName") === null) {
@@ -142,6 +153,7 @@ function saveToLocal(faveName, faveInfo) {
   console.log(faveName);
 }
 
+//Display from localstorage
 function displayItems(faveName) {
   console.log("loading faves");
   let favePeople;
@@ -188,7 +200,7 @@ const x = window.matchMedia("(min-width: 768px)");
 
 function openNav() {
   if (x.matches) {
-    if (faveDiv.style.display === "none") {
+    if (faveDiv.style.display === "none" || faveDiv.style.display === "") {
       faveDiv.style.display = "block";
       faveDiv.style.width = "500px";
       document.body.style.marginRight = "500px";
