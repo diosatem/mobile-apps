@@ -151,6 +151,10 @@ button.prev, button.next {
   cursor: pointer;  
 }
 
+button.prev:hover, button.next:hover {
+  opacity: .5;
+}
+
 button.planet-btn {
   all: unset;
   width: 100px;
@@ -244,7 +248,7 @@ button.planet-btn:active::after {
 }
 
 .li-fave {
-  margin: 20px 20px 100px;
+  margin: 20px 20px 50px;
   padding: 20px;
   background-color: #111;
   text-align: center;

@@ -13,15 +13,16 @@ const parentList = document.getElementsByClassName("parent-list")[0];
 const viewBtn = document.getElementById("view-btn");
 const moreInfo = document.getElementById("more-info");
 const moreInfoBtn= document.getElementById("showMoreBtn");
-const draggable = document.querySelector(".dragging");
-const ulFave = document.querySelector(".fave-ul");
-
+const draggable = document.querySelectorAll(".dragging");
+const ulFave = document.querySelectorAll(".fave-ul");
+const closeBtn = document.getElementById("close-btn");
 
 //Event Listeners
 document.addEventListener("DOMContentLoaded", displayItems);
 searchBar.addEventListener("keyup", searchPerson);
 parentList.addEventListener("click", addToFave);
 viewBtn.addEventListener("click", openNav);
+closeBtn.onclick = closeNav;
 
 //Model code
 function getPeople(url) {
@@ -111,7 +112,9 @@ function addToFave(e) {
   if (fave.classList[0] === "person") {
     const getInfo = peopleList.find((item) => item.name === fave.innerText);
 
-    faveDiv.insertAdjacentHTML("beforeend", favoriteList(getInfo));
+    const ulFave = document.querySelector("#fave-ul");
+    ulFave.innerHTML += favoriteList(getInfo);
+    // ulFave.insertAdjacentHTML("beforeend", favoriteList(getInfo));
 
     //localstorage
     writeToLS(getInfo.name, getInfo);
@@ -119,7 +122,8 @@ function addToFave(e) {
 
     //upload and delete
     const trashID = getInfo.name.split(" ").join("") + `-trash`;
-    const trashIcon = document.querySelector("." + trashID);
+    const trashIcon = document.querySelector("." + trashID);    
+    console.log("🚀 ~ file: app.js ~ line 125 ~ addToFave ~ trashIcon", trashIcon)
     trashIcon.onclick = removeFave;
 
     const uploadID = getInfo.name.split(" ").join("") + `-upload`;
@@ -131,15 +135,29 @@ function addToFave(e) {
 
     //drag and drop
     const liFave = document.querySelectorAll(".li-fave");
-    liFave.forEach((element) => {
+    liFave.forEach((liFaveItem) => {
       ondragstart = dragStart;
       ondragend = dragEnd;
     });
 
-    const ulFave = document.querySelectorAll(".fave-ul");
-    ulFave.forEach((ulFave) => {
-      ondragover = dragOver;
-    });
+// //dragover for ul container
+//     const ulFave = document.querySelectorAll(".fave-ul");
+
+//     ulFave.forEach((ulFaveItem) => {
+//       console.log("drag over")
+//       ulFaveItem.addEventListener("dragover", e => {
+//         e.preventDefault();
+//         const afterElement = getDragAFterElement(ulFaveItem, e.clientY);  
+//         const draggable = document.querySelector(".dragging");
+//         if (afterElement == null) {
+//           ulFaveItem.appendChild(draggable);
+//     console.log("drag over")
+//   } else {
+//     ulFaveItem.insertBefore(draggable, afterElement);
+//   }
+// })       
+//       // ondragover = dragOver;
+//     });  
 
     //show more info
     const moreInfoBtn= document.querySelectorAll("#showMoreBtn");
@@ -200,9 +218,11 @@ function preview(e) {
 
 //Removing favorite characters
 function removeFave(e) {
+  console.log("to remove");
   const fave = e.target;
   const trashItem = fave.parentElement;
   const favoriteItem = trashItem.parentElement.remove();
+  console.log("removed");
 }
 
 //Show more info - fave list
@@ -224,27 +244,13 @@ function dragEnd(e) {
   e.target.classList.remove("dragging");
 }
 
-//Dragover for ul container
-function dragOver(e) {
-  e.preventDefault();
-  
-  const draggable = document.querySelector(".dragging");
-  const ulFave = document.querySelector(".fave-ul");
-  const afterElement = getDragAFterElement(ulFave, e.clientY);  
-
-  if (afterElement == null) {
-    ulFave.appendChild(draggable);
-    console.log("drag over")
-  } else {
-    ulFave.insertBefore(draggable, afterElement);
-  }
-}
-
 //Drag after element
-function getDragAFterElement(ulFave, y) {
+function getDragAFterElement(ulFaveItem, y) {
+  console.log("🚀 ~ file: app.js ~ line 246 ~ getDragAFterElement ~ ulFaveItem", ulFaveItem)
   console.log("drag after")
   const draggable = document.querySelector(".dragging");
-  const draggableElements = [...ulFave.querySelectorAll(".draggable:not(.dragging)")];
+  const draggableElements = [...ulFaveItem.querySelectorAll(".draggable:not(.dragging)")];
+  console.log("🚀 ~ file: app.js ~ line 248 ~ getDragAFterElement ~ draggableElements", draggableElements)
  return draggableElements.reduce((closest, child) => {
 const box = child.getBoundingClientRect();
 const offset = y - box.top - box.height / 2;
@@ -259,7 +265,6 @@ if (offset < 0 && offset > closest.offset) {
 
 //Side panel
 const x = window.matchMedia("(min-width: 768px)");
-
 function openNav() {
   if (x.matches) {
     if (faveDiv.style.display === "none" || faveDiv.style.display === "") {
@@ -278,7 +283,7 @@ function openNav() {
   }
 }
 
-// closeBtn.addEventListener("click", closeNav);
+
 function closeNav() {
   faveDiv.style.width = "0";
   document.body.style.marginRight = "0";
@@ -297,7 +302,7 @@ async function showPeople(url = "https://swapi.dev/api/people/") {
   nextBtn(results);
 
   //previous button
-  prevBtn(results);
+  prevBtn(results);  
 }
 
 showPeople();
