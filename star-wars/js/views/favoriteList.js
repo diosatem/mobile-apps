@@ -1,12 +1,15 @@
 export default function favoriteList(getInfo) {
-   return `<li class="li-fave" draggable="true">
+  const trashID = getInfo.name.split(" ").join("") + `-trash`;
+  const uploadID = getInfo.name.split(" ").join("") + `-upload`;
+
+  return `<li class="li-fave" draggable="true">
     <div class="div-fave1">
-    <span class="fave-name">${getInfo.name}</span>
+    <span class="fave-name">${getInfo.name}</span>    
+    <button onclick="showMoreFaveInfo()" id="showMoreBtn">Show more info <i class="fa-solid fa-angles-down"></i></button>
     </div>
 
-    <div class="div-fave2">
-
-    <div class="fave-info">
+    <div class="div-fave2 more-info">
+        <div class="fave-info">
      <p>Height: ${getInfo.height}<p>
     <p>Mass: ${getInfo.mass}<p>
     <p>Hair color: ${getInfo.hair_color}<p>
@@ -16,15 +19,17 @@ export default function favoriteList(getInfo) {
     <p>Gender: ${getInfo.gender}<p>  
     </div>
 
-    <div class="fave-pic"><input type="file" id="file-input" accept="image/png, image/jpeg">
-    <label id="input-label" for="file-input"><i class="fa-solid fa-image"></i> &nbsp;Upload a Photo</label>
-    </input></div>
+    <div class="fave-pic">
+    <input type="file" id="file-input" class="${uploadID}" accept="image/png, image/jpeg">
+    <label id="input-label" for="file-input">
+    <i class="fa-solid fa-image"></i> &nbsp;Upload a Photo
+    </label>
+    </input>
+    </div>
        </div>
 
-    <div class="div-fave3">
-    
-    
-    <i id="trash-icon" class="trash-icon fa-solid fa-trash"></i>
+    <div class="div-fave3">     
+    <i id="trash-icon" class="${trashID} trash-icon fa-solid fa-trash"></i>
     </div>
-    </li>`
+    </li>`;
 }

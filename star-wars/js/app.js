@@ -11,13 +11,17 @@ const parentNext = document.getElementById("next");
 const parentPrev = document.getElementById("prev");
 const parentList = document.getElementsByClassName("parent-list")[0];
 const viewBtn = document.getElementById("view-btn");
+const moreInfo = document.getElementById("more-info");
+const moreInfoBtn= document.getElementById("showMoreBtn");
+const draggable = document.querySelector(".dragging");
+const ulFave = document.querySelector(".fave-ul");
+
 
 //Event Listeners
 document.addEventListener("DOMContentLoaded", displayItems);
 searchBar.addEventListener("keyup", searchPerson);
 parentList.addEventListener("click", addToFave);
 viewBtn.addEventListener("click", openNav);
-
 
 //Model code
 function getPeople(url) {
@@ -66,20 +70,18 @@ function searchPerson(e) {
 function nextBtn(results) {
   if (results.next) {
     const next = document.createElement("button");
-    next.innerText = "Next";
+    next.innerHTML = `Next <i class="fa-solid fa-angles-right"></i>`;
     next.classList.add("next");
     let timeOuttoken = 0;
     next.addEventListener("click", (event) => {
       clearTimeout(timeOuttoken);
       timeOuttoken = setTimeout(() => {
         showPeople(results.next);
-        console.log(results.next);
       }, 800);
     });
     parentNext.appendChild(next);
     if (next.previousSibling) parentNext.removeChild(next.previousSibling);
   } else if (results.next == null) {
-    console.log("end of list");
     next.innerText = "";
   }
 }
@@ -87,14 +89,13 @@ function nextBtn(results) {
 function prevBtn(results) {
   if (results.previous) {
     const prev = document.createElement("button");
-    prev.innerText = "Previous";
+    prev.innerHTML = `<i class="fa-solid fa-angles-left"></i> Previous`;
     prev.classList.add("prev");
     let timeOuttoken = 0;
     prev.addEventListener("click", (event) => {
       clearTimeout(timeOuttoken);
       timeOuttoken = setTimeout(() => {
         showPeople(results.previous);
-        // console.log(results.previous);
       }, 800);
     });
     parentPrev.appendChild(prev);
@@ -117,27 +118,39 @@ function addToFave(e) {
     saveToLocal(getInfo.name, getInfo);
 
     //upload and delete
-    const fileInput = document.getElementById("file-input");
-    fileInput.onchange = preview;
-    const trashIcon = document.getElementById("trash-icon");
+    const trashID = getInfo.name.split(" ").join("") + `-trash`;
+    const trashIcon = document.querySelector("." + trashID);
     trashIcon.onclick = removeFave;
+
+    const uploadID = getInfo.name.split(" ").join("") + `-upload`;
+    const fileInput = document.querySelector("." + uploadID);
+    fileInput.onchange = preview;
 
     //main array
     fave.style.display = "none";
 
     //drag and drop
     const liFave = document.querySelectorAll(".li-fave");
-    console.log("🚀 ~ file: app.js ~ line 130 ~ addToFave ~ liFave", liFave)
-    liFave.ondragstart = dragStart;
+    liFave.forEach((element) => {
+      ondragstart = dragStart;
+      ondragend = dragEnd;
+    });
+
+    const ulFave = document.querySelectorAll(".fave-ul");
+    ulFave.forEach((ulFave) => {
+      ondragover = dragOver;
+    });
+
+    //show more info
+    const moreInfoBtn= document.querySelectorAll("#showMoreBtn");
+    moreInfoBtn.forEach((element) => {
+      onclick = showMoreFaveInfo;
+    })
   }
+
+  
 }
 
-//Dragstart
-function dragStart(e) {
-  console.log("hello");
-  dragged = e.target;
-  e.target.classList.add("dragging");
-}
 
 
 //Save to localstorage
@@ -150,7 +163,6 @@ function saveToLocal(faveName, faveInfo) {
   }
   favePeople.push(faveName);
   writeToLS(faveName, faveInfo);
-  console.log(faveName);
 }
 
 //Display from localstorage
@@ -159,10 +171,13 @@ function displayItems(faveName) {
   let favePeople;
   if (localStorage.getItem("faveName") === null) {
     favePeople = [];
-    console.log("🚀 ~ file: app.js ~ line 150 ~ displayItems ~ favePeople", favePeople)
+   
   } else {
     favePeople = readFromLS(faveName);
-    console.log("🚀 ~ file: app.js ~ line 153 ~ displayItems ~ favePeople", favePeople)
+    console.log(
+      "🚀 ~ file: app.js ~ line 153 ~ displayItems ~ favePeople",
+      favePeople
+    );
   }
   // favePeople.forEach(function (faveName) {
   //   faveDiv.innerHTML += `favoriteList(getInfo)`;
@@ -171,29 +186,76 @@ function displayItems(faveName) {
 
 //Adding image for favorite characters
 let uploadedImage = "";
-function preview() {
-  let fileInput = document.getElementById("file-input");
-  const favePic = document.getElementsByClassName("fave-pic")[0];
-  const reader = new FileReader();
+function preview(e) {
+  const fave = e.target;  
+  const favePic = document.getElementsByClassName("fave-pic")[0];  
+  const reader = new FileReader();  
   reader.onload = () => {
     uploadedImage = reader.result;
     favePic.style.backgroundImage = `url(${uploadedImage})`;
   };
   reader.readAsDataURL(this.files[0]);
-  
+  console.log("🚀 ~ file: app.js ~ line 216 ~ preview ~ this.files[0]", this.files[0])
 }
 
 //Removing favorite characters
-function removeFave(e) {  
+function removeFave(e) {
   const fave = e.target;
+  const trashItem = fave.parentElement;
+  const favoriteItem = trashItem.parentElement.remove();
+}
+
+//Show more info - fave list
+function showMoreFaveInfo(e) {
+  const fave = e.target;
+  const divMoreInfo = document.querySelector(".div-fave2");
+    divMoreInfo.classList.toggle("more-info");    
+   }
+
+//Dragstart
+function dragStart(e) {
+  console.log("start");
+  e.target.classList.add("dragging");
+}
+
+//Dragend
+function dragEnd(e) {
+  console.log("end");
+  e.target.classList.remove("dragging");
+}
+
+//Dragover for ul container
+function dragOver(e) {
+  e.preventDefault();
   
-  if (fave.classList[0] === "trash-icon") {    
-    console.log("deleted");    
-    let trashDiv = document.getElementsByClassName("div-fave3")[0];
-    const removeLi = trashDiv.parentElement;        
-    removeLi.remove();
+  const draggable = document.querySelector(".dragging");
+  const ulFave = document.querySelector(".fave-ul");
+  const afterElement = getDragAFterElement(ulFave, e.clientY);  
+
+  if (afterElement == null) {
+    ulFave.appendChild(draggable);
+    console.log("drag over")
+  } else {
+    ulFave.insertBefore(draggable, afterElement);
+  }
 }
+
+//Drag after element
+function getDragAFterElement(ulFave, y) {
+  console.log("drag after")
+  const draggable = document.querySelector(".dragging");
+  const draggableElements = [...ulFave.querySelectorAll(".draggable:not(.dragging)")];
+ return draggableElements.reduce((closest, child) => {
+const box = child.getBoundingClientRect();
+const offset = y - box.top - box.height / 2;
+if (offset < 0 && offset > closest.offset) {
+  return { offset: offset, element: child } 
+}  else {
+    return closest;  
+} 
+}, {offset: Number.NEGATIVE_INFINITY}).element;
 }
+
 
 //Side panel
 const x = window.matchMedia("(min-width: 768px)");
@@ -226,7 +288,6 @@ function closeNav() {
 // controller code
 async function showPeople(url = "https://swapi.dev/api/people/") {
   const results = await getPeople(url);
-  // console.log(results);
 
   //get the list element
   peopleList.push(...results.results);
