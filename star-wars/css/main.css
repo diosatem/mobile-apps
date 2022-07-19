@@ -337,13 +337,8 @@ align-items: flex-end;
   opacity: .5;
 }
 
-.more-info {
+.div-fave2 {
   display: none;
-  width: 100%;
-  padding: 25px;
-  background-color: coral;
-  color: white;
-  font-size: 25px;
 }
 
 .div-fave1 {
@@ -353,13 +348,17 @@ align-items: flex-end;
   row-gap: 20px;
 }
 
-#showMoreBtn {
+button#showMoreBtn, button#showLessBtn {
   background-color: transparent;
   border: 1px solid #57ffff;
   color: #57ffff;
   width: 40%;
   padding: 10px;
   cursor: pointer;
+}
+
+.div-fave1 button#showLessBtn {
+  display: none;
 }
 
 /*loader*/
@@ -385,4 +384,8 @@ align-items: flex-end;
   left: 0;
   right: 0;
   margin: auto;
+}
+
+.fa-angles-down, .fa-angles-up {
+  pointer-events: none;
 }

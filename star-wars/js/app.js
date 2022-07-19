@@ -12,7 +12,7 @@ const parentPrev = document.getElementById("prev");
 const parentList = document.getElementsByClassName("parent-list")[0];
 const viewBtn = document.getElementById("view-btn");
 const moreInfo = document.getElementById("more-info");
-const moreInfoBtn= document.getElementById("showMoreBtn");
+const moreInfoBtn = document.getElementById("showMoreBtn");
 const draggable = document.querySelectorAll(".dragging");
 const ulFave = document.querySelectorAll(".fave-ul");
 const closeBtn = document.getElementById("close-btn");
@@ -107,130 +107,66 @@ function prevBtn(results) {
 }
 
 //Adding/Display favorite characters
-function addToFave(e) {
+async function addToFave(e) {
+  e.preventDefault();
   const fave = e.target;
   if (fave.classList[0] === "person") {
     const getInfo = peopleList.find((item) => item.name === fave.innerText);
 
     const ulFave = document.querySelector("#fave-ul");
-    ulFave.innerHTML += favoriteList(getInfo);
-    // ulFave.insertAdjacentHTML("beforeend", favoriteList(getInfo));
+    ulFave.insertAdjacentHTML("beforeend", favoriteList(getInfo));
 
     //localstorage
     writeToLS(getInfo.name, getInfo);
     saveToLocal(getInfo.name, getInfo);
+    const faveKey = readFromLS(getInfo.name);
+    displayItems(getInfo.name);
+    console.log("🚀 ~ file: app.js ~ line 124 ~ addToFave ~ displayItems(getInfo.name)", displayItems(getInfo.name))
+    
+    
+    
 
     //upload and delete
     const trashID = getInfo.name.split(" ").join("") + `-trash`;
-    const trashIcon = document.querySelector("." + trashID);    
-    console.log("🚀 ~ file: app.js ~ line 125 ~ addToFave ~ trashIcon", trashIcon)
+    const trashIcon = document.querySelector("." + trashID);
     trashIcon.onclick = removeFave;
+    // trashIcon.addEventListener(onclick, removeFave);
 
     const uploadID = getInfo.name.split(" ").join("") + `-upload`;
     const fileInput = document.querySelector("." + uploadID);
     fileInput.onchange = preview;
 
     //main array
-    fave.style.display = "none";
+    // fave.style.display = "none";
+    fave.remove();
 
     //drag and drop
-    const liFave = document.querySelectorAll(".li-fave");
-    liFave.forEach((liFaveItem) => {
+     const draggables = document.querySelectorAll(".li-fave");
+    const containers = document.querySelectorAll("#fave-ul");
+    draggables.forEach(draggable => {
       ondragstart = dragStart;
       ondragend = dragEnd;
     });
 
-// //dragover for ul container
-//     const ulFave = document.querySelectorAll(".fave-ul");
+    containers.forEach(container => {
+      container.addEventListener("dragover", e => {
+        e.preventDefault();
+        const afterElement = getDragAFterElement(container, e.clientY);
 
-//     ulFave.forEach((ulFaveItem) => {
-//       console.log("drag over")
-//       ulFaveItem.addEventListener("dragover", e => {
-//         e.preventDefault();
-//         const afterElement = getDragAFterElement(ulFaveItem, e.clientY);  
-//         const draggable = document.querySelector(".dragging");
-//         if (afterElement == null) {
-//           ulFaveItem.appendChild(draggable);
-//     console.log("drag over")
-//   } else {
-//     ulFaveItem.insertBefore(draggable, afterElement);
-//   }
-// })       
-//       // ondragover = dragOver;
-//     });  
-
-    //show more info
-    const moreInfoBtn= document.querySelectorAll("#showMoreBtn");
-    moreInfoBtn.forEach((element) => {
-      onclick = showMoreFaveInfo;
+        const draggable = document.querySelector(".dragging");
+        container.appendChild(draggable);
+      })
     })
-  }
 
   
-}
 
-
-
-//Save to localstorage
-function saveToLocal(faveName, faveInfo) {
-  let favePeople;
-  if (localStorage.getItem("faveName") === null) {
-    favePeople = [];
-  } else {
-    favePeople = readFromLS(faveName);
+    // show more info
+    const moreInfoBtn = document.querySelectorAll("#showMoreBtn");
+    moreInfoBtn.forEach((element) => {
+      onclick = showMoreFaveInfo;
+    });
   }
-  favePeople.push(faveName);
-  writeToLS(faveName, faveInfo);
 }
-
-//Display from localstorage
-function displayItems(faveName) {
-  console.log("loading faves");
-  let favePeople;
-  if (localStorage.getItem("faveName") === null) {
-    favePeople = [];
-   
-  } else {
-    favePeople = readFromLS(faveName);
-    console.log(
-      "🚀 ~ file: app.js ~ line 153 ~ displayItems ~ favePeople",
-      favePeople
-    );
-  }
-  // favePeople.forEach(function (faveName) {
-  //   faveDiv.innerHTML += `favoriteList(getInfo)`;
-  // });
-}
-
-//Adding image for favorite characters
-let uploadedImage = "";
-function preview(e) {
-  const fave = e.target;  
-  const favePic = document.getElementsByClassName("fave-pic")[0];  
-  const reader = new FileReader();  
-  reader.onload = () => {
-    uploadedImage = reader.result;
-    favePic.style.backgroundImage = `url(${uploadedImage})`;
-  };
-  reader.readAsDataURL(this.files[0]);
-  console.log("🚀 ~ file: app.js ~ line 216 ~ preview ~ this.files[0]", this.files[0])
-}
-
-//Removing favorite characters
-function removeFave(e) {
-  console.log("to remove");
-  const fave = e.target;
-  const trashItem = fave.parentElement;
-  const favoriteItem = trashItem.parentElement.remove();
-  console.log("removed");
-}
-
-//Show more info - fave list
-function showMoreFaveInfo(e) {
-  const fave = e.target;
-  const divMoreInfo = document.querySelector(".div-fave2");
-    divMoreInfo.classList.toggle("more-info");    
-   }
 
 //Dragstart
 function dragStart(e) {
@@ -245,22 +181,104 @@ function dragEnd(e) {
 }
 
 //Drag after element
-function getDragAFterElement(ulFaveItem, y) {
-  console.log("🚀 ~ file: app.js ~ line 246 ~ getDragAFterElement ~ ulFaveItem", ulFaveItem)
-  console.log("drag after")
+function getDragAFterElement(container, y) {
+  console.log("drag after");
+  const draggableElements = [
+    ...container.querySelectorAll(".draggable:not(.dragging)")];
   const draggable = document.querySelector(".dragging");
-  const draggableElements = [...ulFaveItem.querySelectorAll(".draggable:not(.dragging)")];
-  console.log("🚀 ~ file: app.js ~ line 248 ~ getDragAFterElement ~ draggableElements", draggableElements)
- return draggableElements.reduce((closest, child) => {
-const box = child.getBoundingClientRect();
-const offset = y - box.top - box.height / 2;
-if (offset < 0 && offset > closest.offset) {
-  return { offset: offset, element: child } 
-}  else {
-    return closest;  
-} 
-}, {offset: Number.NEGATIVE_INFINITY}).element;
+  
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      console.log("🚀 ~ file: app.js ~ line 194 ~ getDragAFterElement ~ offset", offset)
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
 }
+
+//Save to localstorage
+function saveToLocal(faveName, faveInfo) {
+  //check if there's an existing data in ls. if there is, don't rewrite.
+  let favePeople;
+  if (localStorage.getItem("faveName") === null) {
+    //if it doesn't exist, create an empty array
+    favePeople = [];
+  } else {
+    favePeople = readFromLS(faveName); //if it does exist, parse it back into an array
+  }
+  favePeople.push(faveName);
+  writeToLS(faveName, faveInfo);
+}
+
+//Display from localstorage
+function displayItems(faveName) {
+  console.log("🚀 ~ file: app.js ~ line 177 ~ displayItems ~ faveName", faveName)
+  console.log("loading faves");
+
+  let favePeople;
+  if (localStorage.getItem("key") === null) {
+    favePeople = [];
+    console.log("array")
+  } else {
+    favePeople = JSON.parse(localStorage.getItem(faveName));
+    
+  }
+
+  favePeople.forEach(function (key) {
+    ulFave.innerHTML += favePeople;
+  });
+}
+
+//Adding image for favorite characters
+let uploadedImage = "";
+function preview(e) {
+  const fave = e.target;
+  const favePic = document.getElementsByClassName("fave-pic")[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+    uploadedImage = reader.result;
+    favePic.style.backgroundImage = `url(${uploadedImage})`;
+  };
+  reader.readAsDataURL(this.files[0]);
+  console.log(
+    "🚀 ~ file: app.js ~ line 216 ~ preview ~ this.files[0]",
+    this.files[0]
+  );
+}
+
+//Removing favorite characters
+function removeFave(e) {
+  const fave = e.target;
+  const trashItem = fave.parentElement;
+  const favoriteItem = trashItem.parentElement;
+  favoriteItem.remove();
+  console.log("removed");
+}
+
+//Show more info - fave list
+function showMoreFaveInfo(e) {
+  const fave = e.target;
+  const jediIcon = document.getElementsByClassName("jedi-icon")[0];
+  const divTwo = document.getElementsByClassName("div-fave2")[0];
+  const infoBtn = document.getElementById("showMoreBtn");
+
+  if (jediIcon.style.display === "none") {
+    jediIcon.style.display = "inline";
+    infoBtn.innerHTML = "Show more";
+    divTwo.style.display = "none";
+  } else {
+    jediIcon.style.display = "none";
+    infoBtn.innerHTML = "Show less";
+    divTwo.style.display = "inline";
+  }
+}
+
 
 
 //Side panel
@@ -283,7 +301,6 @@ function openNav() {
   }
 }
 
-
 function closeNav() {
   faveDiv.style.width = "0";
   document.body.style.marginRight = "0";
@@ -302,7 +319,7 @@ async function showPeople(url = "https://swapi.dev/api/people/") {
   nextBtn(results);
 
   //previous button
-  prevBtn(results);  
+  prevBtn(results);
 }
 
 showPeople();

@@ -5,7 +5,8 @@ export default function favoriteList(getInfo) {
   return `<li class="li-fave" draggable="true">
     <div class="div-fave1">
     <span class="fave-name">${getInfo.name}</span>    
-    <button onclick="showMoreFaveInfo()" id="showMoreBtn">Show more info <i class="fa-solid fa-angles-down"></i></button>
+    <i class="jedi-icon fa-solid fa-jedi"></i>
+    <button id="showMoreBtn" class="show-more-btn">More info &nbsp&nbsp<i class="fa-solid fa-angles-down"></i></button>
     </div>
 
     <div class="div-fave2 more-info">
