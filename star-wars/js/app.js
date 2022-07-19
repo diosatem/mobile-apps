@@ -121,10 +121,10 @@ async function addToFave(e) {
     saveToLocal(getInfo.name, getInfo);
     const faveKey = readFromLS(getInfo.name);
     displayItems(getInfo.name);
-    console.log("🚀 ~ file: app.js ~ line 124 ~ addToFave ~ displayItems(getInfo.name)", displayItems(getInfo.name))
-    
-    
-    
+    console.log(
+      "🚀 ~ file: app.js ~ line 124 ~ addToFave ~ displayItems(getInfo.name)",
+      displayItems(getInfo.name)
+    );
 
     //upload and delete
     const trashID = getInfo.name.split(" ").join("") + `-trash`;
@@ -141,24 +141,52 @@ async function addToFave(e) {
     fave.remove();
 
     //drag and drop
-     const draggables = document.querySelectorAll(".li-fave");
+    const draggables = document.querySelectorAll(".li-fave");
     const containers = document.querySelectorAll("#fave-ul");
-    draggables.forEach(draggable => {
+    draggables.forEach((draggable) => {
       ondragstart = dragStart;
       ondragend = dragEnd;
     });
 
-    containers.forEach(container => {
-      container.addEventListener("dragover", e => {
+    containers.forEach((container) => {
+      container.addEventListener("dragover", (e) => {
         e.preventDefault();
         const afterElement = getDragAFterElement(container, e.clientY);
-
         const draggable = document.querySelector(".dragging");
-        container.appendChild(draggable);
-      })
-    })
+        if (afterElement == null) {
+          container.appendChild(draggable);
+        } else {
+          container.insertBefore(draggable, afterElement);
+        }
+      });
+    });
 
-  
+    //Drag after element
+    function getDragAFterElement(container, y) {
+      console.log("drag after");
+      const draggableElements = [
+        ...container.querySelectorAll(".draggable:not(.dragging)"),
+      ];
+
+      return draggableElements.reduce(
+        (closest, child) => {
+          console.log("i entered return");
+          const box = child.getBoundingClientRect();
+
+          const offset = y - box.top - box.height / 2;
+          console.log(
+            "🚀 ~ file: app.js ~ line 194 ~ getDragAFterElement ~ offset",
+            offset
+          );
+          if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+          } else {
+            return closest;
+          }
+        },
+        { offset: Number.NEGATIVE_INFINITY }
+      ).element;
+    }
 
     // show more info
     const moreInfoBtn = document.querySelectorAll("#showMoreBtn");
@@ -180,28 +208,6 @@ function dragEnd(e) {
   e.target.classList.remove("dragging");
 }
 
-//Drag after element
-function getDragAFterElement(container, y) {
-  console.log("drag after");
-  const draggableElements = [
-    ...container.querySelectorAll(".draggable:not(.dragging)")];
-  const draggable = document.querySelector(".dragging");
-  
-  return draggableElements.reduce(
-    (closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-      console.log("🚀 ~ file: app.js ~ line 194 ~ getDragAFterElement ~ offset", offset)
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    },
-    { offset: Number.NEGATIVE_INFINITY }
-  ).element;
-}
-
 //Save to localstorage
 function saveToLocal(faveName, faveInfo) {
   //check if there's an existing data in ls. if there is, don't rewrite.
@@ -218,18 +224,19 @@ function saveToLocal(faveName, faveInfo) {
 
 //Display from localstorage
 function displayItems(faveName) {
-  console.log("🚀 ~ file: app.js ~ line 177 ~ displayItems ~ faveName", faveName)
+  console.log(
+    "🚀 ~ file: app.js ~ line 177 ~ displayItems ~ faveName",
+    faveName
+  );
   console.log("loading faves");
 
   let favePeople;
   if (localStorage.getItem("key") === null) {
     favePeople = [];
-    console.log("array")
+    console.log("array");
   } else {
     favePeople = JSON.parse(localStorage.getItem(faveName));
-    
   }
-
   favePeople.forEach(function (key) {
     ulFave.innerHTML += favePeople;
   });
@@ -278,8 +285,6 @@ function showMoreFaveInfo(e) {
     divTwo.style.display = "inline";
   }
 }
-
-
 
 //Side panel
 const x = window.matchMedia("(min-width: 768px)");
