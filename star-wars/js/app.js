@@ -1,6 +1,8 @@
 import getJSON from "./model/utils.js";
 import favoriteList from "./views/favoriteList.js";
-import { deleteLS, readFromLS, writeToLS } from "./model/ls.js";
+import { readFromLS, writeToLS } from "./model/ls.js";
+import showCharacters from "./views/character.js";
+import { handleUpload, removeFavorite } from "./controllers/favorite.js";
 
 //Selectors
 const peopleDiv = document.getElementById("people-div");
@@ -11,11 +13,8 @@ const parentNext = document.getElementById("next");
 const parentPrev = document.getElementById("prev");
 const parentList = document.getElementsByClassName("parent-list")[0];
 const viewBtn = document.getElementById("view-btn");
-const moreInfo = document.getElementById("more-info");
-const moreInfoBtn = document.getElementById("showMoreBtn");
-const draggable = document.querySelectorAll(".dragging");
-const ulFave = document.querySelectorAll(".fave-ul");
 const closeBtn = document.getElementById("close-btn");
+const favoriteUL = document.querySelector("#fave-ul");
 
 //Event Listeners
 document.addEventListener("DOMContentLoaded", displayItems);
@@ -23,6 +22,7 @@ searchBar.addEventListener("keyup", searchPerson);
 parentList.addEventListener("click", addToFave);
 viewBtn.addEventListener("click", openNav);
 closeBtn.onclick = closeNav;
+favoriteUL.addEventListener("click", removeFavorite);
 
 //Model code
 function getPeople(url) {
@@ -31,14 +31,11 @@ function getPeople(url) {
 }
 
 //View code
-function renderPeopleList(people) {
+export function renderPeopleList(people) {
   const peopleLi = people
-    .map((person) => {
-      return `<li class="person"><span class="person-name">${person.name}</span> <i class="fa-solid fa-plus add delete"></i></li>`;
-    })
+    .map((person, index) => showCharacters(person, index))
     .join("");
   parentList.innerHTML = peopleLi;
-  // displayFave(details);
 }
 
 //Loader
@@ -107,38 +104,29 @@ function prevBtn(results) {
 }
 
 //Adding/Display favorite characters
-async function addToFave(e) {
-  e.preventDefault();
+let favoriteCharacters = [];
+function addToFave(e) {
   const fave = e.target;
   if (fave.classList[0] === "person") {
-    const getInfo = peopleList.find((item) => item.name === fave.innerText);
+    let getIndex = peopleList.findIndex((item) => item.name === fave.innerText);
+    let addCharacter = peopleList[getIndex];
+    addCharacter.id = getIndex;
 
     const ulFave = document.querySelector("#fave-ul");
-    ulFave.insertAdjacentHTML("beforeend", favoriteList(getInfo));
+    ulFave.innerHTML += favoriteList(addCharacter);
 
     //localstorage
-    writeToLS(getInfo.name, getInfo);
-    saveToLocal(getInfo.name, getInfo);
-    const faveKey = readFromLS(getInfo.name);
-    displayItems(getInfo.name);
-    console.log(
-      "🚀 ~ file: app.js ~ line 124 ~ addToFave ~ displayItems(getInfo.name)",
-      displayItems(getInfo.name)
-    );
+    writeToLS(addCharacter.name, addCharacter); //utils
+    saveToLocal(addCharacter.name, addCharacter); //app
+    readFromLS(addCharacter.name); //utils
+    console.log(readFromLS(addCharacter.name));
+    console.log(typeof(readFromLS(addCharacter.name)));
 
-    //upload and delete
-    const trashID = getInfo.name.split(" ").join("") + `-trash`;
-    const trashIcon = document.querySelector("." + trashID);
-    trashIcon.onclick = removeFave;
-    // trashIcon.addEventListener(onclick, removeFave);
 
-    const uploadID = getInfo.name.split(" ").join("") + `-upload`;
-    const fileInput = document.querySelector("." + uploadID);
-    fileInput.onchange = preview;
+    fave.style.display = "none";
 
-    //main array
-    // fave.style.display = "none";
-    fave.remove();
+    //upload
+    ulFave.onchange = handleUpload;
 
     //drag and drop
     const draggables = document.querySelectorAll(".li-fave");
@@ -161,39 +149,44 @@ async function addToFave(e) {
       });
     });
 
-    //Drag after element
-    function getDragAFterElement(container, y) {
-      console.log("drag after");
-      const draggableElements = [
-        ...container.querySelectorAll(".draggable:not(.dragging)"),
-      ];
-
-      return draggableElements.reduce(
-        (closest, child) => {
-          console.log("i entered return");
-          const box = child.getBoundingClientRect();
-
-          const offset = y - box.top - box.height / 2;
-          console.log(
-            "🚀 ~ file: app.js ~ line 194 ~ getDragAFterElement ~ offset",
-            offset
-          );
-          if (offset < 0 && offset > closest.offset) {
-            return { offset: offset, element: child };
-          } else {
-            return closest;
-          }
-        },
-        { offset: Number.NEGATIVE_INFINITY }
-      ).element;
-    }
-
-    // show more info
-    const moreInfoBtn = document.querySelectorAll("#showMoreBtn");
-    moreInfoBtn.forEach((element) => {
-      onclick = showMoreFaveInfo;
-    });
+        favoriteCharacters.push(addCharacter);
+    return;
   }
+}
+
+//Save to localstorage
+function saveToLocal(faveName, faveInfo) {
+  let favePeople;
+  if (localStorage.getItem("faveName") === null) {
+    favePeople = [];
+  } else {
+    favePeople = readFromLS(faveName);
+  }
+  favePeople.push(faveName);
+  writeToLS(faveName, faveInfo);
+}
+
+//Display from localstorage
+function displayItems(key) {
+  console.log("Loading favorite characters...");
+
+  const getLocal = localStorage;
+  console.log("🚀 ~ file: app.js ~ line 149 ~ displayItems ~ local", getLocal);
+  console.log(typeof getLocal);
+  const ulFave = document.querySelector("#fave-ul");
+  ulFave.innerHTML += getLocal;
+
+  let favePeople;
+  if (localStorage.getItem('favoriteCharacters') === null) {
+    favePeople = []
+    console.log('if');
+  } else {
+    favePeople = JSON.parse(localStorage.getItem(favoriteCharacters));
+    console.log('else')
+  }
+      favePeople.forEach(function (faveName) {
+        ulFave.innerHTML += `favePeople`;
+  });
 }
 
 //Dragstart
@@ -208,82 +201,27 @@ function dragEnd(e) {
   e.target.classList.remove("dragging");
 }
 
-//Save to localstorage
-function saveToLocal(faveName, faveInfo) {
-  //check if there's an existing data in ls. if there is, don't rewrite.
-  let favePeople;
-  if (localStorage.getItem("faveName") === null) {
-    //if it doesn't exist, create an empty array
-    favePeople = [];
-  } else {
-    favePeople = readFromLS(faveName); //if it does exist, parse it back into an array
-  }
-  favePeople.push(faveName);
-  writeToLS(faveName, faveInfo);
-}
-
-//Display from localstorage
-function displayItems(faveName) {
-  console.log(
-    "🚀 ~ file: app.js ~ line 177 ~ displayItems ~ faveName",
-    faveName
-  );
-  console.log("loading faves");
-
-  let favePeople;
-  if (localStorage.getItem("key") === null) {
-    favePeople = [];
-    console.log("array");
-  } else {
-    favePeople = JSON.parse(localStorage.getItem(faveName));
-  }
-  favePeople.forEach(function (key) {
-    ulFave.innerHTML += favePeople;
-  });
-}
-
-//Adding image for favorite characters
-let uploadedImage = "";
-function preview(e) {
-  const fave = e.target;
-  const favePic = document.getElementsByClassName("fave-pic")[0];
-  const reader = new FileReader();
-  reader.onload = () => {
-    uploadedImage = reader.result;
-    favePic.style.backgroundImage = `url(${uploadedImage})`;
-  };
-  reader.readAsDataURL(this.files[0]);
-  console.log(
-    "🚀 ~ file: app.js ~ line 216 ~ preview ~ this.files[0]",
-    this.files[0]
-  );
-}
-
-//Removing favorite characters
-function removeFave(e) {
-  const fave = e.target;
-  const trashItem = fave.parentElement;
-  const favoriteItem = trashItem.parentElement;
-  favoriteItem.remove();
-  console.log("removed");
-}
-
-//Show more info - fave list
-function showMoreFaveInfo(e) {
-  const fave = e.target;
-  const jediIcon = document.getElementsByClassName("jedi-icon")[0];
-  const divTwo = document.getElementsByClassName("div-fave2")[0];
-  const infoBtn = document.getElementById("showMoreBtn");
-
-  if (jediIcon.style.display === "none") {
-    jediIcon.style.display = "inline";
-    infoBtn.innerHTML = "Show more";
-    divTwo.style.display = "none";
-  } else {
-    jediIcon.style.display = "none";
-    infoBtn.innerHTML = "Show less";
-    divTwo.style.display = "inline";
-  }
+//Drag after element
+function getDragAFterElement(ulFaveItem, y) {
+ 
+  console.log("drag after");
+  const draggable = document.querySelector(".dragging");
+  const draggableElements = [
+    ...ulFaveItem.querySelectorAll(".draggable:not(.dragging)"),
+  ];
+  
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
 }
 
 //Side panel
