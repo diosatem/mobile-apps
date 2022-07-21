@@ -118,10 +118,6 @@ function addToFave(e) {
     //localstorage
     writeToLS(addCharacter.name, addCharacter); //utils
     saveToLocal(addCharacter.name, addCharacter); //app
-    readFromLS(addCharacter.name); //utils
-    console.log(readFromLS(addCharacter.name));
-    console.log(typeof(readFromLS(addCharacter.name)));
-
 
     fave.style.display = "none";
 
@@ -149,21 +145,21 @@ function addToFave(e) {
       });
     });
 
-        favoriteCharacters.push(addCharacter);
+    favoriteCharacters.push(addCharacter);
     return;
   }
 }
 
 //Save to localstorage
-function saveToLocal(faveName, faveInfo) {
-  let favePeople;
+let favePeople;
+function saveToLocal(faveName, faveInfo) {  
   if (localStorage.getItem("faveName") === null) {
     favePeople = [];
   } else {
     favePeople = readFromLS(faveName);
   }
-  favePeople.push(faveName);
-  writeToLS(faveName, faveInfo);
+  favePeople.push(faveName); 
+    writeToLS(faveName, faveInfo);
 }
 
 //Display from localstorage
@@ -171,21 +167,21 @@ function displayItems(key) {
   console.log("Loading favorite characters...");
 
   const getLocal = localStorage;
-  console.log("🚀 ~ file: app.js ~ line 149 ~ displayItems ~ local", getLocal);
   console.log(typeof getLocal);
+
   const ulFave = document.querySelector("#fave-ul");
   ulFave.innerHTML += getLocal;
 
   let favePeople;
-  if (localStorage.getItem('favoriteCharacters') === null) {
-    favePeople = []
-    console.log('if');
+  if (localStorage.getItem("favoriteCharacters") === null) {
+    favePeople = [];
+    console.log("if");
   } else {
     favePeople = JSON.parse(localStorage.getItem(favoriteCharacters));
-    console.log('else')
+    console.log("else");
   }
-      favePeople.forEach(function (faveName) {
-        ulFave.innerHTML += `favePeople`;
+  favePeople.forEach(function (faveName) {
+    ulFave.innerHTML += `favePeople`;
   });
 }
 
@@ -203,13 +199,12 @@ function dragEnd(e) {
 
 //Drag after element
 function getDragAFterElement(ulFaveItem, y) {
- 
   console.log("drag after");
   const draggable = document.querySelector(".dragging");
   const draggableElements = [
     ...ulFaveItem.querySelectorAll(".draggable:not(.dragging)"),
   ];
-  
+
   return draggableElements.reduce(
     (closest, child) => {
       const box = child.getBoundingClientRect();
