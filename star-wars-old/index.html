@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Star Wars Faves</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <script
+      src="https://kit.fontawesome.com/ae70db09cb.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="background"></div>
+    <header>
+      <img src="images/star wars yellow.png" alt="Star Wars logo" />
+      <h1>My Favorite Characters</h1>
+      <button id="view-btn" class="planet-btn">
+        <i class="fa-solid fa-eye view"></i> View List
+      </button>
+      <div id="search-wrapper">
+        <input
+          type="text"
+          name="searchBar"
+          id="search-bar"
+          placeholder="“You will find only what you bring in.” – Yoda"
+          minlength="1"
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <span id="alert"></span>
+    </header>
+    <main>
+      <div id="fave-div" class="fave-div">
+        <i class="fa-solid fa-x" id="close-btn" class="close-btn"></i>
+        <ul id="fave-ul" class="fave-ul">
+          <p class="your-fave">Your Favorite Characters</p>
+        </ul>
+      </div>
+
+      <div id="people-div">
+        <div id="loader" class="center"></div>
+        <ul class="parent-list"></ul>
+      </div>
+      <div id="go-to">
+        <div id="prev"></div>
+        <div id="next"></div>
+      </div>
+    </main>
+
+    <script src="js/main.js" type="module"></script>
+  </body>
+</html>
