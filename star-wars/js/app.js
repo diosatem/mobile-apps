@@ -115,6 +115,16 @@ function addToFave(e) {
     const ulFave = document.querySelector("#fave-ul");
     ulFave.innerHTML += favoriteList(addCharacter);
 
+    let readfromDB = readFromLS("favorites");
+
+    if(!readfromDB) {
+      readfromDB = [];
+    }
+
+    readfromDB.push(addCharacter);
+
+    saveToLocal("favorites", readfromDB);
+
     //localstorage
     writeToLS(addCharacter.name, addCharacter); //utils
     saveToLocal(addCharacter.name, addCharacter); //app
@@ -170,18 +180,17 @@ function displayItems(key) {
   console.log(typeof getLocal);
 
   const ulFave = document.querySelector("#fave-ul");
-  ulFave.innerHTML += getLocal;
-
+  
   let favePeople;
-  if (localStorage.getItem("favoriteCharacters") === null) {
+  if (localStorage.getItem("favorites") === null) {
     favePeople = [];
     console.log("if");
   } else {
-    favePeople = JSON.parse(localStorage.getItem(favoriteCharacters));
+    favePeople = JSON.parse(localStorage.getItem("favorites"));
     console.log("else");
   }
   favePeople.forEach(function (faveName) {
-    ulFave.innerHTML += `favePeople`;
+    ulFave.innerHTML += favoriteList(faveName);
   });
 }
 
